@@ -25,13 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_check_button(mb_left)) move_towards_point(mouse_x,mouse_y,5) else speed=0; 
+            <string>if (mouse_check_button(mb_left)) move_towards_point(mouse_x,mouse_y,5); 
 
 if (mouse_check_button_released(mb_left)) 
 {
     instance_create(mouse_x,mouse_y,obj_moveTo);
     move_towards_point (obj_moveTo.x,obj_moveTo.y,5);
 }
+
+if (collision_circle(x,y,20,obj_moveTo,true,true)) speed = 0;
 </string>
           </argument>
         </arguments>

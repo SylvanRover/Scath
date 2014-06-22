@@ -6,8 +6,8 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\sp_capitalist_idle</sprite>
-    <sprite>sprites\sp_capitalist_walk</sprite>
+    <sprite>sprites\spr_capitalist_idle</sprite>
+    <sprite>sprites\spr_capitalist_walk</sprite>
     <sprite>sprites\spr_grass</sprite>
     <sprite>sprites\spr_dirt</sprite>
     <sprite>sprites\spr_cobblestone</sprite>

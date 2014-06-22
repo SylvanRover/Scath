@@ -14,6 +14,7 @@
     <sprite>sprites\spr_fascist_idle</sprite>
     <sprite>sprites\spr_fascist_walk</sprite>
     <sprite>sprites\spr_terrainTest</sprite>
+    <sprite>sprites\spr_sword</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tileTest</background>
@@ -27,8 +28,9 @@
     <object>objects\obj_grass</object>
     <object>objects\obj_cobblestone</object>
     <object>objects\obj_fascist01</object>
-    <object>objects\obj_playerHealth</object>
+    <object>objects\obj_player01Controller</object>
     <object>objects\obj_player01Death</object>
+    <object>objects\obj_sword</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_02</room>

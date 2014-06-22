@@ -42,7 +42,10 @@
   </backgrounds>
   <views>
     <view visible="-1" objName="obj_player01" xview="0" yview="0" wview="1024" hview="780" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
+<<<<<<< HEAD
     <view visible="-1" objName="obj_player01" xview="0" yview="0" wview="1024" hview="780" xport="0" yport="0" wport="1024" hport="780" hborder="400" vborder="300" hspeed="-1" vspeed="-1"/>
+=======
+>>>>>>> parent of 7748e88... Player Sprite Initial Directions
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="640" hview="480" xport="0" yport="0" wport="640" hport="480" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>

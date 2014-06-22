@@ -106,7 +106,7 @@
     <instance objName="obj_grass" x="1344" y="448" name="inst_2A17BAE0" locked="0" code="" scaleX="5" scaleY="5" colour="4294967295" rotation="0"/>
     <instance objName="obj_grass" x="1120" y="96" name="inst_7729EEE5" locked="0" code="" scaleX="5" scaleY="5" colour="4294967295" rotation="0"/>
     <instance objName="obj_grass" x="1472" y="0" name="inst_DEAC8894" locked="0" code="" scaleX="5" scaleY="5" colour="4294967295" rotation="0"/>
-    <instance objName="obj_player01" x="576" y="352" name="inst_25C86898" locked="0" code="" scaleX="5" scaleY="5" colour="4294967295" rotation="0"/>
+    <instance objName="obj_player01" x="576" y="352" name="inst_25C86898" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_grass" x="1248" y="0" name="inst_8DC0EBDF" locked="0" code="" scaleX="5" scaleY="5" colour="4294967295" rotation="0"/>
     <instance objName="obj_grass" x="1184" y="320" name="inst_32A379A9" locked="0" code="" scaleX="5" scaleY="5" colour="4294967295" rotation="0"/>
     <instance objName="obj_controller" x="128" y="64" name="inst_E6E75658" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

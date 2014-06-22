@@ -24,6 +24,7 @@
     <object>objects\obj_cobblestone</object>
     <object>objects\obj_fascist01</object>
     <object>objects\obj_controller</object>
+    <object>objects\obj_player01Death</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_01</room>

@@ -27,7 +27,7 @@
     <object>objects\obj_player01Death</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_01</room>
+    <room>rooms\room2</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

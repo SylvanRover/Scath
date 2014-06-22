@@ -11,16 +11,19 @@
     <sprite>sprites\spr_grass</sprite>
     <sprite>sprites\spr_dirt</sprite>
     <sprite>sprites\spr_cobblestone</sprite>
+    <sprite>sprites\spr_fascist_idle</sprite>
+    <sprite>sprites\spr_fascist_walk</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
-  <scripts name="scripts"/>
   <objects name="objects">
     <object>objects\obj_player01</object>
     <object>objects\obj_moveTo</object>
     <object>objects\obj_dirt</object>
     <object>objects\obj_grass</object>
     <object>objects\obj_cobblestone</object>
+    <object>objects\obj_fascist01</object>
+    <object>objects\obj_controller</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_01</room>

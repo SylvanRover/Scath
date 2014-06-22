@@ -8,6 +8,52 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Player01Speed</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>7</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>721</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_health</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>100</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,25 +71,25 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_check_button(mb_left)) move_towards_point(mouse_x,mouse_y,5); 
+            <string>if (mouse_check_button(mb_left)) move_towards_point(mouse_x,mouse_y,obj_player01.Player01Speed); 
 
 if (mouse_check_button_released(mb_left)) 
 {
     instance_create(mouse_x,mouse_y,obj_moveTo);
-    move_towards_point (obj_moveTo.x,obj_moveTo.y,5);
+    move_towards_point (obj_moveTo.x,obj_moveTo.y,obj_player01.Player01Speed);
 }
 
 if (collision_circle(x,y,20,obj_moveTo,true,true)) speed = 0;
 
 if (hspeed &gt; 1) 
 {
-    image_xscale = 3;
+    image_xscale = 5;
     sprite_index = spr_capitalist_walk;
 }
 
 if (hspeed &lt; -1) 
 {
-    image_xscale = -3;
+    image_xscale = -5;
     sprite_index = spr_capitalist_walk;
 }
 
@@ -54,10 +100,32 @@ if (speed = 0) sprite_index = spr_capitalist_idle;
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_fascist01">
+      <action>
+        <libid>1</libid>
+        <id>721</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_health</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>-1</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>-1</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
   </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
-  <PhysicsObjectShape>0</PhysicsObjectShape>
+  <PhysicsObjectShape>1</PhysicsObjectShape>
   <PhysicsObjectDensity>0.5</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0.100000001490116</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
@@ -66,8 +134,5 @@ if (speed = 0) sprite_index = spr_capitalist_idle;
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints>
-    <point>0,0</point>
-    <point>13,13</point>
-  </PhysicsShapePoints>
+  <PhysicsShapePoints/>
 </object>

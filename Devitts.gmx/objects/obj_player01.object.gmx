@@ -29,55 +29,7 @@
           </argument>
           <argument>
             <kind>0</kind>
-            <string>7</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>xScale</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>5</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>yScale</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>5</string>
+            <string>2</string>
           </argument>
         </arguments>
       </action>
@@ -103,9 +55,9 @@
       </action>
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
         <exetype>2</exetype>
@@ -117,9 +69,35 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_xscale = obj_player01.xScale;
-image_yscale = obj_player01.yScale;
-</string>
+            <string>xScale</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>1</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>yScale</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>1</string>
           </argument>
         </arguments>
       </action>
@@ -141,23 +119,28 @@ image_yscale = obj_player01.yScale;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_check_button(mb_left)) move_towards_point(mouse_x,mouse_y,obj_player01.Speed); 
-
-if (mouse_check_button_released(mb_left)) 
+            <string>if (mouse_check_button(mb_left) &amp;&amp; !keyboard_check(vk_lshift)) 
 {
-    instance_create(mouse_x,mouse_y,obj_moveTo);
-    move_towards_point (obj_moveTo.x,obj_moveTo.y,obj_player01.Speed);
+    instance_create(mouse_x, mouse_y, obj_moveToCursor);
+    move_towards_point(mouse_x, mouse_y, obj_player01.Speed); 
 }
 
-if (collision_circle(x,y,20,obj_moveTo,true,true)) speed = 0;
+if (mouse_check_button_released(mb_left) &amp;&amp; !keyboard_check(vk_lshift)) 
+{
+    instance_create(mouse_x, mouse_y, obj_moveToPoint);
+    move_towards_point (obj_moveToPoint.x, obj_moveToPoint.y, obj_player01.Speed);
+}
 
-if (hspeed &gt; 1) 
+if (collision_circle(x, y, 5, obj_moveToPoint,true,true)) speed = 0;
+if (collision_circle(x, y, 5, obj_moveToCursor,true,true)) speed = 0;
+
+if (hspeed &gt; 0) 
 {
     image_xscale = obj_player01.xScale;
     sprite_index = spr_capitalist_walk;
 }
 
-if (hspeed &lt; -1) 
+if (hspeed &lt; 0) 
 {
     image_xscale = -obj_player01.xScale;
     sprite_index = spr_capitalist_walk;
@@ -165,6 +148,42 @@ if (hspeed &lt; -1)
 
 if (speed = 0) sprite_index = spr_capitalist_idle;
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if keyboard_check(vk_lshift)
+{
+    speed = 0;
+
+    if keyboard_check(ord("W")) vspeed = -1;
+    if keyboard_check_released(ord("W")) vspeed += 1;
+    
+    if keyboard_check(ord("A")) hspeed = -1;
+    if keyboard_check_released(ord("A")) hspeed += 1;
+    
+    if keyboard_check(ord("S")) vspeed = 1;
+    if keyboard_check_released(ord("S")) vspeed -= 1;
+    
+    if keyboard_check(ord("D")) hspeed = 1;
+    if keyboard_check_released(ord("D")) hspeed -= 1;
+}
 </string>
           </argument>
         </arguments>

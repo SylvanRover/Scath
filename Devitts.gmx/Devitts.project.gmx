@@ -13,17 +13,21 @@
     <sprite>sprites\spr_cobblestone</sprite>
     <sprite>sprites\spr_fascist_idle</sprite>
     <sprite>sprites\spr_fascist_walk</sprite>
+    <sprite>sprites\spr_terrainTest</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_tileTest</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_player01</object>
-    <object>objects\obj_moveTo</object>
+    <object>objects\obj_moveToPoint</object>
+    <object>objects\obj_moveToCursor</object>
     <object>objects\obj_dirt</object>
     <object>objects\obj_grass</object>
     <object>objects\obj_cobblestone</object>
     <object>objects\obj_fascist01</object>
-    <object>objects\obj_controller</object>
+    <object>objects\obj_playerHealth</object>
     <object>objects\obj_player01Death</object>
   </objects>
   <rooms name="rooms">

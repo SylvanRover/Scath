@@ -84,6 +84,7 @@ if (mouse_check_button_released(mb_left))
 
 if (collision_circle(x,y,20,obj_moveTo,true,true)) speed = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 if (hspeed &gt; 1) 
 {
@@ -126,6 +127,8 @@ if (speed = 0) sprite_index = spr_capitalist_idle;
     instance_destroy();
     instance_create(x,y,obj_player01Death);
 }
+=======
+>>>>>>> parent of 7748e88... Player Sprite Initial Directions
 </string>
           </argument>
         </arguments>

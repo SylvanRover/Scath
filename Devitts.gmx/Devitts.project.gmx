@@ -15,6 +15,8 @@
     <sprite>sprites\spr_fascist_walk</sprite>
     <sprite>sprites\spr_terrainTest</sprite>
     <sprite>sprites\spr_sword</sprite>
+    <sprite>sprites\spr_moveToCursor</sprite>
+    <sprite>sprites\spr_moveToPoint</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tileTest</background>

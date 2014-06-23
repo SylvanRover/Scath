@@ -29,6 +29,29 @@
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>dead = false;
+attack = false;
+instance_create(x,y,obj_sword)
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -48,9 +71,10 @@
           <argument>
             <kind>1</kind>
             <string>// Health
-if (health &lt;= 0)
+if (health &lt;= 0 &amp;&amp; image_alpha != 0)
 {
-    instance_destroy();
+    dead = true;
+    image_alpha = 0;
     instance_create(x,y,obj_player01Death);
 }
 </string>
@@ -74,37 +98,40 @@ if (health &lt;= 0)
           <argument>
             <kind>1</kind>
             <string>// Basic Movement
-if (mouse_check_button(mb_left) &amp;&amp; !keyboard_check(vk_lshift)) 
+if (!dead)
 {
-    instance_create(mouse_x, mouse_y, obj_moveToCursor);
-    move_towards_point(mouse_x, mouse_y, obj_player01Controller.basicHSpeed);
+    if (mouse_check_button(mb_left) &amp;&amp; !keyboard_check(vk_lshift)) 
+    {
+        instance_create(mouse_x, mouse_y, obj_moveToCursor);
+        move_towards_point(mouse_x, mouse_y, obj_player01Controller.basicHSpeed);
+    }
+    
+    if (mouse_check_button_released(mb_left) &amp;&amp; !keyboard_check(vk_lshift)) 
+    {
+        instance_create(mouse_x, mouse_y, obj_moveToPoint);
+        move_towards_point (obj_moveToPoint.x, obj_moveToPoint.y, obj_player01Controller.basicHSpeed);
+    }
+    
+    if (collision_circle(x, y, 8, obj_moveToPoint,true,true)) speed = 0;
+    if (collision_circle(x, y, 8, obj_moveToCursor,true,true)) speed = 0;
+    
+    if (hspeed &gt; 0) 
+    {
+        image_xscale = obj_player01Controller.xScale;
+        sprite_index = spr_capitalist_walk;
+    }
+    
+    if (hspeed &lt; 0) 
+    {
+        image_xscale = -obj_player01Controller.xScale;
+        sprite_index = spr_capitalist_walk;
+    }
+    
+    if (speed = 0) sprite_index = spr_capitalist_idle;
+    
+    if (vspeed &gt; obj_player01Controller.basicVSpeed) vspeed = obj_player01Controller.basicVSpeed;
+    if (vspeed &lt; -obj_player01Controller.basicVSpeed) vspeed = -obj_player01Controller.basicVSpeed;
 }
-
-if (mouse_check_button_released(mb_left) &amp;&amp; !keyboard_check(vk_lshift)) 
-{
-    instance_create(mouse_x, mouse_y, obj_moveToPoint);
-    move_towards_point (obj_moveToPoint.x, obj_moveToPoint.y, obj_player01Controller.basicHSpeed);
-}
-
-if (collision_circle(x, y, 5, obj_moveToPoint,true,true)) speed = 0;
-if (collision_circle(x, y, 5, obj_moveToCursor,true,true)) speed = 0;
-
-if (hspeed &gt; 0) 
-{
-    image_xscale = obj_player01Controller.xScale;
-    sprite_index = spr_capitalist_walk;
-}
-
-if (hspeed &lt; 0) 
-{
-    image_xscale = -obj_player01Controller.xScale;
-    sprite_index = spr_capitalist_walk;
-}
-
-if (speed = 0) sprite_index = spr_capitalist_idle;
-
-if (vspeed &gt; obj_player01Controller.basicVSpeed) vspeed = obj_player01Controller.basicVSpeed;
-if (vspeed &lt; -obj_player01Controller.basicVSpeed) vspeed = -obj_player01Controller.basicVSpeed;
 
 </string>
           </argument>
@@ -127,48 +154,26 @@ if (vspeed &lt; -obj_player01Controller.basicVSpeed) vspeed = -obj_player01Contr
           <argument>
             <kind>1</kind>
             <string>// Attack Movement
-if keyboard_check(vk_lshift)
+if (!dead)
 {
-    speed = 0;
-
-    if keyboard_check(ord("W")) vspeed = -obj_player01Controller.attackVSpeed;
-    if keyboard_check_released(ord("W")) vspeed += obj_player01Controller.attackVSpeed;
+    if keyboard_check(vk_lshift)
+    {
+        speed = 0;
     
-    if keyboard_check(ord("A")) hspeed = -obj_player01Controller.attackHSpeed;
-    if keyboard_check_released(ord("A")) hspeed += obj_player01Controller.attackHSpeed;
+        if keyboard_check(ord("W")) vspeed = -obj_player01Controller.attackVSpeed;
+        if keyboard_check_released(ord("W")) vspeed += obj_player01Controller.attackVSpeed;
+        
+        if keyboard_check(ord("A")) hspeed = -obj_player01Controller.attackHSpeed;
+        if keyboard_check_released(ord("A")) hspeed += obj_player01Controller.attackHSpeed;
+        
+        if keyboard_check(ord("S")) vspeed = obj_player01Controller.attackVSpeed;
+        if keyboard_check_released(ord("S")) vspeed -= obj_player01Controller.attackVSpeed;
+        
+        if keyboard_check(ord("D")) hspeed = obj_player01Controller.attackHSpeed;
+        if keyboard_check_released(ord("D")) hspeed -= obj_player01Controller.attackHSpeed;
+    }
     
-    if keyboard_check(ord("S")) vspeed = obj_player01Controller.attackVSpeed;
-    if keyboard_check_released(ord("S")) vspeed -= obj_player01Controller.attackVSpeed;
-    
-    if keyboard_check(ord("D")) hspeed = obj_player01Controller.attackHSpeed;
-    if keyboard_check_released(ord("D")) hspeed -= obj_player01Controller.attackHSpeed;
-}
-
-if keyboard_check_released(vk_lshift) speed=0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>// Attack
-if (mouse_check_button(mb_left) &amp;&amp; keyboard_check(vk_lshift))
-{
-    instance_create(x+5,y-5,obj_sword);
+    if keyboard_check_released(vk_lshift) speed=0;
 }
 </string>
           </argument>

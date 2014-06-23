@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>image_single=0;
-direction=45;
 </string>
           </argument>
         </arguments>
@@ -49,7 +48,8 @@ direction=45;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_single=0;
+            <string>obj_player01.attack = false;
+image_single=0;
 //resets to be able to swing again
 </string>
           </argument>
@@ -80,7 +80,7 @@ y=obj_player01.y-2;
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="4">
+    <event eventtype="6" enumb="53">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -97,10 +97,11 @@ y=obj_player01.y-2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if image_single=0
+            <string>if (keyboard_check(vk_lshift) &amp;&amp; image_single=0)
 {
+obj_player01.attack = true;
 image_single=1;
-alarm[0]=4;//reset back to image_single=0
+alarm[0]=5;//reset back to image_single=0
 }
 //this makes it swing(well changes image_index to 1) but only do it if image_single=0
 </string>

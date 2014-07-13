@@ -3,7 +3,7 @@
   <spriteName>spr_capitalist_idle</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -45,15 +45,96 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>dead = false;
+            <string>///Create Sword
+dead = false;
 attack = false;
 instance_create(x,y,obj_sword)
 </string>
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>scr_zDepth</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>scr_depthCorrection</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -70,7 +151,7 @@ instance_create(x,y,obj_sword)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Health
+            <string>/// Health
 if (health &lt;= 0 &amp;&amp; image_alpha != 0)
 {
     dead = true;
@@ -97,7 +178,7 @@ if (health &lt;= 0 &amp;&amp; image_alpha != 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Basic Movement
+            <string>/// Basic Movement
 if (!dead)
 {
     if (mouse_check_button(mb_left) &amp;&amp; !keyboard_check(vk_lshift)) 
@@ -153,7 +234,7 @@ if (!dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Attack Movement
+            <string>/// Attack Movement
 if (!dead)
 {
     if keyboard_check(vk_lshift)
@@ -173,8 +254,31 @@ if (!dead)
         if keyboard_check_released(ord("D")) hspeed -= obj_player01Controller.attackHSpeed;
     }
     
-    if keyboard_check_released(vk_lshift) speed=0;
+    if keyboard_check_released(vk_lshift) speed = 0;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_rock_grassy">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Collide With
 </string>
           </argument>
         </arguments>
@@ -205,8 +309,8 @@ if (!dead)
   </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
-  <PhysicsObjectShape>1</PhysicsObjectShape>
-  <PhysicsObjectDensity>0.5</PhysicsObjectDensity>
+  <PhysicsObjectShape>2</PhysicsObjectShape>
+  <PhysicsObjectDensity>0</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0.100000001490116</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
   <PhysicsObjectLinearDamping>0.100000001490116</PhysicsObjectLinearDamping>
@@ -218,6 +322,5 @@ if (!dead)
     <point>0,0</point>
     <point>26,0</point>
     <point>26,26</point>
-    <point>0,26</point>
   </PhysicsShapePoints>
 </object>

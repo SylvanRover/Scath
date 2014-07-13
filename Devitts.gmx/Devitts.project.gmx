@@ -17,11 +17,16 @@
     <sprite>sprites\spr_sword</sprite>
     <sprite>sprites\spr_moveToCursor</sprite>
     <sprite>sprites\spr_moveToPoint</sprite>
+    <sprite>sprites\spr_rock_grassy</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tileTest</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_zDepth.gml</script>
+    <script>scripts\scr_depthCorrection.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\obj_player01</object>
     <object>objects\obj_moveToPoint</object>
@@ -33,6 +38,7 @@
     <object>objects\obj_player01Controller</object>
     <object>objects\obj_player01Death</object>
     <object>objects\obj_sword</object>
+    <object>objects\obj_rock_grassy</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_02</room>

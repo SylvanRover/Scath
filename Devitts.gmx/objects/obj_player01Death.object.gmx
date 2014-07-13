@@ -73,7 +73,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_xscale = obj_player01Death.xScale;
+            <string>///Image Scale
+image_xscale = obj_player01Death.xScale;
 image_yscale = obj_player01Death.yScale;
 </string>
           </argument>

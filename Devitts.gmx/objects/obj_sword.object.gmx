@@ -25,8 +25,49 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_single=0;
+            <string>///Image Single
+image_single=0;
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>scr_zDepth</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -48,7 +89,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>obj_player01.attack = false;
+            <string>///Sword Idle
+obj_player01.attack = false;
 image_single=0;
 //resets to be able to swing again
 </string>
@@ -73,9 +115,50 @@ image_single=0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x=obj_player01.x+3;
+            <string>///Attach to Player
+x=obj_player01.x+3;
 y=obj_player01.y-2;
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>scr_depthCorrection</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -97,7 +180,8 @@ y=obj_player01.y-2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check(vk_lshift) &amp;&amp; image_single=0)
+            <string>///Sword Swing
+if (keyboard_check(vk_lshift) &amp;&amp; image_single=0)
 {
 obj_player01.attack = true;
 image_single=1;

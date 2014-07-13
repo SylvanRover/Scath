@@ -39,6 +39,7 @@
     <object>objects\obj_player01Death</object>
     <object>objects\obj_sword</object>
     <object>objects\obj_rock_grassy</object>
+    <object>objects\par_env</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_02</room>

@@ -98,7 +98,7 @@
     <tile bgName="bg_tileTest" x="320" y="128" w="64" h="64" xo="0" yo="0" id="10000066" name="inst_46F7633F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
     <tile bgName="bg_tileTest" x="288" y="144" w="64" h="64" xo="0" yo="0" id="10000067" name="inst_6FCD5A9E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>
   </tiles>
-  <PhysicsWorld>0</PhysicsWorld>
+  <PhysicsWorld>-1</PhysicsWorld>
   <PhysicsWorldTop>0</PhysicsWorldTop>
   <PhysicsWorldLeft>0</PhysicsWorldLeft>
   <PhysicsWorldRight>640</PhysicsWorldRight>

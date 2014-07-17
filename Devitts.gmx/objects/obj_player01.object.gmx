@@ -182,10 +182,14 @@ if (health &lt;= 0 &amp;&amp; image_alpha != 0)
 
 phy_fixed_rotation=true;
 
+mbLeftRelease = mouse_check_button_released(mb_left);
+mbLeftCheck = mouse_check_button(mb_left);
+vkLShiftCheck = keyboard_check(vk_lshift);
+
 if (!dead)
 {
     //Move Towards Cursor and Point
-    if (mouse_check_button(mb_left) &amp;&amp; !keyboard_check(vk_lshift)) 
+    /*if (mouse_check_button(mb_left) &amp;&amp; !keyboard_check(vk_lshift)) 
     {
         instance_create(mouse_x, mouse_y, obj_moveToCursor);
         move_towards_point(mouse_x, mouse_y, obj_player01Controller.basicHSpeed);
@@ -195,6 +199,23 @@ if (!dead)
     {
         instance_create(mouse_x, mouse_y, obj_moveToPoint);
         move_towards_point (obj_moveToPoint.x, obj_moveToPoint.y, obj_player01Controller.basicHSpeed);
+    }*/
+    
+    //Move Towards Cursor and Point - Physics
+    if (mbLeftCheck &amp;&amp; !vkLShiftCheck) 
+    {
+        instance_create(mouse_x, mouse_y, obj_moveToCursor);
+        dir = point_direction(x, y, obj_moveToCursor.x, obj_moveToCursor.y);
+        phy_speed_x = lengthdir_x(obj_player01Controller.basicHSpeed, dir); //SPEED is the speed you want to move at.
+        phy_speed_y = lengthdir_y(obj_player01Controller.basicVSpeed, dir);
+    }
+    
+    if (mbLeftRelease &amp;&amp; !vkLShiftCheck)
+    {
+        instance_create(mouse_x, mouse_y, obj_moveToPoint);
+        dir = point_direction(x, y, obj_moveToPoint.x, obj_moveToPoint.y);
+        phy_speed_x = lengthdir_x(obj_player01Controller.basicHSpeed, dir); //SPEED is the speed you want to move at.
+        phy_speed_y = lengthdir_y(obj_player01Controller.basicVSpeed, dir);
     }
     
     //Stop Movement on collision with Cursor and Point

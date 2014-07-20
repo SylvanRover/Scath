@@ -18,6 +18,10 @@
     <sprite>sprites\spr_moveToCursor</sprite>
     <sprite>sprites\spr_moveToPoint</sprite>
     <sprite>sprites\spr_rock_grassy</sprite>
+    <sprite>sprites\spr_player_idle_left</sprite>
+    <sprite>sprites\spr_player_idle_right</sprite>
+    <sprite>sprites\spr_player_idle_down</sprite>
+    <sprite>sprites\spr_player_idle_up</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tileTest</background>
@@ -37,7 +41,6 @@
     <object>objects\obj_fascist01</object>
     <object>objects\obj_player01Controller</object>
     <object>objects\obj_player01Death</object>
-    <object>objects\obj_sword</object>
     <object>objects\obj_rock_grassy</object>
     <object>objects\par_env</object>
   </objects>

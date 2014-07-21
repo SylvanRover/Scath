@@ -6,13 +6,10 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\spr_capitalist_idle</sprite>
-    <sprite>sprites\spr_capitalist_walk</sprite>
     <sprite>sprites\spr_grass</sprite>
     <sprite>sprites\spr_dirt</sprite>
     <sprite>sprites\spr_cobblestone</sprite>
-    <sprite>sprites\spr_fascist_idle</sprite>
-    <sprite>sprites\spr_fascist_walk</sprite>
+    <sprite>sprites\spr_enemy_skeleton</sprite>
     <sprite>sprites\spr_terrainTest</sprite>
     <sprite>sprites\spr_sword</sprite>
     <sprite>sprites\spr_moveToCursor</sprite>
@@ -22,6 +19,7 @@
     <sprite>sprites\spr_player_idle_right</sprite>
     <sprite>sprites\spr_player_idle_down</sprite>
     <sprite>sprites\spr_player_idle_up</sprite>
+    <sprite>sprites\spr_death</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tileTest</background>
@@ -38,9 +36,9 @@
     <object>objects\obj_dirt</object>
     <object>objects\obj_grass</object>
     <object>objects\obj_cobblestone</object>
-    <object>objects\obj_fascist01</object>
+    <object>objects\obj_enemy_skeleton</object>
     <object>objects\obj_player01Controller</object>
-    <object>objects\obj_player01Death</object>
+    <object>objects\obj_death</object>
     <object>objects\obj_rock_grassy</object>
     <object>objects\par_env</object>
   </objects>

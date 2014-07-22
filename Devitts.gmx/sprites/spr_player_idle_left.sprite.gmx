@@ -8,7 +8,7 @@
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>4</bbox_left>
-  <bbox_right>23</bbox_right>
+  <bbox_right>22</bbox_right>
   <bbox_top>0</bbox_top>
   <bbox_bottom>31</bbox_bottom>
   <HTile>0</HTile>
@@ -80,35 +80,5 @@
     <frame index="57">images\spr_player_idle_left_57.png</frame>
     <frame index="58">images\spr_player_idle_left_58.png</frame>
     <frame index="59">images\spr_player_idle_left_59.png</frame>
-    <frame index="60">images\spr_player_idle_left_60.png</frame>
-    <frame index="61">images\spr_player_idle_left_61.png</frame>
-    <frame index="62">images\spr_player_idle_left_62.png</frame>
-    <frame index="63">images\spr_player_idle_left_63.png</frame>
-    <frame index="64">images\spr_player_idle_left_64.png</frame>
-    <frame index="65">images\spr_player_idle_left_65.png</frame>
-    <frame index="66">images\spr_player_idle_left_66.png</frame>
-    <frame index="67">images\spr_player_idle_left_67.png</frame>
-    <frame index="68">images\spr_player_idle_left_68.png</frame>
-    <frame index="69">images\spr_player_idle_left_69.png</frame>
-    <frame index="70">images\spr_player_idle_left_70.png</frame>
-    <frame index="71">images\spr_player_idle_left_71.png</frame>
-    <frame index="72">images\spr_player_idle_left_72.png</frame>
-    <frame index="73">images\spr_player_idle_left_73.png</frame>
-    <frame index="74">images\spr_player_idle_left_74.png</frame>
-    <frame index="75">images\spr_player_idle_left_75.png</frame>
-    <frame index="76">images\spr_player_idle_left_76.png</frame>
-    <frame index="77">images\spr_player_idle_left_77.png</frame>
-    <frame index="78">images\spr_player_idle_left_78.png</frame>
-    <frame index="79">images\spr_player_idle_left_79.png</frame>
-    <frame index="80">images\spr_player_idle_left_80.png</frame>
-    <frame index="81">images\spr_player_idle_left_81.png</frame>
-    <frame index="82">images\spr_player_idle_left_82.png</frame>
-    <frame index="83">images\spr_player_idle_left_83.png</frame>
-    <frame index="84">images\spr_player_idle_left_84.png</frame>
-    <frame index="85">images\spr_player_idle_left_85.png</frame>
-    <frame index="86">images\spr_player_idle_left_86.png</frame>
-    <frame index="87">images\spr_player_idle_left_87.png</frame>
-    <frame index="88">images\spr_player_idle_left_88.png</frame>
-    <frame index="89">images\spr_player_idle_left_89.png</frame>
   </frames>
 </sprite>

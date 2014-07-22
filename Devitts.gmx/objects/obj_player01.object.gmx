@@ -192,16 +192,33 @@ if (health &gt; 0)
     }
         
     //Sprite Directions
-    d = (direction + 45) div 90; 
-    switch (d) 
-    {     
-        case 0: sprite_index = spr_player_idle_right; break;    
-        case 1: sprite_index = spr_player_idle_up;  break;    
-        case 2: sprite_index = spr_player_idle_left; break;    
-        case 3: sprite_index = spr_player_idle_down;  break; 
+    d = (direction + 45) div 90;
+    
+    if (phy_speed_x = 0 &amp;&amp; phy_speed_y = 0)
+    {
+        switch (d) 
+        {     
+            case 0: sprite_index = spr_player_idle_right; break;    
+            case 1: sprite_index = spr_player_idle_up;  break;    
+            case 2: sprite_index = spr_player_idle_left; break;    
+            case 3: sprite_index = spr_player_idle_down;  break; 
+        }
+        
+        if (direction &gt;= 315) sprite_index = spr_player_idle_right;
     }
     
-    if (direction &gt;= 315) sprite_index = spr_player_idle_right;
+    if (phy_speed_x != 0 || phy_speed_y != 0)
+    {
+        switch (d) 
+        {     
+            case 0: sprite_index = spr_player_walk_right; break;    
+            case 1: sprite_index = spr_player_walk_up;  break;    
+            case 2: sprite_index = spr_player_walk_left; break;    
+            case 3: sprite_index = spr_player_walk_down;  break; 
+        }
+        
+        if (direction &gt;= 315) sprite_index = spr_player_walk_right;
+    }
     
     /*if (phy_speed_x &gt; 0) 
     {
@@ -247,58 +264,77 @@ if (health &gt; 0)
 {
     if keyboard_check(vk_lshift)
     {
-        phy_speed_x = 0;
-        phy_speed_y = 0;
-    
+        enemyX = instance_nearest(x, y, par_enemy).x;
+        enemyY = instance_nearest(x, y, par_enemy).y;
+        
+        direction = point_direction(x, y, enemyX, enemyY);
+        
+        // Slow Speed Down
+        if (keyboard_check_pressed(vk_lshift))
+        {
+            speedX = phy_speed_x;
+            speedY = phy_speed_y;
+            phy_speed_x = speedX / 2;
+            phy_speed_y = speedY / 2;
+        }
+
+        // Strafing            
+        if (mbLeftCheck) 
+        {
+            instance_create(mouse_x, mouse_y, obj_moveToCursor);
+            dir = point_direction(x, y, obj_moveToCursor.x, obj_moveToCursor.y);
+            phy_speed_x = lengthdir_x(obj_player01Controller.basicHSpeed / 2, dir); //SPEED is the speed you want to move at.
+            phy_speed_y = lengthdir_y(obj_player01Controller.basicVSpeed / 2, dir);
+        }
+        
+        if (mbLeftRelease)
+        {
+            instance_create(mouse_x, mouse_y, obj_moveToPoint);
+            dir = point_direction(x, y, obj_moveToPoint.x, obj_moveToPoint.y);
+            phy_speed_x = lengthdir_x(obj_player01Controller.basicHSpeed / 2, dir); //SPEED is the speed you want to move at.
+            phy_speed_y = lengthdir_y(obj_player01Controller.basicVSpeed / 2, dir);
+        }
+                
+        // Melee Attack
         if keyboard_check(ord("W")) 
         {
-            phy_speed_y = -obj_player01Controller.attackVSpeed;
-            direction = 90;
+            
         }
         
         if keyboard_check_released(ord("W"))
         {
-            phy_speed_y += obj_player01Controller.attackVSpeed;
+            
         }
         
         if keyboard_check(ord("A"))
         {
-            phy_speed_x = -obj_player01Controller.attackHSpeed;
-            direction = 180;
+            
         }
         
         if keyboard_check_released(ord("A"))
         {
-            phy_speed_x += obj_player01Controller.attackHSpeed;
+            
         }
         
         if keyboard_check(ord("S"))
         {
-            phy_speed_y = obj_player01Controller.attackVSpeed;
-            direction = 270;
+            
         }
         
         if keyboard_check_released(ord("S"))
         {
-            phy_speed_y -= obj_player01Controller.attackVSpeed;
+            
         }
         
         if keyboard_check(ord("D"))
         {
-            phy_speed_x = obj_player01Controller.attackHSpeed;
-            direction = 0;
+            
         }
         
         if keyboard_check_released(ord("D"))
         {
-            phy_speed_x -= obj_player01Controller.attackHSpeed;
+            
         }
-    }
-    
-    if keyboard_check_released(vk_lshift) 
-    {
-        phy_speed_x = 0;
-        phy_speed_y = 0;
     }
 }
 </string>

@@ -20,6 +20,10 @@
     <sprite>sprites\spr_player_idle_down</sprite>
     <sprite>sprites\spr_player_idle_up</sprite>
     <sprite>sprites\spr_death</sprite>
+    <sprite>sprites\spr_player_walk_up</sprite>
+    <sprite>sprites\spr_player_walk_down</sprite>
+    <sprite>sprites\spr_player_walk_right</sprite>
+    <sprite>sprites\spr_player_walk_left</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tileTest</background>
@@ -41,6 +45,7 @@
     <object>objects\obj_death</object>
     <object>objects\obj_rock_grassy</object>
     <object>objects\par_env</object>
+    <object>objects\par_enemy</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_02</room>

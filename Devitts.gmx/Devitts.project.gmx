@@ -6,25 +6,31 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\spr_enemy_skeleton</sprite>
-    <sprite>sprites\spr_terrainTest</sprite>
-    <sprite>sprites\spr_moveToCursor</sprite>
-    <sprite>sprites\spr_moveToPoint</sprite>
-    <sprite>sprites\spr_rock_grassy</sprite>
-    <sprite>sprites\spr_player_idle_left</sprite>
-    <sprite>sprites\spr_player_idle_right</sprite>
-    <sprite>sprites\spr_player_idle_down</sprite>
-    <sprite>sprites\spr_player_idle_up</sprite>
-    <sprite>sprites\spr_death</sprite>
-    <sprite>sprites\spr_player_walk_up</sprite>
-    <sprite>sprites\spr_player_walk_down</sprite>
-    <sprite>sprites\spr_player_walk_right</sprite>
-    <sprite>sprites\spr_player_walk_left</sprite>
-    <sprite>sprites\spr_player_attack_up</sprite>
-    <sprite>sprites\spr_player_attack_down</sprite>
-    <sprite>sprites\spr_player_attack_right</sprite>
-    <sprite>sprites\spr_player_attack_left</sprite>
-    <sprite>sprites\spr_attack_sprite</sprite>
+    <sprites name="Player">
+      <sprite>sprites\spr_moveToPoint</sprite>
+      <sprite>sprites\spr_moveToCursor</sprite>
+      <sprite>sprites\spr_player_walk_up</sprite>
+      <sprite>sprites\spr_player_walk_down</sprite>
+      <sprite>sprites\spr_player_walk_right</sprite>
+      <sprite>sprites\spr_player_walk_left</sprite>
+      <sprite>sprites\spr_player_attack_up</sprite>
+      <sprite>sprites\spr_player_attack_down</sprite>
+      <sprite>sprites\spr_player_attack_right</sprite>
+      <sprite>sprites\spr_player_attack_left</sprite>
+      <sprite>sprites\spr_player_attack</sprite>
+      <sprite>sprites\spr_player_idle_up</sprite>
+      <sprite>sprites\spr_player_idle_down</sprite>
+      <sprite>sprites\spr_player_idle_right</sprite>
+      <sprite>sprites\spr_player_idle_left</sprite>
+      <sprite>sprites\spr_death</sprite>
+    </sprites>
+    <sprites name="Enemy">
+      <sprite>sprites\spr_enemy_skeleton</sprite>
+    </sprites>
+    <sprites name="Environment">
+      <sprite>sprites\spr_terrainTest</sprite>
+      <sprite>sprites\spr_rock_grassy</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tileTest</background>
@@ -35,19 +41,23 @@
     <script>scripts\scr_depthCorrection.gml</script>
   </scripts>
   <objects name="objects">
-    <object>objects\obj_player01</object>
-    <object>objects\obj_moveToPoint</object>
-    <object>objects\obj_moveToCursor</object>
-    <object>objects\obj_dirt</object>
-    <object>objects\obj_grass</object>
-    <object>objects\obj_cobblestone</object>
-    <object>objects\obj_enemy_skeleton</object>
-    <object>objects\obj_player01Controller</object>
-    <object>objects\obj_death</object>
-    <object>objects\obj_rock_grassy</object>
-    <object>objects\par_env</object>
-    <object>objects\par_enemy</object>
-    <object>objects\obj_attack_swipe</object>
+    <objects name="Environment">
+      <object>objects\par_env</object>
+      <object>objects\obj_rock_grassy</object>
+    </objects>
+    <objects name="Enemy">
+      <object>objects\obj_enemy_skeleton</object>
+      <object>objects\par_enemy</object>
+    </objects>
+    <objects name="Player">
+      <object>objects\obj_moveToPoint</object>
+      <object>objects\obj_moveToCursor</object>
+      <object>objects\obj_player01</object>
+      <object>objects\obj_player01Controller</object>
+      <object>objects\obj_death</object>
+      <object>objects\obj_attack_swipe</object>
+      <object>objects\obj_player_health</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_02</room>

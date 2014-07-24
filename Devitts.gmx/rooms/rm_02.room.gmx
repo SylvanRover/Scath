@@ -61,6 +61,14 @@
     <instance objName="obj_enemy_skeleton" x="384" y="224" name="inst_B1A2317D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_rock_grassy" x="192" y="224" name="inst_B23DF573" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_rock_grassy" x="224" y="208" name="inst_70D16FDE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_player_health" x="256" y="240" name="inst_E4CCE47B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="272" y="368" name="inst_A2CF7686" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="160" y="272" name="inst_47BD67B5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="208" y="240" name="inst_278BE605" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="320" y="320" name="inst_76A38AF6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="384" y="288" name="inst_31CC65F5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="336" y="384" name="inst_BDFC407A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="224" y="384" name="inst_B3F6BD29" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bg_tileTest" x="32" y="48" w="64" h="64" xo="0" yo="0" id="10000034" name="inst_0665BF9E" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

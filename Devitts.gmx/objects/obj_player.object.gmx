@@ -274,9 +274,7 @@ if (obj_player_health.hp_current &gt; 0)
     }
     
     // Target In Range
-    distanceToEnemy = distance_to_object(obj_enemy_skeleton);
-    
-    if (distanceToEnemy &lt;= los)
+    if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)-16), par_enemy, false, true))
     {
         inRange = true;
     }
@@ -542,7 +540,7 @@ draw_set_valign(fa_center);
 draw_self();
 
 draw_set_color(c_black);
-draw_circle(x, y, los + (los/2), true);
+draw_ellipse (x-(los*2), y-((los)+8), x+(los*2), y+((los)+8), true);
 </string>
           </argument>
         </arguments>

@@ -95,6 +95,9 @@ alarmFinished = false;
 dir = direction;
 combatAxisObject = true;
 combatAxisWorld = false;
+los = 60;
+distanceToEnemy = 10000;
+inRange = false;
 </string>
           </argument>
         </arguments>
@@ -270,15 +273,28 @@ if (obj_player_health.hp_current &gt; 0)
         }
     }
     
+    // Target In Range
+    distanceToEnemy = distance_to_object(obj_enemy_skeleton);
+    
+    if (distanceToEnemy &lt;= los)
+    {
+        inRange = true;
+    }
+    else
+    {
+        inRange = false;
+    }
+    
+    
     // Enemy Targeting
-    if (enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
+    if (!inRange || enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
     {
         alarmFinished = false;
         enemyTargeting = false;
         alarm[0]=2;
     }
     
-    if (!enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
+    if (inRange &amp;&amp; !enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
     {
         alarmFinished = false;
         enemyTargeting = true;
@@ -496,6 +512,37 @@ if (obj_player_health.hp_current &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Collide With
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw LoS Circle
+
+draw_set_halign(fa_center);
+draw_set_valign(fa_center);
+
+draw_self();
+
+draw_set_color(c_black);
+draw_circle(x, y, los + (los/2), true);
 </string>
           </argument>
         </arguments>

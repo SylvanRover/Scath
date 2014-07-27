@@ -27,7 +27,9 @@
             <kind>1</kind>
             <string>/// Instance Destroy
 
-if (keyboard_check_pressed(vk_lshift) || !obj_player.enemyTargeting) instance_destroy();
+if (keyboard_check_pressed(vk_lshift)
+ || !obj_player.enemyTargeting
+ || object_exists(obj_enemyTargeting)) instance_destroy();
 </string>
           </argument>
         </arguments>

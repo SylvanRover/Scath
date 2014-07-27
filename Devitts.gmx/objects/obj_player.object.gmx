@@ -93,8 +93,8 @@ phy_fixed_rotation=true;
 enemyTargeting = false;
 alarmFinished = false;
 dir = direction;
-moveDirX = instance_nearest(x, y, obj_moveToPoint).x;
-moveDirY = instance_nearest(x, y, obj_moveToPoint).y;
+combatAxisObject = true;
+combatAxisWorld = false;
 </string>
           </argument>
         </arguments>
@@ -214,34 +214,14 @@ if (obj_player_health.hp_current &lt;= 0 &amp;&amp; image_alpha != 0)
 mbLeftRelease = mouse_check_button_released(mb_left);
 mbLeftCheck = mouse_check_button(mb_left);
 vkLShiftCheck = keyboard_check_released(vk_lshift);
-combatAxisObject = true;
-combatAxisWorld = false;
-attackLunge = 20;
 enemyX = instance_nearest(x, y, par_enemy).x;
 enemyY = instance_nearest(x, y, par_enemy).y;
 enemyTargetX = instance_nearest(x, y, obj_enemyTargeting).x;
 enemyTargetY = instance_nearest(x, y, obj_enemyTargeting).y;
 
 
-
 if (obj_player_health.hp_current &gt; 0)
 {
-    // Enemy Targeting
-    if (enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
-    {
-        alarmFinished = false;
-        enemyTargeting = false;
-        alarm[0]=2;
-        direction = point_direction(x, y, moveDirX, moveDirY);
-    }
-    
-    if (!enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
-    {
-        alarmFinished = false;
-        enemyTargeting = true;
-        alarm[0]=2;
-    }
-    
     // Basic Movement
     if (mbLeftCheck &amp;&amp; !enemyTargeting) 
     {
@@ -262,11 +242,14 @@ if (obj_player_health.hp_current &gt; 0)
     }
     
     // Enemy Targeting Movement
-    if (enemyTargeting = true)
+    if (enemyTargeting)
     {
-        instance_create(enemyX,enemyY,obj_enemyTargeting);
-        direction = point_direction(x, y, enemyTargetX, enemyTargetY);
-        
+        if (alarmFinished)
+        {
+            instance_create(enemyX,enemyY,obj_enemyTargeting);
+            direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+        }
+            
         // Strafing            
         if (mbLeftCheck) 
         {
@@ -274,6 +257,7 @@ if (obj_player_health.hp_current &gt; 0)
             dir = point_direction(x, y, obj_moveToCursor.x, obj_moveToCursor.y);
             phy_speed_x = lengthdir_x(obj_playerController.speedX, dir); //SPEED is the speed you want to move at.
             phy_speed_y = lengthdir_y(obj_playerController.speedY, dir);
+            direction = point_direction(x, y, enemyTargetX, enemyTargetY);
         }
         
         if (mbLeftRelease)
@@ -282,7 +266,23 @@ if (obj_player_health.hp_current &gt; 0)
             dir = point_direction(x, y, obj_moveToPoint.x, obj_moveToPoint.y);
             phy_speed_x = lengthdir_x(obj_playerController.speedX, dir); //SPEED is the speed you want to move at.
             phy_speed_y = lengthdir_y(obj_playerController.speedY, dir);
+            direction = point_direction(x, y, enemyTargetX, enemyTargetY);
         }
+    }
+    
+    // Enemy Targeting
+    if (enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
+    {
+        alarmFinished = false;
+        enemyTargeting = false;
+        alarm[0]=2;
+    }
+    
+    if (!enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
+    {
+        alarmFinished = false;
+        enemyTargeting = true;
+        alarm[0]=2;
     }
     
     //Stop Movement on collision with Cursor and Point

@@ -114,8 +114,8 @@
           <argument>
             <kind>1</kind>
             <string>/// Position
-phy_position_x = obj_player01.phy_position_x;
-phy_position_y = obj_player01.phy_position_y;
+phy_position_x = obj_player.phy_position_x;
+phy_position_y = obj_player.phy_position_y;
 </string>
           </argument>
         </arguments>
@@ -205,8 +205,8 @@ if (hp_current &lt;= 0)
           <argument>
             <kind>1</kind>
             <string>/// Position
-phy_position_x = obj_player01.phy_position_x;
-phy_position_y = obj_player01.phy_position_y;
+phy_position_x = obj_player.phy_position_x;
+phy_position_y = obj_player.phy_position_y;
 </string>
           </argument>
         </arguments>

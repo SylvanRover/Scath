@@ -49,6 +49,80 @@
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set Alarm
+alarm[0]=10;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set Variables
+
+phy_fixed_rotation=true;
+enemyTargeting = false;
+alarmFinished = false;
+dir = direction;
+moveDirX = instance_nearest(x, y, obj_moveToPoint).x;
+moveDirY = instance_nearest(x, y, obj_moveToPoint).y;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Alarm Finished
+alarmFinished = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -135,47 +209,80 @@ if (obj_player_health.hp_current &lt;= 0 &amp;&amp; image_alpha != 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Basic Movement
+            <string>/// Movement
 
-phy_fixed_rotation=true;
-
-dir = direction;
 mbLeftRelease = mouse_check_button_released(mb_left);
 mbLeftCheck = mouse_check_button(mb_left);
-vkLShiftCheck = keyboard_check(vk_lshift);
+vkLShiftCheck = keyboard_check_released(vk_lshift);
+combatAxisObject = true;
+combatAxisWorld = false;
+attackLunge = 20;
+enemyX = instance_nearest(x, y, par_enemy).x;
+enemyY = instance_nearest(x, y, par_enemy).y;
+enemyTargetX = instance_nearest(x, y, obj_enemyTargeting).x;
+enemyTargetY = instance_nearest(x, y, obj_enemyTargeting).y;
+
+
 
 if (obj_player_health.hp_current &gt; 0)
 {
-    //Move Towards Cursor and Point
-    /*if (mouse_check_button(mb_left) &amp;&amp; !keyboard_check(vk_lshift)) 
+    // Enemy Targeting
+    if (enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
     {
-        instance_create(mouse_x, mouse_y, obj_moveToCursor);
-        move_towards_point(mouse_x, mouse_y, obj_player01Controller.basicHSpeed);
+        alarmFinished = false;
+        enemyTargeting = false;
+        alarm[0]=2;
+        direction = point_direction(x, y, moveDirX, moveDirY);
     }
     
-    if (mouse_check_button_released(mb_left) &amp;&amp; !keyboard_check(vk_lshift)) 
+    if (!enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
     {
-        instance_create(mouse_x, mouse_y, obj_moveToPoint);
-        move_towards_point (obj_moveToPoint.x, obj_moveToPoint.y, obj_player01Controller.basicHSpeed);
-    }*/
+        alarmFinished = false;
+        enemyTargeting = true;
+        alarm[0]=2;
+    }
     
-    //Move Towards Cursor and Point - Physics
-    if (mbLeftCheck &amp;&amp; !vkLShiftCheck) 
+    // Basic Movement
+    if (mbLeftCheck &amp;&amp; !enemyTargeting) 
     {
         instance_create(mouse_x, mouse_y, obj_moveToCursor);
         dir = point_direction(x, y, obj_moveToCursor.x, obj_moveToCursor.y);
-        phy_speed_x = lengthdir_x(obj_player01Controller.basicHSpeed, dir); //SPEED is the speed you want to move at.
-        phy_speed_y = lengthdir_y(obj_player01Controller.basicVSpeed, dir);
+        phy_speed_x = lengthdir_x(obj_playerController.speedX, dir); //SPEED is the speed you want to move at.
+        phy_speed_y = lengthdir_y(obj_playerController.speedY, dir);
         direction = dir;
     }
     
-    if (mbLeftRelease &amp;&amp; !vkLShiftCheck)
+    if (mbLeftRelease &amp;&amp; !enemyTargeting)
     {
         instance_create(mouse_x, mouse_y, obj_moveToPoint);
         dir = point_direction(x, y, obj_moveToPoint.x, obj_moveToPoint.y);
-        phy_speed_x = lengthdir_x(obj_player01Controller.basicHSpeed, dir); //SPEED is the speed you want to move at.
-        phy_speed_y = lengthdir_y(obj_player01Controller.basicVSpeed, dir);
+        phy_speed_x = lengthdir_x(obj_playerController.speedX, dir); //SPEED is the speed you want to move at.
+        phy_speed_y = lengthdir_y(obj_playerController.speedY, dir);
         direction = dir;
+    }
+    
+    // Enemy Targeting Movement
+    if (enemyTargeting = true)
+    {
+        instance_create(enemyX,enemyY,obj_enemyTargeting);
+        direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+        
+        // Strafing            
+        if (mbLeftCheck) 
+        {
+            instance_create(mouse_x, mouse_y, obj_moveToCursor);
+            dir = point_direction(x, y, obj_moveToCursor.x, obj_moveToCursor.y);
+            phy_speed_x = lengthdir_x(obj_playerController.speedX, dir); //SPEED is the speed you want to move at.
+            phy_speed_y = lengthdir_y(obj_playerController.speedY, dir);
+        }
+        
+        if (mbLeftRelease)
+        {
+            instance_create(mouse_x, mouse_y, obj_moveToPoint);
+            dir = point_direction(x, y, obj_moveToPoint.x, obj_moveToPoint.y);
+            phy_speed_x = lengthdir_x(obj_playerController.speedX, dir); //SPEED is the speed you want to move at.
+            phy_speed_y = lengthdir_y(obj_playerController.speedY, dir);
+        }
     }
     
     //Stop Movement on collision with Cursor and Point
@@ -218,24 +325,10 @@ if (obj_player_health.hp_current &gt; 0)
         
         if (direction &gt;= 315) sprite_index = spr_player_walk_right;
     }
-    
-    /*if (phy_speed_x &gt; 0) 
-    {
-        image_xscale = obj_player01Controller.xScale;
-        sprite_index = spr_capitalist_walk;
-    }
-    
-    if (phy_speed_x &lt; 0) 
-    {
-        image_xscale = -obj_player01Controller.xScale;
-        sprite_index = spr_capitalist_walk;
-    }
-    
-    if (phy_speed_x = 0 &amp;&amp; phy_speed_y = 0) sprite_index = spr_capitalist_idle;*/
-    
+        
     //Vertical Speed Clamp
-    if (phy_speed_y &gt; obj_player01Controller.basicVSpeed) phy_speed_y = obj_player01Controller.basicVSpeed;
-    if (phy_speed_y &lt; -obj_player01Controller.basicVSpeed) phy_speed_y = -obj_player01Controller.basicVSpeed;
+    if (phy_speed_y &gt; obj_playerController.speedY) phy_speed_y = obj_playerController.speedY;
+    if (phy_speed_y &lt; -obj_playerController.speedY) phy_speed_y = -obj_playerController.speedY;
 }
 </string>
           </argument>
@@ -259,163 +352,101 @@ if (obj_player_health.hp_current &gt; 0)
             <kind>1</kind>
             <string>/// Combat
 
-combatAxisObject = true;
-combatAxisWorld = false;
-
-attackLunge = 20;
-
 if (obj_player_health.hp_current &gt; 0)
-{
-    if keyboard_check(vk_lshift)
+{               
+    // Melee Attack
+    if (direction &gt;= 0 &amp;&amp; direction &lt; 45 || direction &gt; 315) // Right
     {
-        enemyX = instance_nearest(x, y, par_enemy).x;
-        enemyY = instance_nearest(x, y, par_enemy).y;
-        
-        direction = point_direction(x, y, enemyX, enemyY);
-        
-        // Slow Speed Down
-        if (keyboard_check_pressed(vk_lshift))
+        if (combatAxisObject) 
         {
-            speedX = phy_speed_x;
-            speedY = phy_speed_y;
-            phy_speed_x = speedX / 2;
-            phy_speed_y = speedY / 2;
-        }
-
-        // Strafing            
-        if (mbLeftCheck) 
-        {
-            instance_create(mouse_x, mouse_y, obj_moveToCursor);
-            dir = point_direction(x, y, obj_moveToCursor.x, obj_moveToCursor.y);
-            phy_speed_x = lengthdir_x(obj_player01Controller.basicHSpeed / 2, dir); //SPEED is the speed you want to move at.
-            phy_speed_y = lengthdir_y(obj_player01Controller.basicVSpeed / 2, dir);
-        }
-        
-        if (mbLeftRelease)
-        {
-            instance_create(mouse_x, mouse_y, obj_moveToPoint);
-            dir = point_direction(x, y, obj_moveToPoint.x, obj_moveToPoint.y);
-            phy_speed_x = lengthdir_x(obj_player01Controller.basicHSpeed / 2, dir); //SPEED is the speed you want to move at.
-            phy_speed_y = lengthdir_y(obj_player01Controller.basicVSpeed / 2, dir);
-        }
-                
-        // Melee Attack
-        if (direction &gt;= 0 &amp;&amp; direction &lt; 45 || direction &gt; 315) // Right
-        {
-            if (combatAxisObject) 
+            if (keyboard_check_released (ord('W')))
             {
-                if (keyboard_check_released (ord('W')))
-                {
-                    sprite_index = spr_player_attack_right;
-                }
-                if (keyboard_check_released (ord('A')))
-                {
-                    sprite_index = spr_player_attack_right;
-                }
-                if (keyboard_check_released (ord('S')))
-                {
-                    sprite_index = spr_player_attack_right;
-                }
-                if (keyboard_check_released (ord('D')))
-                {
-                    sprite_index = spr_player_attack_right;
-                }
+                sprite_index = spr_player_attack_right;
+            }
+            if (keyboard_check_released (ord('A')))
+            {
+                sprite_index = spr_player_attack_right;
+            }
+            if (keyboard_check_released (ord('S')))
+            {
+                sprite_index = spr_player_attack_right;
+            }
+            if (keyboard_check_released (ord('D')))
+            {
+                sprite_index = spr_player_attack_right;
             }
         }
-        
-        if (direction &gt;= 45 &amp;&amp; direction &lt;= 135) // Up
+    }
+    
+    if (direction &gt;= 45 &amp;&amp; direction &lt;= 135) // Up
+    {
+        if (combatAxisObject) 
         {
-            if (combatAxisObject) 
+            if (keyboard_check_released (ord('W')))
             {
-                if (keyboard_check_released (ord('W')))
-                {
-                    sprite_index = spr_player_attack_up;
-                }
-                if (keyboard_check_released (ord('A')))
-                {
-                    sprite_index = spr_player_attack_up;
-                }
-                if (keyboard_check_released (ord('S')))
-                {
-                    sprite_index = spr_player_attack_up;
-                }
-                if (keyboard_check_released (ord('D')))
-                {
-                    sprite_index = spr_player_attack_up;
-                }
+                sprite_index = spr_player_attack_up;
+            }
+            if (keyboard_check_released (ord('A')))
+            {
+                sprite_index = spr_player_attack_up;
+            }
+            if (keyboard_check_released (ord('S')))
+            {
+                sprite_index = spr_player_attack_up;
+            }
+            if (keyboard_check_released (ord('D')))
+            {
+                sprite_index = spr_player_attack_up;
             }
         }
-        
-        if (direction &gt; 135 &amp;&amp; direction &lt; 225) // Left
+    }
+    
+    if (direction &gt; 135 &amp;&amp; direction &lt; 225) // Left
+    {
+        if (combatAxisObject) 
         {
-            if (combatAxisObject) 
+            if (keyboard_check_released (ord('W')))
             {
-                if (keyboard_check_released (ord('W')))
-                {
-                    sprite_index = spr_player_attack_left;
-                }
-                if (keyboard_check_released (ord('A')))
-                {
-                    sprite_index = spr_player_attack_left;
-                }
-                if (keyboard_check_released (ord('S')))
-                {
-                    sprite_index = spr_player_attack_left;
-                }
-                if (keyboard_check_released (ord('D')))
-                {
-                    sprite_index = spr_player_attack_left;
-                }
+                sprite_index = spr_player_attack_left;
+            }
+            if (keyboard_check_released (ord('A')))
+            {
+                sprite_index = spr_player_attack_left;
+            }
+            if (keyboard_check_released (ord('S')))
+            {
+                sprite_index = spr_player_attack_left;
+            }
+            if (keyboard_check_released (ord('D')))
+            {
+                sprite_index = spr_player_attack_left;
             }
         }
-        
-        if (direction &gt;= 225 &amp;&amp; direction &lt;= 315) // Down
+    }
+    
+    if (direction &gt;= 225 &amp;&amp; direction &lt;= 315) // Down
+    {
+        if (combatAxisObject) 
         {
-            if (combatAxisObject) 
+            if (keyboard_check_released (ord('W')))
             {
-                if (keyboard_check_released (ord('W')))
-                {
-                    sprite_index = spr_player_attack_down;
-                }
-                if (keyboard_check_released (ord('A')))
-                {
-                    sprite_index = spr_player_attack_down;
-                }
-                if (keyboard_check_released (ord('S')))
-                {
-                    sprite_index = spr_player_attack_down;
-                }
-                if (keyboard_check_released (ord('D')))
-                {
-                    sprite_index = spr_player_attack_down;
-                }
+                sprite_index = spr_player_attack_down;
+            }
+            if (keyboard_check_released (ord('A')))
+            {
+                sprite_index = spr_player_attack_down;
+            }
+            if (keyboard_check_released (ord('S')))
+            {
+                sprite_index = spr_player_attack_down;
+            }
+            if (keyboard_check_released (ord('D')))
+            {
+                sprite_index = spr_player_attack_down;
             }
         }
     }
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_rock_grassy">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Collide With
 </string>
           </argument>
         </arguments>
@@ -443,6 +474,29 @@ if (obj_player_health.hp_current &gt; 0)
           <argument>
             <kind>0</kind>
             <string>-3</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_rock_grassy">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Collide With
+</string>
           </argument>
         </arguments>
       </action>

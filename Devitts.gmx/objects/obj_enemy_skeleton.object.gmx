@@ -162,7 +162,7 @@ phy_fixed_rotation=true;
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_player01">
+    <event eventtype="4" ename="obj_player">
       <action>
         <libid>1</libid>
         <id>611</id>

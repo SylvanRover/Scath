@@ -26,9 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///Destroy on Mouse Left Click
-if (mouse_check_button(mb_left)
-|| !mouse_check_button(mb_left)
-|| mouse_check_button_released(mb_left)) 
+if (mouse_check_button(mb_left) || !mouse_check_button(mb_left) || mouse_check_button_released(mb_left)) 
 {
     instance_destroy();
 }

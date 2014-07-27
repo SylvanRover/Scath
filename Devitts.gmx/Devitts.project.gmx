@@ -52,11 +52,12 @@
     <objects name="Player">
       <object>objects\obj_moveToPoint</object>
       <object>objects\obj_moveToCursor</object>
-      <object>objects\obj_player01</object>
-      <object>objects\obj_player01Controller</object>
-      <object>objects\obj_death</object>
-      <object>objects\obj_attack_swipe</object>
+      <object>objects\obj_playerController</object>
       <object>objects\obj_player_health</object>
+      <object>objects\obj_player</object>
+      <object>objects\obj_attack_swipe</object>
+      <object>objects\obj_death</object>
+      <object>objects\obj_enemyTargeting</object>
     </objects>
   </objects>
   <rooms name="rooms">

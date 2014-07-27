@@ -98,6 +98,7 @@ combatAxisWorld = false;
 los = 60;
 distanceToEnemy = 10000;
 inRange = false;
+nth_target=1;
 </string>
           </argument>
         </arguments>
@@ -217,10 +218,11 @@ if (obj_player_health.hp_current &lt;= 0 &amp;&amp; image_alpha != 0)
 mbLeftRelease = mouse_check_button_released(mb_left);
 mbLeftCheck = mouse_check_button(mb_left);
 vkLShiftCheck = keyboard_check_released(vk_lshift);
-enemyX = instance_nearest(x, y, par_enemy).x;
-enemyY = instance_nearest(x, y, par_enemy).y;
-enemyTargetX = instance_nearest(x, y, obj_enemyTargeting).x;
-enemyTargetY = instance_nearest(x, y, obj_enemyTargeting).y;
+target = instance_nth_nearest(x,y,par_enemy,nth_target);
+enemyX = target.x;
+enemyY = target.y;
+enemyTargetX = instance_nearest(x, y-12, obj_enemyTargeting).x;
+enemyTargetY = instance_nearest(x, y-12, obj_enemyTargeting).y;
 
 
 if (obj_player_health.hp_current &gt; 0)
@@ -274,7 +276,7 @@ if (obj_player_health.hp_current &gt; 0)
     }
     
     // Target In Range
-    if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)-16), par_enemy, false, true))
+    if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)-12), par_enemy, false, true))
     {
         inRange = true;
     }
@@ -283,8 +285,7 @@ if (obj_player_health.hp_current &gt; 0)
         inRange = false;
     }
     
-    
-    // Enemy Targeting
+    //Enemy Targeting
     if (!inRange || enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
     {
         alarmFinished = false;
@@ -297,7 +298,23 @@ if (obj_player_health.hp_current &gt; 0)
         alarmFinished = false;
         enemyTargeting = true;
         alarm[0]=2;
+        
+        switch nth_target
+        {
+            case 1: nth_target= 2; break //switch the target between the 1st,2nd and 3rd closest enemies
+            case 2: nth_target= 3; break
+            case 3: nth_target= 1; break
+        }
+        
+        target = instance_nth_nearest(x,y,par_enemy,nth_target);
     }
+    
+    // Cycle Targets
+    if (keyboard_check_pressed(ord('E'))) nth_target += 1;
+    if (keyboard_check_pressed(ord('Q'))) nth_target -= 1;
+    if (nth_target &lt; 1) nth_target = 1;
+    if (nth_target &gt; 3) nth_target = 3;
+    
     
     //Stop Movement on collision with Cursor and Point
     if (collision_circle(x, y, 8, obj_moveToPoint,true,true))

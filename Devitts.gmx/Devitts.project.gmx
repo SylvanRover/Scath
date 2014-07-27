@@ -39,6 +39,7 @@
   <scripts name="scripts">
     <script>scripts\scr_zDepth.gml</script>
     <script>scripts\scr_depthCorrection.gml</script>
+    <script>scripts\instance_nth_nearest.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="Environment">

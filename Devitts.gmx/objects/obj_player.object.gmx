@@ -99,6 +99,7 @@ los = 60;
 distanceToEnemy = 10000;
 inRange = false;
 nth_target=1;
+switchTarget = true;
 </string>
           </argument>
         </arguments>
@@ -217,10 +218,8 @@ if (obj_player_health.hp_current &lt;= 0 &amp;&amp; image_alpha != 0)
 
 mbLeftRelease = mouse_check_button_released(mb_left);
 mbLeftCheck = mouse_check_button(mb_left);
-vkLShiftCheck = keyboard_check_released(vk_lshift);
+vkLShiftCheck = keyboard_check_pressed(vk_lshift);
 target = instance_nth_nearest(x,y,par_enemy,nth_target);
-enemyX = target.x;
-enemyY = target.y;
 enemyTargetX = instance_nearest(x, y-12, obj_enemyTargeting).x;
 enemyTargetY = instance_nearest(x, y-12, obj_enemyTargeting).y;
 
@@ -249,10 +248,11 @@ if (obj_player_health.hp_current &gt; 0)
     // Enemy Targeting Movement
     if (enemyTargeting)
     {
-        if (alarmFinished)
+        if (switchTarget)
         {
-            instance_create(enemyX,enemyY,obj_enemyTargeting);
+            instance_create(target.x,target.y,obj_enemyTargeting);
             direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+            switchTarget = false;
         }
             
         // Strafing            
@@ -276,13 +276,14 @@ if (obj_player_health.hp_current &gt; 0)
     }
     
     // Target In Range
-    if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)-12), par_enemy, false, true))
+    if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)-12), target, false, true))
     {
         inRange = true;
     }
     else
     {
         inRange = false;
+        nth_target = 1
     }
     
     //Enemy Targeting
@@ -290,28 +291,37 @@ if (obj_player_health.hp_current &gt; 0)
     {
         alarmFinished = false;
         enemyTargeting = false;
-        alarm[0]=2;
+        alarm[0] = 2;
     }
     
     if (inRange &amp;&amp; !enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
     {
         alarmFinished = false;
         enemyTargeting = true;
-        alarm[0]=2;
+        alarm[0] = 2;
+        switchTarget = true;
+        nth_target = 1
         
         switch nth_target
         {
-            case 1: nth_target= 2; break //switch the target between the 1st,2nd and 3rd closest enemies
-            case 2: nth_target= 3; break
-            case 3: nth_target= 1; break
+            case 1: nth_target = 1; break //switch the target between the 1st,2nd and 3rd closest enemies
+            case 2: nth_target = 2; break
+            case 3: nth_target = 3; break
         }
         
-        target = instance_nth_nearest(x,y,par_enemy,nth_target);
     }
     
     // Cycle Targets
-    if (keyboard_check_pressed(ord('E'))) nth_target += 1;
-    if (keyboard_check_pressed(ord('Q'))) nth_target -= 1;
+    if (keyboard_check_pressed(ord('E')))
+    {
+        nth_target += 1;
+        switchTarget = true;
+    }
+    if (keyboard_check_pressed(ord('Q')))
+    {
+        nth_target -= 1;        
+        switchTarget = true;
+    }
     if (nth_target &lt; 1) nth_target = 1;
     if (nth_target &gt; 3) nth_target = 3;
     

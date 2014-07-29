@@ -28,8 +28,10 @@
             <string>/// Instance Destroy
 
 if (keyboard_check_pressed(vk_lshift)
+ || keyboard_check_pressed(ord('Q'))
+ || keyboard_check_pressed(ord('E'))
  || !obj_player.enemyTargeting
- || object_exists(obj_enemyTargeting)) instance_destroy();
+ || !obj_player.inRange) instance_destroy();
 </string>
           </argument>
         </arguments>

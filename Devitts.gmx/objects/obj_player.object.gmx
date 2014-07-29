@@ -100,6 +100,10 @@ distanceToEnemy = 10000;
 inRange = false;
 nth_target=1;
 switchTarget = true;
+targetInRange = false;
+block = false;
+attackR = false;
+attackL = false;
 </string>
           </argument>
         </arguments>
@@ -253,6 +257,8 @@ if (obj_player_health.hp_current &gt; 0)
             instance_create(target.x,target.y,obj_enemyTargeting);
             direction = point_direction(x, y, enemyTargetX, enemyTargetY);
             switchTarget = false;
+            targetInRange = true;
+            
         }
             
         // Strafing            
@@ -276,7 +282,7 @@ if (obj_player_health.hp_current &gt; 0)
     }
     
     // Target In Range
-    if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)-12), target, false, true))
+    if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)+8), target, false, true))
     {
         inRange = true;
     }
@@ -286,6 +292,17 @@ if (obj_player_health.hp_current &gt; 0)
         nth_target = 1
     }
     
+    if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)+8), obj_enemyTargeting, false, true))
+    {
+        targetInRange = true;
+    }
+    else
+    {
+        targetInRange = false;
+        enemyTargeting = false;
+        nth_target = 1
+    }
+        
     //Enemy Targeting
     if (!inRange || enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
     {
@@ -400,22 +417,29 @@ if (obj_player_health.hp_current &gt; 0)
     {
         if (combatAxisObject) 
         {
-            if (keyboard_check_released (ord('W')))
-            {
-                sprite_index = spr_player_attack_right;
-            }
+            if (keyboard_check (ord('W'))) block = true;
+            if (!keyboard_check (ord('W'))) block = false;
+            
             if (keyboard_check_released (ord('A')))
             {
-                sprite_index = spr_player_attack_right;
+                attackL = true;
             }
             if (keyboard_check_released (ord('S')))
             {
-                sprite_index = spr_player_attack_right;
+                
             }
-            if (keyboard_check_released (ord('D')))
+            if (keyboard_check (ord('D')))
             {
+                attackR = true;
                 sprite_index = spr_player_attack_right;
             }
+            
+            else
+            {
+                attackL = false;
+                attackR = false;
+            }
+                        
         }
     }
     
@@ -492,29 +516,29 @@ if (obj_player_health.hp_current &gt; 0)
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="4" ename="obj_enemy_skeleton">
       <action>
         <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>obj_player_health</whoName>
-        <relative>-1</relative>
+        <whoName>self</whoName>
+        <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp_current</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>-3</string>
+            <string>/// Damage
+
+if (!block &amp;&amp; collision_ellipse(x-8, y-4, x+8, y+4, par_enemy, false, true)) 
+{
+    obj_player_health.hp_current -= 1;
+}
+</string>
           </argument>
         </arguments>
       </action>

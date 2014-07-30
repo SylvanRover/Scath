@@ -23,6 +23,10 @@
       <sprite>sprites\spr_player_idle_right</sprite>
       <sprite>sprites\spr_player_idle_left</sprite>
       <sprite>sprites\spr_death</sprite>
+      <sprite>sprites\spr_player_block_up</sprite>
+      <sprite>sprites\spr_player_block_down</sprite>
+      <sprite>sprites\spr_player_block_right</sprite>
+      <sprite>sprites\spr_player_block_left</sprite>
     </sprites>
     <sprites name="Enemy">
       <sprite>sprites\spr_enemy_skeleton</sprite>
@@ -31,6 +35,7 @@
       <sprite>sprites\spr_terrainTest</sprite>
       <sprite>sprites\spr_rock_grassy</sprite>
     </sprites>
+    <sprite>sprites\spr_player_health</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tileTest</background>

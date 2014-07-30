@@ -109,6 +109,32 @@ attackL = false;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set attacks to false
+
+attackL = false;
+attackR = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
@@ -358,7 +384,7 @@ if (obj_player_health.hp_current &gt; 0)
     //Sprite Directions
     d = (direction + 45) div 90;
     
-    if (phy_speed_x = 0 &amp;&amp; phy_speed_y = 0)
+    if (phy_speed_x = 0 &amp;&amp; phy_speed_y = 0 &amp;&amp; !attackR)
     {
         switch (d) 
         {     
@@ -371,7 +397,7 @@ if (obj_player_health.hp_current &gt; 0)
         if (direction &gt;= 315) sprite_index = spr_player_idle_right;
     }
     
-    if (phy_speed_x != 0 || phy_speed_y != 0)
+    if ((phy_speed_x != 0 || phy_speed_y != 0) &amp;&amp; !attackR)
     {
         switch (d) 
         {     
@@ -381,7 +407,7 @@ if (obj_player_health.hp_current &gt; 0)
             case 3: sprite_index = spr_player_walk_down;  break; 
         }
         
-        if (direction &gt;= 315) sprite_index = spr_player_walk_right;
+        if (direction &gt;= 315 &amp;&amp; !attackR) sprite_index = spr_player_walk_right;
     }
         
     //Vertical Speed Clamp
@@ -417,8 +443,15 @@ if (obj_player_health.hp_current &gt; 0)
     {
         if (combatAxisObject) 
         {
-            if (keyboard_check (ord('W'))) block = true;
-            if (!keyboard_check (ord('W'))) block = false;
+            if (keyboard_check (ord('W')) &amp;&amp; !attackR)
+            {
+                block = true;            
+                sprite_index = spr_player_block_right;
+            }
+            if (!keyboard_check (ord('W')))
+            {
+                block = false;
+            }
             
             if (keyboard_check_released (ord('A')))
             {
@@ -428,16 +461,12 @@ if (obj_player_health.hp_current &gt; 0)
             {
                 
             }
-            if (keyboard_check (ord('D')))
+            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR)
             {
-                attackR = true;
                 sprite_index = spr_player_attack_right;
-            }
-            
-            else
-            {
-                attackL = false;
-                attackR = false;
+                attackR = true;
+                alarm[1]=8;
+                instance_create(x+28, y-12, obj_attack_swipe);
             }
                         
         }
@@ -447,21 +476,30 @@ if (obj_player_health.hp_current &gt; 0)
     {
         if (combatAxisObject) 
         {
-            if (keyboard_check_released (ord('W')))
+            if (keyboard_check (ord('W')) &amp;&amp; !attackR)
             {
-                sprite_index = spr_player_attack_up;
+                block = true;            
+                sprite_index = spr_player_block_up;
             }
+            if (!keyboard_check (ord('W')))
+            {
+                block = false;
+            }
+            
             if (keyboard_check_released (ord('A')))
             {
-                sprite_index = spr_player_attack_up;
+                attackL = true;
             }
             if (keyboard_check_released (ord('S')))
             {
                 sprite_index = spr_player_attack_up;
             }
-            if (keyboard_check_released (ord('D')))
+            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR)
             {
+                attackR = true;
                 sprite_index = spr_player_attack_up;
+                alarm[1]=8;
+                instance_create(x, y-32, obj_attack_swipe);
             }
         }
     }
@@ -470,21 +508,30 @@ if (obj_player_health.hp_current &gt; 0)
     {
         if (combatAxisObject) 
         {
-            if (keyboard_check_released (ord('W')))
+            if (keyboard_check (ord('W')) &amp;&amp; !attackR)
             {
-                sprite_index = spr_player_attack_left;
+                block = true;            
+                sprite_index = spr_player_block_left;
             }
+            if (!keyboard_check (ord('W')))
+            {
+                block = false;
+            }
+            
             if (keyboard_check_released (ord('A')))
             {
-                sprite_index = spr_player_attack_left;
+                attackL = true;
             }
             if (keyboard_check_released (ord('S')))
             {
                 sprite_index = spr_player_attack_left;
             }
-            if (keyboard_check_released (ord('D')))
+            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR)
             {
+                attackR = true;
                 sprite_index = spr_player_attack_left;
+                alarm[1]=8;
+                instance_create(x-28, y-12, obj_attack_swipe);
             }
         }
     }
@@ -493,21 +540,30 @@ if (obj_player_health.hp_current &gt; 0)
     {
         if (combatAxisObject) 
         {
-            if (keyboard_check_released (ord('W')))
+            if (keyboard_check (ord('W')) &amp;&amp; !attackR)
             {
-                sprite_index = spr_player_attack_down;
+                block = true;            
+                sprite_index = spr_player_block_down;
             }
+            if (!keyboard_check (ord('W')))
+            {
+                block = false;
+            }
+            
             if (keyboard_check_released (ord('A')))
             {
-                sprite_index = spr_player_attack_down;
+                attackL = true;
             }
             if (keyboard_check_released (ord('S')))
             {
                 sprite_index = spr_player_attack_down;
             }
-            if (keyboard_check_released (ord('D')))
+            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR)
             {
+                attackR = true;
                 sprite_index = spr_player_attack_down;
+                alarm[1]=8;
+                instance_create(x, y+8, obj_attack_swipe);
             }
         }
     }
@@ -516,6 +572,8 @@ if (obj_player_health.hp_current &gt; 0)
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="4" ename="par_enemy">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -532,12 +590,7 @@ if (obj_player_health.hp_current &gt; 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Damage
-
-if (!block &amp;&amp; collision_ellipse(x-8, y-4, x+8, y+4, par_enemy, false, true)) 
-{
-    obj_player_health.hp_current -= 1;
-}
+            <string>///Collide With
 </string>
           </argument>
         </arguments>

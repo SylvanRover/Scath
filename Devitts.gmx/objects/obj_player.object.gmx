@@ -461,7 +461,7 @@ if (obj_player_health.hp_current &gt; 0)
             {
                 
             }
-            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR)
+            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR &amp;&amp; !block)
             {
                 sprite_index = spr_player_attack_right;
                 attackR = true;
@@ -494,7 +494,7 @@ if (obj_player_health.hp_current &gt; 0)
             {
                 sprite_index = spr_player_attack_up;
             }
-            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR)
+            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR &amp;&amp; !block)
             {
                 attackR = true;
                 sprite_index = spr_player_attack_up;
@@ -526,7 +526,7 @@ if (obj_player_health.hp_current &gt; 0)
             {
                 sprite_index = spr_player_attack_left;
             }
-            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR)
+            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR &amp;&amp; !block)
             {
                 attackR = true;
                 sprite_index = spr_player_attack_left;
@@ -558,7 +558,7 @@ if (obj_player_health.hp_current &gt; 0)
             {
                 sprite_index = spr_player_attack_down;
             }
-            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR)
+            if (keyboard_check_released (ord('D')) &amp;&amp; !attackR &amp;&amp; !block)
             {
                 attackR = true;
                 sprite_index = spr_player_attack_down;
@@ -568,6 +568,32 @@ if (obj_player_health.hp_current &gt; 0)
         }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_enemy_attack">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>other</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Damage
+
+if (!obj_player.block) obj_player_health.hp_current -= 1;
+instance_destroy();
 </string>
           </argument>
         </arguments>

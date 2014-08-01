@@ -30,6 +30,10 @@
     </sprites>
     <sprites name="Enemy">
       <sprite>sprites\spr_enemy_skeleton</sprite>
+      <sprite>sprites\spr_enemy_attack_up</sprite>
+      <sprite>sprites\spr_enemy_attack_down</sprite>
+      <sprite>sprites\spr_enemy_attack_right</sprite>
+      <sprite>sprites\spr_enemy_attack_left</sprite>
     </sprites>
     <sprites name="Environment">
       <sprite>sprites\spr_terrainTest</sprite>
@@ -46,6 +50,10 @@
     <script>scripts\scr_depthCorrection.gml</script>
     <script>scripts\instance_nth_nearest.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\font_main</font>
+    <font>fonts\font_small</font>
+  </fonts>
   <objects name="objects">
     <objects name="Environment">
       <object>objects\par_env</object>
@@ -54,6 +62,8 @@
     <objects name="Enemy">
       <object>objects\obj_enemy_skeleton</object>
       <object>objects\par_enemy</object>
+      <object>objects\obj_enemy_spawn</object>
+      <object>objects\obj_enemy_attack</object>
     </objects>
     <objects name="Player">
       <object>objects\obj_moveToPoint</object>

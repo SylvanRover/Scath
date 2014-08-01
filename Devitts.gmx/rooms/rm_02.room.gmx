@@ -75,6 +75,9 @@
     <instance objName="obj_rock_grassy" x="448" y="240" name="inst_23ACC0A9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_rock_grassy" x="288" y="112" name="inst_8C32258D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_rock_grassy" x="96" y="208" name="inst_3837C069" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="192" y="288" name="inst_B2A2F621" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="432" y="272" name="inst_B61363EA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="320" y="192" name="inst_F6E9A236" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bg_tileTest" x="192" y="96" w="64" h="64" xo="0" yo="0" id="10000046" name="inst_AEB0E2EA" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

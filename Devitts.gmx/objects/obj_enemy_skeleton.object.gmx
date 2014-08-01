@@ -51,9 +51,9 @@
       </action>
       <action>
         <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
         <exetype>2</exetype>
@@ -65,19 +65,29 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp_current</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>100</string>
+            <string>/// Set Variables
+
+hp_current = 100;
+hp_max = 100;
+stamina_current = 100;
+stamina_max = 100;
+inRange = false;
+los = 50;
+attackRange = 5;
+block = false;
+attackR = false;
+attackL = false;
+</string>
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
         <exetype>2</exetype>
@@ -89,11 +99,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp_max</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>100</string>
+            <string>/// Set attacks to false
+
+attackL = false;
+attackR = false;
+</string>
           </argument>
         </arguments>
       </action>
@@ -177,9 +187,139 @@ phy_fixed_rotation=true;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// Combat
+
+if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)+8), obj_player, false, true))
+    {
+        inRange = true;
+    }
+    else
+    {
+        inRange = false;
+    }
+
+if (inRange)
+{
+    dir = point_direction(x, y, obj_player.x, obj_player.y);
+    phy_speed_x = lengthdir_x(1.2, dir); //SPEED is the speed you want to move at.
+    phy_speed_y = lengthdir_y(1, dir);
+    direction = point_direction(x, y, obj_player.x, obj_player.y);
+}
+
+if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2), y+((attackRange)+8), obj_player, false, true))
+    {
+        phy_speed_x = 0;
+        phy_speed_y = 0;
+        
+        if (direction &gt;= 0 &amp;&amp; direction &lt; 45 || direction &gt; 315) // Right
+        {
+                sprite_index = spr_enemy_attack_right;
+                attackR = true;
+                alarm[1]=8;
+                instance_create(x+28, y-12, obj_enemy_attack);
+        }
+        
+        if (direction &gt;= 45 &amp;&amp; direction &lt;= 135) // Up
+        {
+                attackR = true;
+                sprite_index = spr_enemy_attack_up;
+                alarm[1]=8;
+                instance_create(x, y-32, obj_enemy_attack);
+        }
+        
+        if (direction &gt; 135 &amp;&amp; direction &lt; 225) // Left
+        {
+                attackR = true;
+                sprite_index = spr_enemy_attack_left;
+                alarm[1]=8;
+                instance_create(x-28, y-12, obj_enemy_attack);
+        }
+        
+        if (direction &gt;= 225 &amp;&amp; direction &lt;= 315) // Down
+        {
+                attackR = true;
+                sprite_index = spr_enemy_attack_down;
+                alarm[1]=8;
+                instance_create(x, y+8, obj_enemy_attack);
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// Death
 
-if (hp_current &lt;= 0) instance_destroy();
+if (hp_current &lt;= 0)
+{
+    obj_playerController.killCount += 1;
+    instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Movement
+
+//Sprite Directions
+    d = (direction + 45) div 90;
+    
+    if (phy_speed_x = 0 &amp;&amp; phy_speed_y = 0 &amp;&amp; !attackR)
+    {
+        switch (d) 
+        {     
+            case 0: sprite_index = spr_enemy_skeleton; break;    
+            case 1: sprite_index = spr_enemy_skeleton;  break;    
+            case 2: sprite_index = spr_enemy_skeleton; break;    
+            case 3: sprite_index = spr_enemy_skeleton;  break; 
+        }
+        
+        if (direction &gt;= 315) sprite_index = spr_enemy_skeleton;
+    }
+    
+    if ((phy_speed_x != 0 || phy_speed_y != 0) &amp;&amp; !attackR)
+    {
+        switch (d) 
+        {     
+            case 0: sprite_index = spr_enemy_skeleton; break;    
+            case 1: sprite_index = spr_enemy_skeleton;  break;    
+            case 2: sprite_index = spr_enemy_skeleton; break;    
+            case 3: sprite_index = spr_enemy_skeleton;  break; 
+        }
+        
+        if (direction &gt;= 315 &amp;&amp; !attackR) sprite_index = spr_enemy_skeleton;
+    }
 </string>
           </argument>
         </arguments>
@@ -229,6 +369,52 @@ if (hp_current &lt;= 0) instance_destroy();
             <string>/// Damage
 
 instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="par_enemy">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Collide With
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="par_env">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Collide With
 </string>
           </argument>
         </arguments>

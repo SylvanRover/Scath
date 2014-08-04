@@ -34,7 +34,8 @@ if (keyboard_check_pressed(vk_lshift)
  || keyboard_check_pressed(ord('Q'))
  || keyboard_check_pressed(ord('E'))
  || !obj_player.enemyTargeting
- || !obj_player.targetInRange) instance_destroy();
+ || !obj_player.targetInRange
+ ) instance_destroy();
 </string>
           </argument>
         </arguments>

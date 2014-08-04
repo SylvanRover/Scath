@@ -61,25 +61,27 @@
     <objects name="Environment">
       <object>objects\par_env</object>
       <object>objects\obj_dolmen</object>
-      <object>objects\obj_standingStone</object>
+      <object>objects\obj_standing_stone</object>
     </objects>
     <objects name="Enemy">
-      <object>objects\obj_enemy_skeleton</object>
       <object>objects\par_enemy</object>
+      <object>objects\obj_enemy_skeleton</object>
       <object>objects\obj_enemy_spawn</object>
       <object>objects\obj_enemy_attack</object>
     </objects>
     <objects name="Player">
-      <object>objects\obj_moveToPoint</object>
-      <object>objects\obj_moveToCursor</object>
-      <object>objects\obj_playerController</object>
-      <object>objects\obj_player_health</object>
+      <object>objects\par_player</object>
+      <object>objects\obj_player_controller</object>
+      <object>objects\obj_move_to_point</object>
+      <object>objects\obj_move_to_cursor</object>
       <object>objects\obj_player</object>
-      <object>objects\obj_attack_swipe</object>
       <object>objects\obj_death</object>
-      <object>objects\obj_enemyTargeting</object>
+      <object>objects\obj_player_attack</object>
+      <object>objects\obj_enemy_targeting</object>
     </objects>
-    <object>objects\obj_startScreen</object>
+    <objects name="UI">
+      <object>objects\obj_startScreen</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_startScreen</room>

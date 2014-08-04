@@ -67,18 +67,21 @@
             <kind>1</kind>
             <string>/// Set Variables
 
+phy_fixed_rotation = true;
 hp_current = 100;
 hp_max = 100;
 stamina_current = 100;
 stamina_max = 100;
 inRange = false;
 los = 30;
-attackRange = 5;
+attackRange = 4.5;
 block = false;
 attackR = false;
 attackL = false;
 attackSpr = false;
 alarm[0] = 1;
+damage = 15;
+attackSpeed = 16;
 </string>
           </argument>
         </arguments>
@@ -192,129 +195,11 @@ attackSpr = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Physics Fixed Rotation
-phy_fixed_rotation=true;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Combat
-
-if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)+8), obj_player, false, true))
-    {
-        inRange = true;
-    }
-    else
-    {
-        inRange = false;
-    }
-
-if (inRange)
-{
-    dir = point_direction(x, y, obj_player.x, obj_player.y);
-    phy_speed_x = lengthdir_x(1.2, dir); //SPEED is the speed you want to move at.
-    phy_speed_y = lengthdir_y(1, dir);
-    direction = point_direction(x, y, obj_player.x, obj_player.y);
-}
-
-if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2), y+((attackRange)+8), obj_player, false, true))
-    {
-        phy_speed_x = 0;
-        phy_speed_y = 0;
-        
-        if (direction &gt;= 0 &amp;&amp; direction &lt; 45 || direction &gt; 315) // Right
-        {
-                if (attackSpr)
-                {
-                    sprite_index = spr_enemy_attack_right;
-                    attackSpr = false;
-                }
-                attackR = true;
-                alarm[1]=8;
-                alarm[0]=4;
-                instance_create(x+28, y-12, obj_enemy_attack);
-        }
-        
-        if (direction &gt;= 45 &amp;&amp; direction &lt;= 135) // Up
-        {
-                attackR = true;
-                if (attackSpr)
-                {
-                    sprite_index = spr_enemy_attack_up;
-                    attackSpr = false;
-                }
-                alarm[1]=8;
-                alarm[0]=4;
-                if (attackSpr) instance_create(x, y-32, obj_enemy_attack);
-        }
-        
-        if (direction &gt; 135 &amp;&amp; direction &lt; 225) // Left
-        {
-                attackR = true;
-                if (attackSpr)
-                {
-                    sprite_index = spr_enemy_attack_left;
-                    attackSpr = false;
-                }
-                alarm[1]=8;
-                alarm[0]=4;
-                instance_create(x-28, y-12, obj_enemy_attack);
-        }
-        
-        if (direction &gt;= 225 &amp;&amp; direction &lt;= 315) // Down
-        {
-                attackR = true;
-                if (attackSpr)
-                {
-                    sprite_index = spr_enemy_attack_down;
-                    attackSpr = false;
-                }
-                alarm[1]=8;
-                alarm[0]=4;
-                instance_create(x, y+8, obj_enemy_attack);
-        }
-    }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>/// Death
 
 if (hp_current &lt;= 0)
 {
-    obj_playerController.killCount += 1;
+    obj_player_controller.killCount += 1;
     instance_destroy();
 }
 </string>
@@ -371,29 +256,144 @@ if (hp_current &lt;= 0)
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="4" ename="obj_attack_swipe">
       <action>
         <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
-        <relative>-1</relative>
+        <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp_current</string>
+            <string>/// Combat
+
+if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)+8), obj_player, false, true))
+    {
+        inRange = true;
+    }
+    else
+    {
+        inRange = false;
+    }
+
+if (inRange)
+{
+    dir = point_direction(x, y, obj_player.x, obj_player.y);
+    phy_speed_x = lengthdir_x(1.2, dir); //SPEED is the speed you want to move at.
+    phy_speed_y = lengthdir_y(1, dir);
+    direction = point_direction(x, y, obj_player.x, obj_player.y);
+}
+
+if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2), y+((attackRange)+8), obj_player, false, true))
+    {
+        phy_speed_x = 0;
+        phy_speed_y = 0;
+        
+        if (direction &gt;= 0 &amp;&amp; direction &lt; 45 || direction &gt; 315) // Right
+        {
+                if (!attackR)
+                {
+                    attackR = true;
+                    attackSpr = true;
+                    alarm[1] = attackSpeed;
+                    alarm[0] = 4;
+                    instance_create(x+16, y-12, obj_enemy_attack);
+                }
+                
+                if (attackSpr)
+                {
+                    sprite_index = spr_enemy_attack_right;
+                    attackSpr = false;
+                }
+        }
+        
+        if (direction &gt;= 45 &amp;&amp; direction &lt;= 135) // Up
+        {
+                if (!attackR)
+                {
+                    attackR = true;
+                    attackSpr = true;
+                    alarm[1] = attackSpeed;
+                    alarm[0]=4;
+                    if (attackSpr) instance_create(x, y-32, obj_enemy_attack);
+                }
+                
+                if (attackSpr)
+                {
+                    sprite_index = spr_enemy_attack_up;
+                    attackSpr = false;
+                }
+        }
+        
+        if (direction &gt; 135 &amp;&amp; direction &lt; 225) // Left
+        {
+                if (!attackR)
+                {
+                    attackR = true;
+                    attackSpr = true;
+                    alarm[1] = attackSpeed;
+                    alarm[0]=4;
+                    instance_create(x-16, y-12, obj_enemy_attack);
+                }
+                
+                if (attackSpr)
+                {
+                    sprite_index = spr_enemy_attack_left;
+                    attackSpr = false;
+                }
+        }
+        
+        if (direction &gt;= 225 &amp;&amp; direction &lt;= 315) // Down
+        {
+                if (!attackR)
+                {
+                    attackR = true;
+                    attackSpr = true;
+                    alarm[1] = attackSpeed;
+                    alarm[0]=4;
+                    instance_create(x, y+8, obj_enemy_attack);
+                }
+                
+                if (attackSpr)
+                {
+                    sprite_index = spr_enemy_attack_down;
+                    attackSpr = false;
+                }
+        }
+    }
+</string>
           </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
           <argument>
-            <kind>0</kind>
-            <string>-20</string>
+            <kind>1</kind>
+            <string>/// Damage Collision
+if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2), y+((attackRange)+8), obj_player_attack, false, true))
+{
+    hp_current -= obj_player.damage;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -413,9 +413,36 @@ if (hp_current &lt;= 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Damage
+            <string>/// Destroy Enemy Attack
 
-instance_destroy();
+if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2), y+((attackRange)+8), obj_player_attack, false, true))
+{
+    hp_current -= obj_player.damage;
+    obj_player_attack.attackHit = true;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="par_player">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Collide With
 </string>
           </argument>
         </arguments>

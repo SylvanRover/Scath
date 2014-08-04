@@ -28,7 +28,7 @@
             <string>/// Set Variables
 
 enemySpawn = false;
-spawnRate = random_range(150,250);
+spawnRate = random_range(250,350);
 alarm[0] = spawnRate;
 </string>
           </argument>

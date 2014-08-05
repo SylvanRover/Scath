@@ -73,15 +73,16 @@ hp_max = 100;
 stamina_current = 100;
 stamina_max = 100;
 inRange = false;
-los = 30;
-attackRange = 4.5;
+los = 60;
+attackRange = 12;
 block = false;
 attackR = false;
 attackL = false;
 attackSpr = false;
 alarm[0] = 1;
-damage = 15;
-attackSpeed = 16;
+damage = 20;
+attackSpeed = 32;
+d = (direction + 45) div 90;
 </string>
           </argument>
         </arguments>
@@ -132,7 +133,33 @@ attackR = false;
             <kind>1</kind>
             <string>/// Attack Sprite
 
-attackSpr = true;
+attackSpr = false;
+
+if (phy_speed_x = 0 &amp;&amp; phy_speed_y = 0)
+{
+    switch (d) 
+    {     
+        case 0: sprite_index = spr_enemy_skeleton; break;    
+        case 1: sprite_index = spr_enemy_skeleton;  break;    
+        case 2: sprite_index = spr_enemy_skeleton; break;    
+        case 3: sprite_index = spr_enemy_skeleton;  break; 
+    }
+    
+    if (direction &gt;= 315) sprite_index = spr_enemy_skeleton;
+}
+
+if (phy_speed_x != 0 || phy_speed_y != 0)
+    {
+        switch (d) 
+        {     
+            case 0: sprite_index = spr_enemy_skeleton; break;    
+            case 1: sprite_index = spr_enemy_skeleton;  break;    
+            case 2: sprite_index = spr_enemy_skeleton; break;    
+            case 3: sprite_index = spr_enemy_skeleton;  break; 
+        }
+        
+        if (direction &gt;= 315 &amp;&amp; !attackR) sprite_index = spr_enemy_skeleton;
+    }
 </string>
           </argument>
         </arguments>
@@ -225,9 +252,8 @@ if (hp_current &lt;= 0)
             <string>/// Movement
 
 //Sprite Directions
-    d = (direction + 45) div 90;
     
-    if (phy_speed_x = 0 &amp;&amp; phy_speed_y = 0 &amp;&amp; !attackR)
+    if ((phy_speed_x = 0 &amp;&amp; phy_speed_y = 0) &amp;&amp; !attackR)
     {
         switch (d) 
         {     
@@ -274,7 +300,7 @@ if (hp_current &lt;= 0)
             <kind>1</kind>
             <string>/// Combat
 
-if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)+8), obj_player, false, true))
+if (collision_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), obj_player, false, true))
     {
         inRange = true;
     }
@@ -291,7 +317,7 @@ if (inRange)
     direction = point_direction(x, y, obj_player.x, obj_player.y);
 }
 
-if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2), y+((attackRange)+8), obj_player, false, true))
+if (collision_ellipse(x-(attackRange), y-(attackRange/2), x+(attackRange), y+(attackRange/2)-16, obj_player, false, true))
     {
         phy_speed_x = 0;
         phy_speed_y = 0;
@@ -301,9 +327,9 @@ if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2),
                 if (!attackR)
                 {
                     attackR = true;
-                    attackSpr = true;
                     alarm[1] = attackSpeed;
-                    alarm[0] = 4;
+                    alarm[0]=4;
+                    attackSpr = true
                     instance_create(x+16, y-12, obj_enemy_attack);
                 }
                 
@@ -312,6 +338,7 @@ if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2),
                     sprite_index = spr_enemy_attack_right;
                     attackSpr = false;
                 }
+        
         }
         
         if (direction &gt;= 45 &amp;&amp; direction &lt;= 135) // Up
@@ -322,7 +349,7 @@ if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2),
                     attackSpr = true;
                     alarm[1] = attackSpeed;
                     alarm[0]=4;
-                    if (attackSpr) instance_create(x, y-32, obj_enemy_attack);
+                    if (attackSpr) instance_create(x, y-16, obj_enemy_attack);
                 }
                 
                 if (attackSpr)
@@ -515,7 +542,10 @@ if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2),
 
 draw_self();
 draw_healthbar(phy_position_x-8,phy_position_y-33,phy_position_x+8,phy_position_y-35,hp_current,c_black,c_maroon,c_red,0,true,false)
-
+draw_set_colour(c_red)
+draw_ellipse(x-(attackRange), y-(attackRange/2), x+(attackRange), y+(attackRange/2)-16, true);
+draw_set_colour(c_black);
+draw_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), true);
 </string>
           </argument>
         </arguments>
@@ -534,11 +564,11 @@ draw_healthbar(phy_position_x-8,phy_position_y-33,phy_position_x+8,phy_position_
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>26,26</point>
-    <point>26,30</point>
+    <point>25,24</point>
+    <point>25,30</point>
     <point>16,32</point>
-    <point>6,30</point>
-    <point>6,26</point>
-    <point>16,24</point>
+    <point>7,30</point>
+    <point>7,24</point>
+    <point>16,22</point>
   </PhysicsShapePoints>
 </object>

@@ -76,7 +76,7 @@ alarmFinished = false;
 dir = direction;
 combatAxisObject = true;
 combatAxisWorld = false;
-los = 60;
+los = 120;
 distanceToEnemy = 10000;
 inRange = false;
 nth_target=1;
@@ -93,9 +93,10 @@ mana_current = 100;
 mana_max = 100;
 damage = 20;
 staminaAttackR = 20;
-staminaBlock = 10;
-attackRange = 5;
+staminaBlock = 20;
+attackRange = 12;
 stun = false;
+stunLength = 32;
 </string>
           </argument>
         </arguments>
@@ -325,7 +326,7 @@ if (hp_current &gt; 0)
     }
     
     // Target In Range
-    if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)+8), target, false, true))
+    if (collision_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), target, false, true))
     {
         inRange = true;
     }
@@ -335,7 +336,7 @@ if (hp_current &gt; 0)
         nth_target = 1
     }
     
-    if (collision_ellipse(x-(los*2), y-((los)+8), x+(los*2), y+((los)+8), obj_enemy_targeting, false, true))
+    if (collision_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), obj_enemy_targeting, false, true))
     {
         targetInRange = true;
     }
@@ -463,7 +464,7 @@ if (hp_current &gt; 0)
     {
         stun = true;
         block = false;
-        alarm[2] = 16;
+        alarm[2] = stunLength;
     }    
     if (stun)
     {
@@ -737,7 +738,7 @@ draw_set_valign(fa_center);
 draw_self();
 
 draw_set_color(c_black);
-draw_ellipse (x-(los*2), y-((los)+8), x+(los*2), y+((los)+8), true);
+draw_ellipse (x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), true);
 
 if (hp_current &gt; 0)
 {
@@ -746,6 +747,9 @@ if (hp_current &gt; 0)
     draw_set_colour(c_black);
     draw_rectangle(-10,33,10,-35,true);
 }
+
+draw_set_colour(c_red);
+draw_ellipse(x-(attackRange), y-(attackRange/2)-16, x+(attackRange), y+(attackRange/2), true);
 </string>
           </argument>
         </arguments>

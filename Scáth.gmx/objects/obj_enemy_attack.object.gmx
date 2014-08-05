@@ -2,7 +2,7 @@
 <object>
   <spriteName>spr_player_attack</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>par_enemy</parentName>
@@ -99,6 +99,6 @@ if (attackHit) instance_destroy();
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
     <point>4,4</point>
-    <point>4,4</point>
+    <point>6,4</point>
   </PhysicsShapePoints>
 </object>

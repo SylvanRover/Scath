@@ -635,6 +635,29 @@ if (!stun &amp;&amp; block &amp;&amp; collision_ellipse(x-(attackRange*2), y-((a
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Line of Sight
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="4" ename="par_enemy">
       <action>
@@ -737,9 +760,6 @@ draw_set_valign(fa_center);
 
 draw_self();
 
-draw_set_color(c_black);
-draw_ellipse (x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), true);
-
 if (hp_current &gt; 0)
 {
     draw_set_colour(c_red);
@@ -748,8 +768,11 @@ if (hp_current &gt; 0)
     draw_rectangle(-10,33,10,-35,true);
 }
 
-draw_set_colour(c_red);
-draw_ellipse(x-(attackRange), y-(attackRange/2)-16, x+(attackRange), y+(attackRange/2), true);
+//draw_set_color(c_black);
+//draw_ellipse (x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), true);
+
+//draw_set_colour(c_red);
+//draw_ellipse(x-(attackRange), y-(attackRange/2)-16, x+(attackRange), y+(attackRange/2), true);
 </string>
           </argument>
         </arguments>

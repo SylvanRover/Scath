@@ -52,12 +52,28 @@
     <script>scripts\scr_zDepth.gml</script>
     <script>scripts\scr_depthCorrection.gml</script>
     <script>scripts\instance_nth_nearest.gml</script>
+    <scripts name="Lighting">
+      <script>scripts\lightmap_update.gml</script>
+      <script>scripts\lightmap_init.gml</script>
+      <script>scripts\lightmap_draw.gml</script>
+      <script>scripts\light_update.gml</script>
+      <script>scripts\light_init.gml</script>
+      <script>scripts\light_draw.gml</script>
+      <script>scripts\caster_init.gml</script>
+      <script>scripts\caster_draw.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_main</font>
     <font>fonts\font_small</font>
   </fonts>
   <objects name="objects">
+    <objects name="Lighting">
+      <object>objects\obj_shadowcaster</object>
+      <object>objects\obj_lightmap</object>
+      <object>objects\obj_light</object>
+      <object>objects\obj_controll</object>
+    </objects>
     <objects name="Environment">
       <object>objects\par_env</object>
       <object>objects\obj_dolmen</object>

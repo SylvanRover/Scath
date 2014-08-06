@@ -542,10 +542,10 @@ if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2),
 
 draw_self();
 draw_healthbar(phy_position_x-8,phy_position_y-33,phy_position_x+8,phy_position_y-35,hp_current,c_black,c_maroon,c_red,0,true,false)
-draw_set_colour(c_red)
-draw_ellipse(x-(attackRange), y-(attackRange/2), x+(attackRange), y+(attackRange/2)-16, true);
-draw_set_colour(c_black);
-draw_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), true);
+//draw_set_colour(c_red)
+//draw_ellipse(x-(attackRange), y-(attackRange/2), x+(attackRange), y+(attackRange/2)-16, true);
+//draw_set_colour(c_black);
+//draw_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), true);
 </string>
           </argument>
         </arguments>

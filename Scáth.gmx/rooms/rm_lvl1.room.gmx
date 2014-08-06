@@ -78,6 +78,8 @@
     <instance objName="obj_standing_stone" x="448" y="384" name="inst_FF9B08DB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_standing_stone" x="528" y="96" name="inst_6B1426EA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_standing_stone" x="0" y="96" name="inst_52D2FDF7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_light" x="288" y="208" name="inst_43646EBB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_controll" x="16" y="16" name="inst_5B079428" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="bg_grass" x="0" y="416" w="64" h="32" xo="0" yo="96" id="10000191" name="inst_C870C85C" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

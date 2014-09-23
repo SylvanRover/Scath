@@ -53,6 +53,7 @@ alarm[0] = spawnRate;
           <argument>
             <kind>1</kind>
             <string>/// Enemy Spawn True
+
 enemySpawn = true;
 </string>
           </argument>
@@ -78,11 +79,11 @@ enemySpawn = true;
             <kind>1</kind>
             <string>/// Enemy Spawn
 
-if (enemySpawn)
+if (enemySpawn &amp;&amp; obj_player_controller.enemyCount &lt; 6)
 {
-    instance_create(x,y,obj_enemy_skeleton);
-    enemySpawn = false;
+    enemySpawn = false
     alarm[0] = spawnRate;
+    instance_create(x, y, obj_enemy_skeleton);
 }
 </string>
           </argument>

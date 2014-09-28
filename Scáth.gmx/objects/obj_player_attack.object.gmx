@@ -2,7 +2,7 @@
 <object>
   <spriteName>spr_player_attack</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// Set Variables
 
-alarm[0] = 8;
+alarm[0] = 4;
 attackHit = false;
 </string>
           </argument>

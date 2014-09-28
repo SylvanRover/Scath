@@ -528,7 +528,7 @@ if (hp_current &gt; 0)
                     sprite_index = spr_player_attack_right;
                     attackR = true;
                     alarm[1]=8;
-                    instance_create(x+28, y-12, obj_player_attack);
+                    instance_create(x+8, y-12, obj_player_attack);
                     stamina_current -= staminaAttackR;
                 }
                             
@@ -558,7 +558,7 @@ if (hp_current &gt; 0)
                     attackR = true;
                     sprite_index = spr_player_attack_up;
                     alarm[1]=8;
-                    instance_create(x, y-32, obj_player_attack);
+                    instance_create(x, y-16, obj_player_attack);
                     stamina_current -= staminaAttackR;
                 }
             }
@@ -587,7 +587,7 @@ if (hp_current &gt; 0)
                     attackR = true;
                     sprite_index = spr_player_attack_left;
                     alarm[1]=8;
-                    instance_create(x-28, y-12, obj_player_attack);
+                    instance_create(x-8, y-12, obj_player_attack);
                     stamina_current -= staminaAttackR;
                 }
             }
@@ -616,7 +616,7 @@ if (hp_current &gt; 0)
                     attackR = true;
                     sprite_index = spr_player_attack_down;
                     alarm[1]=8;
-                    instance_create(x, y+8, obj_player_attack);
+                    instance_create(x, y, obj_player_attack);
                     stamina_current -= staminaAttackR;
                 }
             }

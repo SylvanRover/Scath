@@ -49,8 +49,8 @@
           <argument>
             <kind>1</kind>
             <string>/// Position
-x = obj_player.phy_position_x;
-y = obj_player.phy_position_y;
+//x = obj_player.phy_position_x;
+//y = obj_player.phy_position_y;
 </string>
           </argument>
         </arguments>

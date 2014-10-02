@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(0,0,obj_lightmap);
+            <string>instance_create(view_xview[0],view_yview[0],obj_lightmap);
 </string>
           </argument>
         </arguments>

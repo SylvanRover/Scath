@@ -2,17 +2,17 @@
 cast_points = 4;
  
 //first point, top
-cast_x[0]=-sprite_xoffset+(sprite_width/2);
-cast_y[0]=-sprite_yoffset+(sprite_height-12);
+cast_x[0] = 0;
+cast_y[0] = +sprite_yoffset;
  
 //second point, right
-cast_x[1]=-sprite_xoffset+(sprite_width-6);
-cast_y[1]=-sprite_yoffset+(sprite_height-8);
+cast_x[1] = +sprite_xoffset;
+cast_y[1] = 0;
  
 //third point, bottom
-cast_x[2]=-sprite_xoffset+sprite_width/2;
-cast_y[2]=-sprite_yoffset+(sprite_height-4);
+cast_x[2] = 0;
+cast_y[2] = -sprite_yoffset;
  
 //fourth point, left
-cast_x[3]=-sprite_xoffset+6;
-cast_y[3]=-sprite_yoffset+(sprite_height-8);
+cast_x[3] = -sprite_xoffset;
+cast_y[3] = 0;

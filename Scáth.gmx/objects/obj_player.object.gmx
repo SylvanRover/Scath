@@ -76,7 +76,7 @@ alarmFinished = false;
 dir = direction;
 combatAxisObject = true;
 combatAxisWorld = false;
-los = 200;
+los = 150;
 distanceToEnemy = 10000;
 inRange = false;
 nth_target=1;
@@ -120,7 +120,7 @@ stunLength = 32;
             <string>/// Create LoS Lights
 
 instance_create(x,y,obj_light);
-instance_create(x,y,obj_light);
+//instance_create(x,y,obj_light);
 </string>
           </argument>
         </arguments>
@@ -286,7 +286,7 @@ if (hp_current &lt;= 0 &amp;&amp; image_alpha != 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Movement
+            <string>/// Keyboard Controls
 
 mbLeftRelease = mouse_check_button_released(mb_left);
 mbLeftCheck = mouse_check_button(mb_left);
@@ -295,166 +295,377 @@ target = instance_nth_nearest(x,y,par_enemy,nth_target);
 enemyTargetX = instance_nearest(x, y-12, obj_enemy_targeting).x;
 enemyTargetY = instance_nearest(x, y-12, obj_enemy_targeting).y;
 
-
-if (hp_current &gt; 0)
+if (obj_player_controller.controls_keyboard)
 {
-    // Basic Movement
-    if (mbLeftCheck &amp;&amp; !enemyTargeting) 
-    {
-        instance_create(mouse_x, mouse_y, obj_move_to_cursor);
-        dir = point_direction(x, y, obj_move_to_cursor.x, obj_move_to_cursor.y);
-        phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
-        phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
-        direction = dir;
-    }
     
-    if (mbLeftRelease &amp;&amp; !enemyTargeting)
+    if (hp_current &gt; 0)
     {
-        instance_create(mouse_x, mouse_y, obj_move_to_point);
-        dir = point_direction(x, y, obj_move_to_point.x, obj_move_to_point.y);
-        phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
-        phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
-        direction = dir;
-    }
-    
-    // Enemy Targeting Movement
-    if (enemyTargeting)
-    {
-        if (switchTarget)
-        {
-            instance_create(target.x,target.y,obj_enemy_targeting);
-            direction = point_direction(x, y, enemyTargetX, enemyTargetY);
-            switchTarget = false;
-            targetInRange = true;
-            
-        }
-            
-        // Strafing            
-        if (mbLeftCheck) 
+        // Basic Movement
+        if (mbLeftCheck &amp;&amp; !enemyTargeting) 
         {
             instance_create(mouse_x, mouse_y, obj_move_to_cursor);
             dir = point_direction(x, y, obj_move_to_cursor.x, obj_move_to_cursor.y);
             phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
             phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
-            direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+            direction = dir;
         }
         
-        if (mbLeftRelease)
+        if (mbLeftRelease &amp;&amp; !enemyTargeting)
         {
             instance_create(mouse_x, mouse_y, obj_move_to_point);
             dir = point_direction(x, y, obj_move_to_point.x, obj_move_to_point.y);
             phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
             phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
-            direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+            direction = dir;
         }
-    }
-    
-    // Target In Range
-    if (collision_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), target, false, true))
-    {
-        inRange = true;
-    }
-    else
-    {
-        inRange = false;
-        nth_target = 1
-    }
-    
-    if (collision_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), obj_enemy_targeting, false, true))
-    {
-        targetInRange = true;
-    }
-    else
-    {
-        targetInRange = false;
-        enemyTargeting = false;
-        nth_target = 1
-    }
         
-    //Enemy Targeting
-    if (!inRange || enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
-    {
-        alarmFinished = false;
-        enemyTargeting = false;
-        alarm[0] = 2;
-    }
-    
-    if (inRange &amp;&amp; !enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
-    {
-        alarmFinished = false;
-        enemyTargeting = true;
-        alarm[0] = 2;
-        switchTarget = true;
-        nth_target = 1
-        
-        switch nth_target
+        // Enemy Targeting Movement
+        if (enemyTargeting)
         {
-            case 1: nth_target = 1; break //switch the target between the 1st,2nd and 3rd closest enemies
-            case 2: nth_target = 2; break
-            case 3: nth_target = 3; break
+            if (switchTarget)
+            {
+                instance_create(target.x,target.y,obj_enemy_targeting);
+                direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+                switchTarget = false;
+                targetInRange = true;
+                
+            }
+                
+            // Strafing            
+            if (mbLeftCheck) 
+            {
+                instance_create(mouse_x, mouse_y, obj_move_to_cursor);
+                dir = point_direction(x, y, obj_move_to_cursor.x, obj_move_to_cursor.y);
+                phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
+                phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
+                direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+            }
+            
+            if (mbLeftRelease)
+            {
+                instance_create(mouse_x, mouse_y, obj_move_to_point);
+                dir = point_direction(x, y, obj_move_to_point.x, obj_move_to_point.y);
+                phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
+                phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
+                direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+            }
         }
         
-    }
-    
-    // Cycle Targets
-    if (keyboard_check_pressed(ord('E')))
-    {
-        nth_target += 1;
-        switchTarget = true;
-    }
-    if (keyboard_check_pressed(ord('Q')))
-    {
-        nth_target -= 1;        
-        switchTarget = true;
-    }
-    if (nth_target &lt; 1) nth_target = 1;
-    if (nth_target &gt; 3) nth_target = 3;
-    
-    
-    //Stop Movement on collision with Cursor and Point
-    if (collision_circle(x, y, 8, obj_move_to_point,true,true))
-    {
-        phy_speed_x = 0;
-        phy_speed_y = 0;
-    }
-    if (collision_circle(x, y, 8, obj_move_to_cursor,true,true))
-    {
-        phy_speed_x = 0;
-        phy_speed_y = 0;
-    }
-        
-    //Sprite Directions
-    d = (direction + 45) div 90;
-    
-    if (phy_speed_x = 0 &amp;&amp; phy_speed_y = 0 &amp;&amp; !attackR)
-    {
-        switch (d) 
-        {     
-            case 0: sprite_index = spr_player_idle_right; break;    
-            case 1: sprite_index = spr_player_idle_up;  break;    
-            case 2: sprite_index = spr_player_idle_left; break;    
-            case 3: sprite_index = spr_player_idle_down;  break; 
+        // Target In Range
+        if (collision_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), target, false, true))
+        {
+            inRange = true;
+        }
+        else
+        {
+            inRange = false;
+            nth_target = 1
         }
         
-        if (direction &gt;= 315) sprite_index = spr_player_idle_right;
-    }
-    
-    if ((phy_speed_x != 0 || phy_speed_y != 0) &amp;&amp; !attackR)
-    {
-        switch (d) 
-        {     
-            case 0: sprite_index = spr_player_walk_right; break;    
-            case 1: sprite_index = spr_player_walk_up;  break;    
-            case 2: sprite_index = spr_player_walk_left; break;    
-            case 3: sprite_index = spr_player_walk_down;  break; 
+        if (collision_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), obj_enemy_targeting, false, true))
+        {
+            targetInRange = true;
+        }
+        else
+        {
+            targetInRange = false;
+            enemyTargeting = false;
+            nth_target = 1
+        }
+            
+        //Enemy Targeting
+        if (!inRange || enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
+        {
+            alarmFinished = false;
+            enemyTargeting = false;
+            alarm[0] = 2;
         }
         
-        if (direction &gt;= 315 &amp;&amp; !attackR) sprite_index = spr_player_walk_right;
-    }
+        if (inRange &amp;&amp; !enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
+        {
+            alarmFinished = false;
+            enemyTargeting = true;
+            alarm[0] = 2;
+            switchTarget = true;
+            nth_target = 1
+            
+            switch nth_target
+            {
+                case 1: nth_target = 1; break //switch the target between the 1st,2nd and 3rd closest enemies
+                case 2: nth_target = 2; break
+                case 3: nth_target = 3; break
+            }
+            
+        }
         
-    //Vertical Speed Clamp
-    if (phy_speed_y &gt; obj_player_controller.speedY) phy_speed_y = obj_player_controller.speedY;
-    if (phy_speed_y &lt; -obj_player_controller.speedY) phy_speed_y = -obj_player_controller.speedY;
+        // Cycle Targets
+        if (keyboard_check_pressed(ord('E')))
+        {
+            nth_target += 1;
+            switchTarget = true;
+        }
+        if (keyboard_check_pressed(ord('Q')))
+        {
+            nth_target -= 1;        
+            switchTarget = true;
+        }
+        if (nth_target &lt; 1) nth_target = 1;
+        if (nth_target &gt; 3) nth_target = 3;
+        
+        
+        //Stop Movement on collision with Cursor and Point
+        if (collision_circle(x, y, 8, obj_move_to_point,true,true))
+        {
+            phy_speed_x = 0;
+            phy_speed_y = 0;
+        }
+        if (collision_circle(x, y, 8, obj_move_to_cursor,true,true))
+        {
+            phy_speed_x = 0;
+            phy_speed_y = 0;
+        }
+            
+        //Sprite Directions
+        d = (direction + 45) div 90;
+        
+        if (phy_speed_x = 0 &amp;&amp; phy_speed_y = 0 &amp;&amp; !attackR)
+        {
+            switch (d) 
+            {     
+                case 0: sprite_index = spr_player_idle_right; break;    
+                case 1: sprite_index = spr_player_idle_up;  break;    
+                case 2: sprite_index = spr_player_idle_left; break;    
+                case 3: sprite_index = spr_player_idle_down;  break; 
+            }
+            
+            if (direction &gt;= 315) sprite_index = spr_player_idle_right;
+        }
+        
+        if ((phy_speed_x != 0 || phy_speed_y != 0) &amp;&amp; !attackR)
+        {
+            switch (d) 
+            {     
+                case 0: sprite_index = spr_player_walk_right; break;    
+                case 1: sprite_index = spr_player_walk_up;  break;    
+                case 2: sprite_index = spr_player_walk_left; break;    
+                case 3: sprite_index = spr_player_walk_down;  break; 
+            }
+            
+            if (direction &gt;= 315 &amp;&amp; !attackR) sprite_index = spr_player_walk_right;
+        }
+            
+        //Vertical Speed Clamp
+        if (phy_speed_y &gt; obj_player_controller.speedY) phy_speed_y = obj_player_controller.speedY;
+        if (phy_speed_y &lt; -obj_player_controller.speedY) phy_speed_y = -obj_player_controller.speedY;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// GamePad Controls
+
+mbLeftRelease = mouse_check_button_released(mb_left);
+mbLeftCheck = mouse_check_button(mb_left);
+vkLShiftCheck = keyboard_check_pressed(vk_lshift);
+target = instance_nth_nearest(x,y,par_enemy,nth_target);
+enemyTargetX = instance_nearest(x, y-12, obj_enemy_targeting).x;
+enemyTargetY = instance_nearest(x, y-12, obj_enemy_targeting).y;
+speedX = obj_player_controller.speedX;
+speedY = obj_player_controller.speedY;
+
+if (obj_player_controller.controls_gamePad)
+{
+    
+    if (hp_current &gt; 0)
+    {
+        // Basic Movement
+        if(!enemyTargeting)
+        {
+            if gamepad_axis_value(0,gp_axislh)&gt;0.2
+            {
+                phy_speed_x+=speedX;
+            }
+            if gamepad_axis_value(0,gp_axislh)&lt;-0.2
+            {
+                phy_speed_x-=speedX;
+            }
+            if gamepad_axis_value(0,gp_axislh)&lt;0.2 &amp;&amp; gamepad_axis_value(0,gp_axislh)&gt;-0.2
+            {
+                phy_speed_x=0;
+            }
+            
+            if gamepad_axis_value(0,gp_axislv)&gt;0.2
+            {
+                phy_speed_y+=speedY;
+            }
+            if gamepad_axis_value(0,gp_axislv)&lt;-0.2
+            {
+                phy_speed_y-=speedY;
+            }
+            if gamepad_axis_value(0,gp_axislv)&lt;0.2 &amp;&amp; gamepad_axis_value(0,gp_axislv)&gt;-0.2
+            {
+                phy_speed_y=0;
+            }
+                                  
+            //Speed Clamp
+            if (phy_speed_x &gt; speedX) phy_speed_x = speedX;
+            if (phy_speed_x &lt; -speedX) phy_speed_x = -speedX;
+            if (phy_speed_y &gt; speedY) phy_speed_y = speedY;
+            if (phy_speed_y &lt; -speedY) phy_speed_y = -speedY;
+        }
+                
+        // Enemy Targeting Movement
+        if (enemyTargeting)
+        {
+            if (switchTarget)
+            {
+                instance_create(target.x,target.y,obj_enemy_targeting);
+                direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+                switchTarget = false;
+                targetInRange = true;
+                
+            }
+                
+            // Strafing            
+            if (mbLeftCheck) 
+            {
+                instance_create(mouse_x, mouse_y, obj_move_to_cursor);
+                dir = point_direction(x, y, obj_move_to_cursor.x, obj_move_to_cursor.y);
+                phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
+                phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
+                direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+            }
+            
+            if (mbLeftRelease)
+            {
+                instance_create(mouse_x, mouse_y, obj_move_to_point);
+                dir = point_direction(x, y, obj_move_to_point.x, obj_move_to_point.y);
+                phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
+                phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
+                direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+            }
+        }
+        
+        // Target In Range
+        if (collision_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), target, false, true))
+        {
+            inRange = true;
+        }
+        else
+        {
+            inRange = false;
+            nth_target = 1
+        }
+        
+        if (collision_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), obj_enemy_targeting, false, true))
+        {
+            targetInRange = true;
+        }
+        else
+        {
+            targetInRange = false;
+            enemyTargeting = false;
+            nth_target = 1
+        }
+            
+        //Enemy Targeting
+        if (!inRange || enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
+        {
+            alarmFinished = false;
+            enemyTargeting = false;
+            alarm[0] = 2;
+        }
+        
+        if (inRange &amp;&amp; !enemyTargeting &amp;&amp; vkLShiftCheck &amp;&amp; alarmFinished)
+        {
+            alarmFinished = false;
+            enemyTargeting = true;
+            alarm[0] = 2;
+            switchTarget = true;
+            nth_target = 1
+            
+            switch nth_target
+            {
+                case 1: nth_target = 1; break //switch the target between the 1st,2nd and 3rd closest enemies
+                case 2: nth_target = 2; break
+                case 3: nth_target = 3; break
+            }
+            
+        }
+        
+        // Cycle Targets
+        if (keyboard_check_pressed(ord('E')))
+        {
+            nth_target += 1;
+            switchTarget = true;
+        }
+        if (keyboard_check_pressed(ord('Q')))
+        {
+            nth_target -= 1;        
+            switchTarget = true;
+        }
+        if (nth_target &lt; 1) nth_target = 1;
+        if (nth_target &gt; 3) nth_target = 3;
+        
+        
+        //Stop Movement on collision with Cursor and Point
+        if (collision_circle(x, y, 8, obj_move_to_point,true,true))
+        {
+            phy_speed_x = 0;
+            phy_speed_y = 0;
+        }
+        if (collision_circle(x, y, 8, obj_move_to_cursor,true,true))
+        {
+            phy_speed_x = 0;
+            phy_speed_y = 0;
+        }
+            
+        //Sprite Directions
+        d = (direction + 45) div 90;
+        
+        if (phy_speed_x = 0 &amp;&amp; phy_speed_y = 0 &amp;&amp; !attackR)
+        {
+            switch (d) 
+            {     
+                case 0: sprite_index = spr_player_idle_right; break;    
+                case 1: sprite_index = spr_player_idle_up;  break;    
+                case 2: sprite_index = spr_player_idle_left; break;    
+                case 3: sprite_index = spr_player_idle_down;  break; 
+            }
+            
+            if (direction &gt;= 315) sprite_index = spr_player_idle_right;
+        }
+        
+        if ((phy_speed_x != 0 || phy_speed_y != 0) &amp;&amp; !attackR)
+        {
+            switch (d) 
+            {     
+                case 0: sprite_index = spr_player_walk_right; break;    
+                case 1: sprite_index = spr_player_walk_up;  break;    
+                case 2: sprite_index = spr_player_walk_left; break;    
+                case 3: sprite_index = spr_player_walk_down;  break; 
+            }
+            
+            if (direction &gt;= 315 &amp;&amp; !attackR) sprite_index = spr_player_walk_right;
+        }
+    }
 }
 </string>
           </argument>
@@ -778,7 +989,7 @@ if(hp_current &gt; 0 &amp;&amp; stamina_current &gt;= 0)
           <argument>
             <kind>1</kind>
             <string>/// Draw LoS Circle
-
+/*
 draw_set_halign(fa_center);
 draw_set_valign(fa_center);
 
@@ -791,12 +1002,35 @@ if (hp_current &gt; 0)
     draw_set_colour(c_black);
     draw_rectangle(-10,33,10,-35,true);
 }
-
+*/
 //draw_set_color(c_black);
 //draw_ellipse (x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), true);
 
 //draw_set_colour(c_red);
 //draw_ellipse(x-(attackRange), y-(attackRange/2)-16, x+(attackRange), y+(attackRange/2), true);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw Self
+
+draw_self();
 </string>
           </argument>
         </arguments>

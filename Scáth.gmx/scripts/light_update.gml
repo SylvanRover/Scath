@@ -10,7 +10,7 @@ draw_set_alpha(alpha);
 //draw a circle with the provided colors in the center of the surface.
 //since the surface is (radius*2,radius*2) big, the center is (radius,radius)
 //draw_circle_color(radius,radius,radius,color,c_black,false);
-draw_ellipse_color(radius+(radius),radius+(radius/2),radius-(radius),radius-(radius/2),color,c_black,false)
+draw_ellipse_color(radius+(radius),radius+(radius/2),radius-(radius),radius-(radius/2),color,color,false)
 
 //reseting the alpha value
 draw_set_alpha(1);
@@ -23,11 +23,11 @@ var object;
 object = id;
 
 //loop through all shadow casters
-with(par_env){
+with(par_shadow){
     //begin drawing primitives, triangle strip, because then each point connects with every other point.
     draw_primitive_begin(pr_trianglestrip);
     
-    //loop trhough all the casting points.
+    //loop through all the casting points.
     for(i=0;i<cast_points;i+=1){
         /*
         searching for the relative position of the point on the light's surface.

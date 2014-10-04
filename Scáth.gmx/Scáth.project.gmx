@@ -40,6 +40,10 @@
       <sprite>sprites\spr_terrainTest</sprite>
       <sprite>sprites\spr_dolmen</sprite>
       <sprite>sprites\spr_standingStone</sprite>
+      <sprites name="Shadows">
+        <sprite>sprites\spr_shadow_standingStone</sprite>
+        <sprite>sprites\spr_shadow_dolmen</sprite>
+      </sprites>
     </sprites>
     <sprite>sprites\spr_startScreen</sprite>
   </sprites>
@@ -72,12 +76,18 @@
       <object>objects\obj_shadowcaster</object>
       <object>objects\obj_lightmap</object>
       <object>objects\obj_light</object>
-      <object>objects\obj_controll</object>
+      <object>objects\obj_light_control</object>
+      <object>objects\obj_fog</object>
     </objects>
     <objects name="Environment">
       <object>objects\par_env</object>
       <object>objects\obj_dolmen</object>
       <object>objects\obj_standing_stone</object>
+      <objects name="Shadows">
+        <object>objects\par_shadow</object>
+        <object>objects\obj_shadow_dolmen</object>
+        <object>objects\obj_shadow_standingStone</object>
+      </objects>
     </objects>
     <objects name="Enemy">
       <object>objects\par_enemy</object>
@@ -104,7 +114,7 @@
     <room>rooms\rm_lvl1</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41914.9479063657</constant>
+    <constant name="GM_build_date">41916.9459686574</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>

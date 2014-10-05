@@ -6,6 +6,28 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
+    <sprites name="Enemy">
+      <sprite>sprites\spr_enemy_skeleton</sprite>
+      <sprite>sprites\spr_enemy_attack_up</sprite>
+      <sprite>sprites\spr_enemy_attack_down</sprite>
+      <sprite>sprites\spr_enemy_attack_right</sprite>
+      <sprite>sprites\spr_enemy_attack_left</sprite>
+    </sprites>
+    <sprites name="Environment">
+      <sprites name="Shadows">
+        <sprite>sprites\spr_shadow_32</sprite>
+        <sprite>sprites\spr_shadow_64</sprite>
+        <sprite>sprites\spr_shadow_16</sprite>
+      </sprites>
+      <sprite>sprites\spr_dolmen</sprite>
+      <sprite>sprites\spr_standingStone</sprite>
+      <sprite>sprites\spr_stone_01</sprite>
+      <sprite>sprites\spr_stone_02</sprite>
+      <sprite>sprites\spr_stone_03</sprite>
+      <sprite>sprites\spr_stone_04</sprite>
+      <sprite>sprites\spr_stone_05</sprite>
+      <sprite>sprites\spr_terrainTest</sprite>
+    </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_moveToPoint</sprite>
       <sprite>sprites\spr_moveToCursor</sprite>
@@ -29,32 +51,15 @@
       <sprite>sprites\spr_player_block_left</sprite>
       <sprite>sprites\spr_player_health</sprite>
     </sprites>
-    <sprites name="Enemy">
-      <sprite>sprites\spr_enemy_skeleton</sprite>
-      <sprite>sprites\spr_enemy_attack_up</sprite>
-      <sprite>sprites\spr_enemy_attack_down</sprite>
-      <sprite>sprites\spr_enemy_attack_right</sprite>
-      <sprite>sprites\spr_enemy_attack_left</sprite>
-    </sprites>
-    <sprites name="Environment">
-      <sprite>sprites\spr_terrainTest</sprite>
-      <sprite>sprites\spr_dolmen</sprite>
-      <sprite>sprites\spr_standingStone</sprite>
-      <sprites name="Shadows">
-        <sprite>sprites\spr_shadow_standingStone</sprite>
-        <sprite>sprites\spr_shadow_dolmen</sprite>
-      </sprites>
-    </sprites>
     <sprite>sprites\spr_startScreen</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tileTest</background>
     <background>background\bg_grass</background>
+    <background>background\bg_01</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_zDepth.gml</script>
-    <script>scripts\scr_depthCorrection.gml</script>
     <script>scripts\instance_nth_nearest.gml</script>
     <scripts name="Lighting">
       <script>scripts\lightmap_update.gml</script>
@@ -66,34 +71,47 @@
       <script>scripts\caster_init.gml</script>
       <script>scripts\caster_draw.gml</script>
     </scripts>
+    <script>scripts\scr_depthCorrection.gml</script>
+    <script>scripts\scr_zDepth.gml</script>
+    <scripts name="Shadows">
+      <script>scripts\scr_shadow_16.gml</script>
+      <script>scripts\scr_shadow_32.gml</script>
+      <script>scripts\scr_shadow_64.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_main</font>
     <font>fonts\font_small</font>
   </fonts>
   <objects name="objects">
-    <objects name="Lighting">
-      <object>objects\obj_shadowcaster</object>
-      <object>objects\obj_lightmap</object>
-      <object>objects\obj_light</object>
-      <object>objects\obj_light_control</object>
-      <object>objects\obj_fog</object>
+    <objects name="Enemy">
+      <object>objects\par_enemy</object>
+      <object>objects\obj_enemy_skeleton</object>
+      <object>objects\obj_enemy_spawn</object>
+      <object>objects\obj_enemy_attack</object>
     </objects>
     <objects name="Environment">
       <object>objects\par_env</object>
       <object>objects\obj_dolmen</object>
       <object>objects\obj_standing_stone</object>
       <objects name="Shadows">
+        <object>objects\obj_shadow_16</object>
+        <object>objects\obj_shadow_32</object>
+        <object>objects\obj_shadow_64</object>
         <object>objects\par_shadow</object>
-        <object>objects\obj_shadow_dolmen</object>
-        <object>objects\obj_shadow_standingStone</object>
       </objects>
+      <object>objects\obj_stone_01</object>
+      <object>objects\obj_stone_02</object>
+      <object>objects\obj_stone_03</object>
+      <object>objects\obj_stone_04</object>
+      <object>objects\obj_stone_05</object>
     </objects>
-    <objects name="Enemy">
-      <object>objects\par_enemy</object>
-      <object>objects\obj_enemy_skeleton</object>
-      <object>objects\obj_enemy_spawn</object>
-      <object>objects\obj_enemy_attack</object>
+    <objects name="Lighting">
+      <object>objects\obj_shadowcaster</object>
+      <object>objects\obj_lightmap</object>
+      <object>objects\obj_light</object>
+      <object>objects\obj_light_control</object>
+      <object>objects\obj_fog</object>
     </objects>
     <objects name="Player">
       <object>objects\par_player</object>
@@ -114,7 +132,7 @@
     <room>rooms\rm_lvl1</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41916.9459686574</constant>
+    <constant name="GM_build_date">41917.8107500231</constant>
     <constant name="GM_version">'100'</constant>
   </constants>
   <help>

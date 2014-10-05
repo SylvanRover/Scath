@@ -499,7 +499,7 @@ if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2),
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="par_enemy">
+    <event eventtype="4" ename="par_env">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -522,7 +522,7 @@ if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2),
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="par_env">
+    <event eventtype="4" ename="par_enemy">
       <action>
         <libid>1</libid>
         <id>603</id>

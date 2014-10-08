@@ -37,6 +37,10 @@ controls_touch = false;
 
 tile_x = 0;
 tile_y = 0;
+i = tile_layer_find(1000000,tile_x,tile_y)
+tile_depth = 1000000;
+tile_max_x = room_width+64;
+tile_max_y = room_height+32;
 </string>
           </argument>
         </arguments>
@@ -92,20 +96,15 @@ if (keyboard_check_pressed (ord('2')))
           <argument>
             <kind>1</kind>
             <string>/// Tile Depth
-i = tile_layer_find(1000000,tile_x,tile_y)
 
-for (tile_x = 0; tile_x &lt; 10000; tile_x += 64)
+for (tile_y = -54; tile_y &lt; tile_max_y; tile_y += 16)
 {
-    tile_x += 64;
-}
-for (tile_y = 0; tile_y &lt; 10000; tile_y += 32)
-{
-    tile_y += 32;
-}
-
-if (i != -1)
-{
-    tile_set_depth(i,-10000)
+    for (tile_x = -32; tile_x &lt; tile_max_x; tile_x += 32)
+    {
+        i = tile_layer_find(1000000,tile_x,tile_y)        
+        if tile_exists(i) tile_set_depth(i,tile_depth);
+    }
+    tile_depth -= 1;
 }
 </string>
           </argument>

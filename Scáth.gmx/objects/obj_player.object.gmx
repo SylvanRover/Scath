@@ -497,7 +497,7 @@ speedY = obj_player_controller.speedY;
 if (obj_player_controller.controls_gamePad)
 {
 
-    button_target = gamepad_button_check_pressed (0, gp_shoulderlb);
+    button_target = gamepad_button_check_pressed (0, gp_stickr);
     
     if (hp_current &gt; 0)
     {
@@ -685,15 +685,22 @@ if (obj_player_controller.controls_gamePad)
 
 if (obj_player_controller.controls_gamePad)
 {
-    button_attack = gamepad_button_check_released(0,gp_face1);
+    button_attack = gamepad_button_check_released(0,gp_shoulderr);
     button_block = gamepad_button_check (0,gp_shoulderl);
-    button_target = gamepad_button_check_pressed (0,gp_shoulderlb);
+    button_target = gamepad_button_check_pressed (0,gp_stickr);
+}
+if (obj_player_controller.controls_keyboard)
+{
+    button_attack = keyboard_check_released (ord('D'));
+    button_block = keyboard_check (ord('W'));
+    button_target = keyboard_check_pressed (vk_lshift);
 }
 
 if (hp_current &gt; 0)
 {
 
-    if (!block) stamina_current += 1;
+    if (!block) stamina_current += 1.5;
+    if (block) stamina_current += 0.2;
     if (stamina_current &gt;= stamina_max) stamina_current = stamina_max;
     if (stamina_current &lt;= 0.1) stamina_current = 0.1;
     if (stamina_current &lt;= 0.1)

@@ -494,7 +494,9 @@ speedX = obj_player_controller.speedX;
 speedY = obj_player_controller.speedY;
 
 
-if (obj_player_controller.controls_gamePad)
+if (gamepad_is_supported()
+&amp;&amp; gamepad_is_connected(0)
+&amp;&amp; obj_player_controller.controls_gamePad)
 {
 
     button_target = gamepad_button_check_pressed (0, gp_stickr);
@@ -683,7 +685,9 @@ if (obj_player_controller.controls_gamePad)
             <kind>1</kind>
             <string>/// Combat
 
-if (obj_player_controller.controls_gamePad)
+if (gamepad_is_supported()
+&amp;&amp; gamepad_is_connected(0)
+&amp;&amp; obj_player_controller.controls_gamePad)
 {
     button_attack = gamepad_button_check_released(0,gp_shoulderr);
     button_block = gamepad_button_check (0,gp_shoulderl);

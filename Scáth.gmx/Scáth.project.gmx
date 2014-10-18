@@ -57,6 +57,7 @@
     <background>background\bg_tileTest</background>
     <background>background\bg_grass</background>
     <background>background\bg_01</background>
+    <background>background\TileTest</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -129,6 +130,7 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_startScreen</room>
+    <room>rooms\TestMapIso</room>
     <room>rooms\rm_lvl1</room>
   </rooms>
   <constants number="2">

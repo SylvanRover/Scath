@@ -123,7 +123,7 @@ button_target = keyboard_check_pressed(vk_lshift);
             <kind>1</kind>
             <string>/// Create LoS Lights
 
-instance_create(x,y,obj_light);
+instance_create(x,y,obj_LoS);
 //instance_create(x,y,obj_light);
 </string>
           </argument>
@@ -304,6 +304,7 @@ if (obj_player_controller.controls_keyboard)
 
     if (hp_current &gt; 0)
     {
+        direction = point_direction(x, y, mouse_x, mouse_y);
         // Basic Movement
         if (mbLeftCheck &amp;&amp; !enemyTargeting) 
         {
@@ -311,7 +312,7 @@ if (obj_player_controller.controls_keyboard)
             dir = point_direction(x, y, obj_move_to_cursor.x, obj_move_to_cursor.y);
             phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
             phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
-            direction = dir;
+            //direction = dir;
         }
         
         if (mbLeftRelease &amp;&amp; !enemyTargeting)
@@ -320,7 +321,7 @@ if (obj_player_controller.controls_keyboard)
             dir = point_direction(x, y, obj_move_to_point.x, obj_move_to_point.y);
             phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
             phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
-            direction = dir;
+            //direction = dir;
         }
         
         // Enemy Targeting Movement
@@ -329,7 +330,7 @@ if (obj_player_controller.controls_keyboard)
             if (switchTarget)
             {
                 instance_create(target.x,target.y,obj_enemy_targeting);
-                direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+                //direction = point_direction(x, y, enemyTargetX, enemyTargetY);
                 switchTarget = false;
                 targetInRange = true;
                 
@@ -498,7 +499,7 @@ if (gamepad_is_supported()
 &amp;&amp; gamepad_is_connected(0)
 &amp;&amp; obj_player_controller.controls_gamePad)
 {
-
+    if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.5);
     button_target = gamepad_button_check_pressed (0, gp_stickr);
     
     if (hp_current &gt; 0)
@@ -538,9 +539,13 @@ if (gamepad_is_supported()
         if (phy_speed_y &lt; -speedY) phy_speed_y = -speedY;
             
             // Direction
-        if(!enemyTargeting)
+        if(!enemyTargeting &amp;&amp; gamepad_axis_value(0, gp_axisrv)=0 &amp;&amp; gamepad_axis_value(0, gp_axisrh)=0)
             {
                 direction = point_direction(0, 0, gamepad_axis_value(0, gp_axislh), gamepad_axis_value(0, gp_axislv));
+            }
+        if(!enemyTargeting &amp;&amp; gamepad_axis_value(0, gp_axisrv)!=0 || gamepad_axis_value(0, gp_axisrh)!=0)
+            {
+                direction = point_direction(0, 0, gamepad_axis_value(0, gp_axisrh), gamepad_axis_value(0, gp_axisrv));
             }
                 
         // Enemy Targeting Movement

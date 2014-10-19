@@ -2,6 +2,9 @@
 with(obj_light){
     light_update();
 }
+with(obj_LoS){
+    light_update();
+}
 
 //set the surface target
 surface_set_target(lightmap);
@@ -26,6 +29,9 @@ draw_set_blend_mode(bm_add);
 
 //draw the lights onto this surface
 with(obj_light){
+    light_draw();
+}
+with(obj_LoS){
     light_draw();
 }
 

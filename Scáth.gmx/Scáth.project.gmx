@@ -27,6 +27,7 @@
       <sprite>sprites\spr_stone_04</sprite>
       <sprite>sprites\spr_stone_05</sprite>
       <sprite>sprites\spr_terrainTest</sprite>
+      <sprite>sprites\spr_tree_01</sprite>
     </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_moveToPoint</sprite>
@@ -54,8 +55,6 @@
     <sprite>sprites\spr_startScreen</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\bg_tileTest</background>
-    <background>background\bg_grass</background>
     <background>background\bg_01</background>
     <background>background\TileTest</background>
   </backgrounds>
@@ -106,13 +105,15 @@
       <object>objects\obj_stone_03</object>
       <object>objects\obj_stone_04</object>
       <object>objects\obj_stone_05</object>
+      <object>objects\obj_tree_01</object>
     </objects>
     <objects name="Lighting">
       <object>objects\obj_shadowcaster</object>
       <object>objects\obj_lightmap</object>
-      <object>objects\obj_light</object>
+      <object>objects\obj_LoS</object>
       <object>objects\obj_light_control</object>
       <object>objects\obj_fog</object>
+      <object>objects\obj_light</object>
     </objects>
     <objects name="Player">
       <object>objects\par_player</object>
@@ -130,7 +131,7 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_startScreen</room>
-    <room>rooms\TestMapIso</room>
+    <room>rooms\rm_001</room>
     <room>rooms\rm_lvl1</room>
   </rooms>
   <constants number="2">

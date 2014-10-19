@@ -10,7 +10,7 @@ draw_set_alpha(alpha);
 //draw a circle with the provided colors in the center of the surface.
 //since the surface is (radius*2,radius*2) big, the center is (radius,radius)
 //draw_circle_color(radius,radius,radius,color,c_black,false);
-draw_ellipse_color(radius+(radius),radius+(radius/2),radius-(radius),radius-(radius/2),color,color,false)
+draw_ellipse_color(radius+(radius),radius+(radius/2),radius-(radius),radius-(radius/2),color,c_black,false)
 
 //reseting the alpha value
 draw_set_alpha(1);

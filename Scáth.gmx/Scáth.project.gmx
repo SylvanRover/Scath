@@ -53,6 +53,39 @@
       <sprite>sprites\spr_player_health</sprite>
     </sprites>
     <sprite>sprites\spr_startScreen</sprite>
+    <sprites name="SmartLight">
+      <sprite>sprites\spr_cursor</sprite>
+      <sprite>sprites\spr_tods</sprite>
+      <sprite>sprites\spr_bush01</sprite>
+      <sprite>sprites\spr_bush01_shadow</sprite>
+      <sprite>sprites\spr_cloud</sprite>
+      <sprite>sprites\spr_crate03</sprite>
+      <sprite>sprites\spr_crate03b</sprite>
+      <sprite>sprites\spr_fire</sprite>
+      <sprite>sprites\spr_ico_light</sprite>
+      <sprite>sprites\spr_ico_light2</sprite>
+      <sprite>sprites\spr_light01</sprite>
+      <sprite>sprites\spr_light02</sprite>
+      <sprite>sprites\spr_light03</sprite>
+      <sprite>sprites\spr_light04</sprite>
+      <sprite>sprites\spr_light05</sprite>
+      <sprite>sprites\spr_minimap</sprite>
+      <sprite>sprites\spr_plant01</sprite>
+      <sprite>sprites\spr_plant01_shadow</sprite>
+      <sprite>sprites\spr_shadow_mask</sprite>
+      <sprite>sprites\spr_shape01</sprite>
+      <sprite>sprites\spr_shape02</sprite>
+      <sprite>sprites\spr_shape03</sprite>
+      <sprite>sprites\spr_shape04</sprite>
+      <sprite>sprites\spr_block</sprite>
+      <sprite>sprites\spr_character</sprite>
+      <sprite>sprites\spr_character_m</sprite>
+      <sprite>sprites\spr_character_smask</sprite>
+      <sprite>sprites\spr_character2</sprite>
+      <sprite>sprites\spr_crate01</sprite>
+      <sprite>sprites\spr_crate02</sprite>
+      <sprite>sprites\spr_vehicle</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_01</background>
@@ -77,6 +110,25 @@
       <script>scripts\scr_shadow_16.gml</script>
       <script>scripts\scr_shadow_32.gml</script>
       <script>scripts\scr_shadow_64.gml</script>
+    </scripts>
+    <scripts name="SmartLight">
+      <script>scripts\SL_ToD_default.gml</script>
+      <script>scripts\SL_sprite_set_ambient.gml</script>
+      <script>scripts\SL_set_time.gml</script>
+      <script>scripts\SL_light_ini_end.gml</script>
+      <script>scripts\SL_light_ini_begin.gml</script>
+      <script>scripts\SL_light_free.gml</script>
+      <script>scripts\SL_light_cast_obj.gml</script>
+      <script>scripts\SL_global_cast_obj.gml</script>
+      <script>scripts\SL_engine_render.gml</script>
+      <script>scripts\SL_engine_ini_end.gml</script>
+      <script>scripts\SL_engine_ini_begin.gml</script>
+      <script>scripts\SL_engine_free.gml</script>
+      <script>scripts\SL_engine_draw.gml</script>
+      <script>scripts\SL_draw_sprite_shadow.gml</script>
+      <script>scripts\SL_draw_sprite_light.gml</script>
+      <script>scripts\SL_cast_sprite.gml</script>
+      <script>scripts\SL_add_light.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -127,6 +179,29 @@
     </objects>
     <objects name="UI">
       <object>objects\obj_startScreen</object>
+    </objects>
+    <objects name="SmartLight">
+      <object>objects\obj_character</object>
+      <object>objects\obj_control</object>
+      <object>objects\obj_engine</object>
+      <object>objects\obj_light_torch</object>
+      <object>objects\obj_light01</object>
+      <object>objects\obj_light02</object>
+      <object>objects\obj_npc</object>
+      <object>objects\obj_ball</object>
+      <object>objects\obj_block</object>
+      <object>objects\obj_bush01</object>
+      <object>objects\obj_cloud</object>
+      <object>objects\obj_crate01</object>
+      <object>objects\obj_crate02</object>
+      <object>objects\obj_crate03</object>
+      <object>objects\obj_fire</object>
+      <object>objects\obj_plant01</object>
+      <object>objects\obj_shadow_mask</object>
+      <object>objects\obj_shape01</object>
+      <object>objects\obj_shape03</object>
+      <object>objects\obj_shape04</object>
+      <object>objects\obj_vehicle</object>
     </objects>
   </objects>
   <rooms name="rooms">

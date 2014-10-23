@@ -123,8 +123,8 @@ button_target = keyboard_check_pressed(vk_lshift);
             <kind>1</kind>
             <string>/// Create LoS Lights
 
-instance_create(x,y,obj_LoS);
-//instance_create(x,y,obj_light);
+//instance_create(x,y,obj_LoS);
+instance_create(x,y,obj_light);
 </string>
           </argument>
         </arguments>

@@ -153,5 +153,8 @@ SL_draw_sprite_light(sprite,0,x,y,scale,scale,angle,color,alpha);
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>4,4</point>
+    <point>4,4</point>
+  </PhysicsShapePoints>
 </object>

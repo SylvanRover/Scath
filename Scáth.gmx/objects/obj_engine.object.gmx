@@ -8,6 +8,67 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Initialize the engine object
+
+SL_engine_ini_begin();// Start system initialization
+
+// Solar Shadow variables
+sl_sunshadows_active      = true; // Active shadow rendering from the sun
+sl_sunshadows_texturesize = 0.5;  // Factor size of the shadow texture ( between 0 and 1 )
+sl_sunshadows_quality     = 1; // Factor determining the number of samples that make up the shadow (between 0 and 1)
+sl_sunshadows_alpha       = 0.5; // Shadow transparency factor (between 0 and 1)
+sl_sunshadows_alphalimit  = 0.61; // Minimum level of ambient light needed for All solar shadows to be visible
+sl_sunshadows_margin      = 200;  // Size of the margin surrounding the shaded surface , in pixels
+
+// Factors stretching solar shadows applied to each layer
+sl_sunshadows_layerscale[0] = 0.2;
+sl_sunshadows_layerscale[1] = 0.35;
+sl_sunshadows_layerscale[2] = 0.6;
+sl_sunshadows_layerscale[3] = 1;
+sl_sunshadows_layerscale[4] = 1;
+sl_sunshadows_layerscale[5] = 1;
+
+sl_ambientshadows_active = true; // Active ambient shadows rendering
+
+sl_timespeed = (20/60)/room_speed; // Determines the speed of the clock
+
+// Generating ambient occlusion maps
+
+// List of objects projecting a global shadow
+SL_global_cast_obj(0,obj_player,-1,1,1);
+SL_global_cast_obj(0,par_enemy,-1,1,1);
+SL_global_cast_obj(0,par_shadow,-1,1,1);
+//SL_global_cast_obj(1,obj_stone_02,-1,2,1);
+
+// List of light objects
+SL_add_light (obj_light);
+
+SL_ToD_default(); // Initialization ToD (Time of Day)
+SL_set_time(16.5); // Initialization time
+
+SL_engine_ini_end(); // Terminates system initialization
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="1" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,15 +86,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Free the memory
-// Frees the memory used by all parts of the system
+            <string>/// Free memory used by all surfaces
+
 SL_engine_free();
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="2">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -50,180 +111,9 @@ SL_engine_free();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Change the ToD and ambient light
-// Change the time in a given value by the player
-if keyboard_check_pressed(ord('C'))
-{
-    var time;
-    time = get_integer("Hour:",global.sl_time);
-    
-    if time&gt;=0 &amp;&amp; time&lt;24 SL_set_time(time) else show_message("Incorrect Value");
-}
+            <string>/// Render all shadow and light
 
-sl_timespeed = (1/60)/(room_speed/3); // Quicken the speed of the in-game hour
-sl_ambientshadows_alpha = -global.sl_ambient_light+1.77; // Changes the ambient shadows alpha depending on the ambient light
-
-// Calculating the shadows and lights
 SL_engine_render();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="61">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Change the hour
-if global.sl_time-0.1&gt;=0 SL_set_time(global.sl_time-0.1) else SL_set_time(23.99);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="60">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Change the hour
-if global.sl_time+0.1&lt;24 SL_set_time(global.sl_time+0.1) else SL_set_time(0);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Change in the configuration according to the ToD room
-
-if room = rm_001 sl_tod_active = 1;
-//if room = room2 {sl_tod_active=0 global.sl_ambient_light=0};
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Begins system initialization
-
-SL_engine_ini_begin();
-
-// Basic variables
-global.sl_viewid  = 0;    // The index of the view in which to display the effects
-sl_buffer_xmargin = 8;    // Buffer margin
-sl_buffer_ymargin = 8;
-sl_maxexposure    = 0.45; // Maximum light saturation factor
-
-// Solar Shadow variables
-sl_sunshadows_active      = true; // Active shadow rendering from the sun
-sl_sunshadows_texturesize = 0.5;  // Factor size of the shadow texture ( between 0 and 1 )
-sl_sunshadows_quality     = 0.25; // Factor determining the number of samples that make up the shadow (between 0 and 1)
-sl_sunshadows_alpha       = 0.77; // Shadow transparency factor (between 0 and 1)
-sl_sunshadows_alphalimit  = 0.61; // Minimum level of ambient light needed for All solar shadows to be visible
-sl_sunshadows_margin      = 200;  // Size of the margin surrounding the shaded surface , in pixels
-
-// Factors stretching solar shadows applied to each layer
-sl_sunshadows_layerscale[0] = 0.2;
-sl_sunshadows_layerscale[1] = 0.35;
-sl_sunshadows_layerscale[2] = 0.6;
-sl_sunshadows_layerscale[3] = 1;
-sl_sunshadows_layerscale[4] = 1;
-sl_sunshadows_layerscale[5] = 1;
-
-sl_ambientshadows_active = true; // Active rendering of ambient shadows
-
-// Generates ambient maps
-SL_sprite_set_ambient(spr_character);
-SL_sprite_set_ambient(spr_character2);
-SL_sprite_set_ambient(spr_crate01);
-SL_sprite_set_ambient(spr_crate02);
-SL_sprite_set_ambient(spr_crate03);
-SL_sprite_set_ambient(spr_crate03b);
-SL_sprite_set_ambient(spr_shape01);
-SL_sprite_set_ambient(spr_shape03);
-SL_sprite_set_ambient(spr_shape04);
-SL_sprite_set_ambient(spr_vehicle);
-SL_sprite_set_ambient(spr_plant01);
-SL_sprite_set_ambient(spr_bush01);
-
-// Declaration of objects casting a global shadow
-// SL_global_cast_obj(layer,object,sprite,sun,amb);
-SL_global_cast_obj( 1, obj_character, spr_character_smask, 1, 1 );
-SL_global_cast_obj( 1, obj_npc,       spr_character_smask, 1, 1 );
-SL_global_cast_obj( 4, obj_crate01,   -1,                  1, 1 );
-SL_global_cast_obj( 3, obj_crate02,   -1,                  1, 1 );
-SL_global_cast_obj( 2, obj_crate03,   -1,                  1, 1 );
-SL_global_cast_obj( 0, obj_shape01,   -1,                  1, 1 );
-SL_global_cast_obj( 1, obj_shape03,   -1,                  1, 1 );
-SL_global_cast_obj( 1, obj_shape04,   -1,                  1, 1 );
-SL_global_cast_obj( 3, obj_vehicle,   -1,                  1, 1 );
-SL_global_cast_obj( 0, obj_plant01,   spr_plant01_shadow,  2, 1 );
-SL_global_cast_obj( 4, obj_bush01,    spr_bush01_shadow,   2, 1 );
-//SL_global_cast_obj(5,-1,-1,0,0); // Vacuum layer can be used to display clouds (obj_cloud)
-
-SL_add_light(obj_light_torch);
-SL_add_light(obj_light01);
-
-SL_ToD_default();    // Initialization ToD
-SL_set_time(14.5);   // Initialization of hours
-SL_engine_ini_end(); // Finalizes the initialization of the system
 </string>
           </argument>
         </arguments>
@@ -246,7 +136,8 @@ SL_engine_ini_end(); // Finalizes the initialization of the system
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Showing all lights and shadows
+            <string>/// Display all lights and shadows
+
 SL_engine_draw();
 </string>
           </argument>

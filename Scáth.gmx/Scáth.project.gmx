@@ -113,22 +113,22 @@
     </scripts>
     <scripts name="SmartLight">
       <script>scripts\SL_ToD_default.gml</script>
-      <script>scripts\SL_sprite_set_ambient.gml</script>
-      <script>scripts\SL_set_time.gml</script>
-      <script>scripts\SL_light_ini_end.gml</script>
+      <script>scripts\SL_engine_ini_begin.gml</script>
+      <script>scripts\SL_engine_ini_end.gml</script>
+      <script>scripts\SL_engine_render.gml</script>
+      <script>scripts\SL_engine_draw.gml</script>
+      <script>scripts\SL_engine_free.gml</script>
       <script>scripts\SL_light_ini_begin.gml</script>
+      <script>scripts\SL_light_ini_end.gml</script>
       <script>scripts\SL_light_free.gml</script>
       <script>scripts\SL_light_cast_obj.gml</script>
       <script>scripts\SL_global_cast_obj.gml</script>
-      <script>scripts\SL_engine_render.gml</script>
-      <script>scripts\SL_engine_ini_end.gml</script>
-      <script>scripts\SL_engine_ini_begin.gml</script>
-      <script>scripts\SL_engine_free.gml</script>
-      <script>scripts\SL_engine_draw.gml</script>
-      <script>scripts\SL_draw_sprite_shadow.gml</script>
-      <script>scripts\SL_draw_sprite_light.gml</script>
       <script>scripts\SL_cast_sprite.gml</script>
       <script>scripts\SL_add_light.gml</script>
+      <script>scripts\SL_draw_sprite_light.gml</script>
+      <script>scripts\SL_draw_sprite_shadow.gml</script>
+      <script>scripts\SL_sprite_set_ambient.gml</script>
+      <script>scripts\SL_set_time.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -165,7 +165,7 @@
       <object>objects\obj_LoS</object>
       <object>objects\obj_light_control</object>
       <object>objects\obj_fog</object>
-      <object>objects\obj_light</object>
+      <object>objects\obj_light_old</object>
     </objects>
     <objects name="Player">
       <object>objects\par_player</object>
@@ -202,6 +202,8 @@
       <object>objects\obj_shape03</object>
       <object>objects\obj_shape04</object>
       <object>objects\obj_vehicle</object>
+      <object>objects\obj_engine_orignal</object>
+      <object>objects\obj_light</object>
     </objects>
   </objects>
   <rooms name="rooms">

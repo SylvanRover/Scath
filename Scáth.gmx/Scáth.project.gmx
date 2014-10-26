@@ -51,6 +51,7 @@
       <sprite>sprites\spr_player_block_right</sprite>
       <sprite>sprites\spr_player_block_left</sprite>
       <sprite>sprites\spr_player_health</sprite>
+      <sprite>sprites\apr_player_shadow</sprite>
     </sprites>
     <sprite>sprites\spr_startScreen</sprite>
     <sprites name="SmartLight">
@@ -86,6 +87,8 @@
       <sprite>sprites\spr_crate02</sprite>
       <sprite>sprites\spr_vehicle</sprite>
     </sprites>
+    <sprite>sprites\spr_light_radius</sprite>
+    <sprite>sprites\spr_null</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_01</background>
@@ -129,6 +132,26 @@
       <script>scripts\SL_draw_sprite_shadow.gml</script>
       <script>scripts\SL_sprite_set_ambient.gml</script>
       <script>scripts\SL_set_time.gml</script>
+      <script>scripts\SL_ToD_02.gml</script>
+    </scripts>
+    <scripts name="SmartLight New">
+      <script>scripts\SL_ToD_default_new.gml</script>
+      <script>scripts\SL_engine_ini_begin_new.gml</script>
+      <script>scripts\SL_engine_ini_end_new.gml</script>
+      <script>scripts\SL_engine_render_new.gml</script>
+      <script>scripts\SL_engine_draw_new.gml</script>
+      <script>scripts\SL_engine_free_new.gml</script>
+      <script>scripts\SL_light_ini_begin_new.gml</script>
+      <script>scripts\SL_light_ini_end_new.gml</script>
+      <script>scripts\SL_light_free_new.gml</script>
+      <script>scripts\SL_light_cast_obj_new.gml</script>
+      <script>scripts\SL_global_cast_obj_new.gml</script>
+      <script>scripts\SL_cast_sprite_new.gml</script>
+      <script>scripts\SL_add_light_new.gml</script>
+      <script>scripts\SL_draw_sprite_light_new.gml</script>
+      <script>scripts\SL_draw_sprite_shadow_new.gml</script>
+      <script>scripts\SL_sprite_set_ambient_new.gml</script>
+      <script>scripts\SL_set_time_new.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -141,6 +164,7 @@
       <object>objects\obj_enemy_skeleton</object>
       <object>objects\obj_enemy_spawn</object>
       <object>objects\obj_enemy_attack</object>
+      <object>objects\obj_enemy_shadow</object>
     </objects>
     <objects name="Environment">
       <object>objects\par_env</object>
@@ -176,6 +200,8 @@
       <object>objects\obj_death</object>
       <object>objects\obj_player_attack</object>
       <object>objects\obj_enemy_targeting</object>
+      <object>objects\obj_player_shadow</object>
+      <object>objects\obj_mouse</object>
     </objects>
     <objects name="UI">
       <object>objects\obj_startScreen</object>
@@ -204,11 +230,12 @@
       <object>objects\obj_vehicle</object>
       <object>objects\obj_engine_orignal</object>
       <object>objects\obj_light</object>
+      <object>objects\obj_engine_02</object>
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_startScreen</room>
     <room>rooms\rm_001</room>
+    <room>rooms\rm_startScreen</room>
     <room>rooms\rm_lvl1</room>
   </rooms>
   <constants number="2">

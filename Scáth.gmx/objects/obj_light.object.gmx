@@ -3,9 +3,9 @@
   <spriteName>spr_ico_light</spriteName>
   <solid>0</solid>
   <visible>0</visible>
-  <depth>-1000</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -27,17 +27,87 @@
             <kind>1</kind>
             <string>/// Initialize the light object
 
-mode = 0;
-
 SL_light_ini_begin(); // Starts initializing the light object
 sl_light_texture = spr_light01; // Index light texture (required)
 
+sl_light_color   = make_color_rgb(255,238,178);     // Light color
+sl_light_power   = 1;            // Light power
+sl_light_shadowsharpness = 1;
+sl_light_ambientpower = .2;
+sl_light_shadowlength    = 4;       // Shadows length (sets the number of iterations, must be an integer greater than 0)
+sl_light_shadowfactor    = 1.03;
+
 // List of objects for which the light should cast shadows
-SL_light_cast_obj(obj_player,-1);
-SL_light_cast_obj(par_enemy,-1);
 SL_light_cast_obj(par_shadow,-1);
+SL_light_cast_obj(par_env,spr_null);
+SL_light_cast_obj(par_enemy,spr_null);
+SL_light_cast_obj(par_player,spr_null);
+//SL_light_cast_obj(obj_player_shadow,-1);
 SL_light_ini_end(); // Finalizes the initialization of the light object
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set variables
+
+lightOn = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>scr_zDepth</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -68,6 +138,113 @@ SL_light_free();
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Position
+sl_light_x = obj_player.phy_position_x;
+sl_light_y = obj_player.phy_position_y;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Turn on/off light
+wait = false;
+
+if (lightOn &amp;&amp; mouse_check_button_pressed(mb_right) &amp;&amp; !wait)
+{
+    lightOn = false;
+    wait = true;
+}
+if (!lightOn &amp;&amp; mouse_check_button_pressed(mb_right) &amp;&amp; !wait)
+{
+    lightOn = true;
+    wait = true;
+}
+
+if (lightOn)
+{
+    sl_light_power = 1;
+}
+if (!lightOn)
+{
+    sl_light_power = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>scr_depthCorrection</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
   </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
@@ -81,7 +258,7 @@ SL_light_free();
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>150,150</point>
-    <point>150,150</point>
+    <point>4,4</point>
+    <point>4,4</point>
   </PhysicsShapePoints>
 </object>

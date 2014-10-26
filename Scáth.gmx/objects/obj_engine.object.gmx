@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-1000</depth>
   <persistent>-1</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -30,8 +30,8 @@
 SL_engine_ini_begin();// Start system initialization
 
 // Solar Shadow variables
-sl_sunshadows_active      = true; // Active shadow rendering from the sun
-sl_sunshadows_texturesize = 0.5;  // Factor size of the shadow texture ( between 0 and 1 )
+sl_sunshadows_active      = false; // Active shadow rendering from the sun
+sl_sunshadows_texturesize = 1;  // Factor size of the shadow texture ( between 0 and 1 )
 sl_sunshadows_quality     = 1; // Factor determining the number of samples that make up the shadow (between 0 and 1)
 sl_sunshadows_alpha       = 0.5; // Shadow transparency factor (between 0 and 1)
 sl_sunshadows_alphalimit  = 0.61; // Minimum level of ambient light needed for All solar shadows to be visible
@@ -45,23 +45,22 @@ sl_sunshadows_layerscale[3] = 1;
 sl_sunshadows_layerscale[4] = 1;
 sl_sunshadows_layerscale[5] = 1;
 
-sl_ambientshadows_active = true; // Active ambient shadows rendering
+sl_ambientshadows_active = false; // Active ambient shadows rendering
 
-sl_timespeed = (20/60)/room_speed; // Determines the speed of the clock
+sl_timespeed = (10/60)/room_speed; // Determines the speed of the clock
 
 // Generating ambient occlusion maps
 
 // List of objects projecting a global shadow
-SL_global_cast_obj(0,obj_player,-1,1,1);
-SL_global_cast_obj(0,par_enemy,-1,1,1);
-SL_global_cast_obj(0,par_shadow,-1,1,1);
+SL_global_cast_obj(1, par_shadow,-1,1,1);
+SL_global_cast_obj(0, obj_player_shadow,-1,1,1);
 //SL_global_cast_obj(1,obj_stone_02,-1,2,1);
 
 // List of light objects
-SL_add_light (obj_light);
+//SL_add_light (obj_light);
 
 SL_ToD_default(); // Initialization ToD (Time of Day)
-SL_set_time(16.5); // Initialization time
+SL_set_time(6); // Initialization time
 
 SL_engine_ini_end(); // Terminates system initialization
 </string>

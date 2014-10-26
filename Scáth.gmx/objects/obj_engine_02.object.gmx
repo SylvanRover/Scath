@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>-1000</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,22 +25,72 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Set Variables
+            <string>/// Initialize the engine object
 
-speedX = 1.7;
-speedY = 1.3;
-killCount = 0;
-enemyCount = 0;
-controls_keyboard = true;
-controls_gamePad = false;
-controls_touch = false;
+SL_engine_ini_begin_new();// Start system initialization
 
-tile_x = 0;
-tile_y = 0;
-i = tile_layer_find(1000000,tile_x,tile_y)
-tile_depth = 1000000;
-tile_max_x = room_width+64;
-tile_max_y = room_height+32;
+// Solar Shadow variables
+sl_sunshadows_active      = true; // Active shadow rendering from the sun
+sl_sunshadows_texturesize = 1;  // Factor size of the shadow texture ( between 0 and 1 )
+sl_sunshadows_quality     = 1; // Factor determining the number of samples that make up the shadow (between 0 and 1)
+sl_sunshadows_alpha       = 0.5; // Shadow transparency factor (between 0 and 1)
+sl_sunshadows_alphalimit  = 0.61; // Minimum level of ambient light needed for All solar shadows to be visible
+sl_sunshadows_margin      = 200;  // Size of the margin surrounding the shaded surface , in pixels
+
+// Factors stretching solar shadows applied to each layer
+sl_sunshadows_layerscale[0] = 0.2;
+sl_sunshadows_layerscale[1] = 0.35;
+sl_sunshadows_layerscale[2] = 0.6;
+sl_sunshadows_layerscale[3] = 1;
+sl_sunshadows_layerscale[4] = 1;
+sl_sunshadows_layerscale[5] = 1;
+
+//sl_ambientshadows_active = false; // Active ambient shadows rendering
+
+sl_timespeed = (1/60)/room_speed; // Determines the speed of the clock
+
+// Generating ambient occlusion maps
+
+// List of objects projecting a global shadow
+SL_global_cast_obj(0, par_shadow,-1,1,1);
+SL_global_cast_obj(0, obj_player_shadow,-1,1,1);
+SL_global_cast_obj(0, par_env,spr_null,1,1);
+SL_global_cast_obj(0, par_player,spr_null,1,1);
+SL_global_cast_obj(0, par_enemy,spr_null,1,1);
+//SL_global_cast_obj(1,obj_stone_02,-1,2,1);
+
+// List of light objects
+SL_add_light (obj_light);
+
+SL_ToD_default_new(); // Initialization ToD (Time of Day)
+SL_set_time_new(6); // Initialization time
+
+SL_engine_ini_end_new(); // Terminates system initialization
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Free memory used by all surfaces
+
+SL_engine_free_new();
 </string>
           </argument>
         </arguments>
@@ -63,24 +113,9 @@ tile_max_y = room_height+32;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Controls Switch
+            <string>/// Render all shadow and light
 
-if (keyboard_check_pressed (ord('1')))
-{
-    controls_keyboard=true;
-    controls_gamePad=false;
-}
-if (keyboard_check_pressed (ord('2')))
-{
-    controls_keyboard=false;
-    controls_gamePad=true;
-}
-if (gamepad_button_check_released(0, gp_start)
-&amp;&amp; !controls_gamePad)
-{
-    controls_keyboard=false;
-    controls_gamePad=true;
-}
+SL_engine_render_new();
 </string>
           </argument>
         </arguments>
@@ -101,85 +136,14 @@ if (gamepad_button_check_released(0, gp_start)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Tile Depth
-
-for (tile_y = -54; tile_y &lt; tile_max_y; tile_y += 16)
+            <string>/// Destroy
+if keyboard_check_pressed(ord('X'))
 {
-    for (tile_x = -32; tile_x &lt; tile_max_x; tile_x += 32)
-    {
-        i = tile_layer_find(3000,tile_x,tile_y)        
-        if tile_exists(i) tile_set_depth(i,tile_depth);
-    }
-    tile_depth -= 1;
+    instance_destroy();
 }
 </string>
           </argument>
         </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Draw FPS Caption
-
-room_caption = string(fps); 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Create ToD light
-
-if keyboard_check_pressed(ord('Z'))
-{
-    instance_create(x,y,obj_engine_02);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="27">
-      <action>
-        <libid>1</libid>
-        <id>331</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_restart_game</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="8" enumb="0">
@@ -199,17 +163,9 @@ if keyboard_check_pressed(ord('Z'))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Kill Count
-draw_set_color(c_white);
-draw_set_font(font_main);
-draw_text (view_xview+20, view_yview+10, "Kills:");
-draw_text (view_xview+40, view_yview+10, killCount);
-//draw_text (view_xview+30, view_yview+20, "Enemies:");
-//draw_text (view_xview+60, view_yview+20, enemyCount);
-//draw_set_font(font_small);
-//draw_text (view_xview+155, view_yview+248, "Controls: Left Click Mouse to move. 'W' blocks. 'D' swings sword. Shift locks on target. 'Q' &amp; 'E' cycle targets.");
+            <string>/// Display all lights and shadows
 
-
+SL_engine_draw_new();
 </string>
           </argument>
         </arguments>
@@ -227,8 +183,5 @@ draw_text (view_xview+40, view_yview+10, killCount);
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints>
-    <point>13,13</point>
-    <point>13,13</point>
-  </PhysicsShapePoints>
+  <PhysicsShapePoints/>
 </object>

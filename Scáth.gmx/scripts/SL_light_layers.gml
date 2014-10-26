@@ -1,0 +1,189 @@
+for (i1=0; i1<sl_layers_count; i1+=1)
+        {
+            surface_set_target(sl_sunshadows_surface1[0]); // Creates the sample
+            draw_clear(c_white);
+            sl_r = 0;
+            for (i2=0; sl_sunshadows_list[i2,1]!=-1; i2+=1) if sl_sunshadows_list[i2,0] = i1
+            {
+                sl_xx = lengthdir_x(1+global.sl_z[sl_sunshadows_list[i2,1]]*sl_sunshadows_length,sl_sunshadows_direction)-view_xview[global.sl_viewid]+sl_sunshadows_margin;
+                sl_yy = lengthdir_y(1+global.sl_z[sl_sunshadows_list[i2,1]]*sl_sunshadows_length,sl_sunshadows_direction)-view_yview[global.sl_viewid]+sl_sunshadows_margin;
+                with sl_sunshadows_list[i2,1] if visible
+                {
+                    other.sl_r = 1;
+                    var shspr;
+                    if other.sl_sunshadows_list[other.i2,2]>-1 shspr = other.sl_sunshadows_list[other.i2,2] else shspr = sprite_index;
+                    draw_sprite_ext(shspr,floor(image_index),(x+other.sl_xx)*other.sl_sunshadows_texturesize,(y+other.sl_yy)*other.sl_sunshadows_texturesize,image_xscale*other.sl_sunshadows_texturesize,image_yscale*other.sl_sunshadows_texturesize,image_angle,c_black,image_alpha);
+                }
+            }
+            for (i2=0; global.sl_castlist[i2,0]!=-1; i2+=1) if global.sl_castlist[i2,0]=i1 && global.sl_castlist[i2,1]=true
+            {
+                sl_r  = 1;
+                sl_xx = lengthdir_x(1+global.sl_castlist[i2,8]*sl_sunshadows_length,sl_sunshadows_direction)-view_xview[global.sl_viewid]+sl_sunshadows_margin;
+                sl_yy = lengthdir_y(1+global.sl_castlist[i2,8]*sl_sunshadows_length,sl_sunshadows_direction)-view_yview[global.sl_viewid]+sl_sunshadows_margin;
+                draw_sprite_ext(global.sl_castlist[i2,4],global.sl_castlist[i2,5],(global.sl_castlist[i2,6]+sl_xx)*sl_sunshadows_texturesize,(global.sl_castlist[i2,7]+sl_yy)*sl_sunshadows_texturesize,global.sl_castlist[i2,9]*sl_sunshadows_texturesize,global.sl_castlist[i2,10]*sl_sunshadows_texturesize,global.sl_castlist[i2,11],c_black,global.sl_castlist[i2,12]);
+            }
+            surface_reset_target();
+            surface_set_target(sl_sunshadows_surface1[1]); // Projects the shadows
+            draw_clear(c_white);
+            draw_set_blend_mode_ext(bm_dest_color,bm_zero);
+            i = 1;
+            if sl_r && sl_sunshadows_length != 0
+            {
+                j  = ((sl_sunshadows_length*sl_sunshadows_layerscale[i1]) / (sl_sunshadows_length*sl_sunshadows_layerscale[i1]*sl_sunshadows_quality)) * sl_sunshadows_texturesize;
+                sl = sl_sunshadows_length * sl_sunshadows_layerscale[i1] * sl_sunshadows_texturesize;
+                rl = j / 2;
+                b  = 0;
+                repeat (ceil(sqr(sl/j)))
+                {
+                    surface_reset_target();
+                    surface_set_target(sl_sunshadows_surface1[i]);
+                    rl *= 2;  if rl*2-j >= sl {rl = sl-rl+j  b = 1};
+                    draw_clear(c_white);
+                    draw_surface(sl_sunshadows_surface1[!i],0,0);
+                    if b break;
+                    draw_surface(sl_sunshadows_surface1[!i],lengthdir_x(rl,sl_sunshadows_direction),lengthdir_y(rl,sl_sunshadows_direction)); 
+                    i = !i;
+                }
+            }
+            surface_reset_target();
+            surface_set_target(sl_sunshadows_surface2); // Final shadows compositing
+            if i1 = 0 draw_clear(c_white);
+            if sl_r && sl_sunshadows_length != 0
+            {
+                sl_xx = lengthdir_x(rl/sl_sunshadows_texturesize,sl_sunshadows_direction);
+                sl_yy = lengthdir_y(rl/sl_sunshadows_texturesize,sl_sunshadows_direction);
+                draw_surface_ext(sl_sunshadows_surface1[i],(-sl_sunshadows_margin+sl_buffer_xmargin)*sl_buffer_texturesize,(-sl_sunshadows_margin+sl_buffer_ymargin)*sl_buffer_texturesize,1/sl_sunshadows_texturesize*sl_buffer_texturesize,1/sl_sunshadows_texturesize*sl_buffer_texturesize,0,c_white,1);
+                draw_surface_ext(sl_sunshadows_surface1[i],(-sl_sunshadows_margin+sl_buffer_xmargin+sl_xx)*sl_buffer_texturesize,(-sl_sunshadows_margin+sl_buffer_ymargin+sl_yy)*sl_buffer_texturesize,1/sl_sunshadows_texturesize*sl_buffer_texturesize,1/sl_sunshadows_texturesize*sl_buffer_texturesize,0,c_white,1);
+            }
+            draw_set_blend_mode(bm_normal);
+            for (i2=0; sl_sunshadows_texlist[i2,1]!=-1; i2+=1) if sl_sunshadows_texlist[i2,0] = i1
+            {
+                sl_xx = lengthdir_x(global.sl_z[sl_sunshadows_texlist[i2,1]]*sl_sunshadows_length,sl_sunshadows_direction)-view_xview[global.sl_viewid]+sl_buffer_xmargin;
+                sl_yy = lengthdir_y(global.sl_z[sl_sunshadows_texlist[i2,1]]*sl_sunshadows_length,sl_sunshadows_direction)-view_yview[global.sl_viewid]+sl_buffer_ymargin;
+                sl_xs = (1+(sl_sunshadows_length*sl_sunshadows_layerscale[sl_sunshadows_texlist[i2,0]])/sl_sunshadows_texlist[i2,3])*sl_buffer_texturesize;
+                with sl_sunshadows_texlist[i2,1] draw_sprite_ext(other.sl_sunshadows_texlist[other.i2,2],0,(x+other.sl_xx)*other.sl_buffer_texturesize,(y+other.sl_yy)*other.sl_buffer_texturesize,image_xscale*other.sl_xs,image_yscale*other.sl_buffer_texturesize,other.sl_sunshadows_direction,c_black,image_alpha);
+            }
+            for (i2=0; global.sl_texlist_shad[i2,0]!=-1; i2+=1) if global.sl_texlist_shad[i2,0] = i1
+            draw_sprite_ext(global.sl_texlist_shad[i2,1],global.sl_texlist_shad[i2,2],(global.sl_texlist_shad[i2,3]-view_xview[global.sl_viewid]+sl_buffer_xmargin)*sl_buffer_texturesize,(global.sl_texlist_shad[i2,4]-view_yview[global.sl_viewid]+sl_buffer_ymargin)*sl_buffer_texturesize,global.sl_texlist_shad[i2,5]*sl_buffer_texturesize,global.sl_texlist_shad[i2,6]*sl_buffer_texturesize,global.sl_texlist_shad[i2,7],c_black,global.sl_texlist_shad[i2,8]);
+            draw_set_blend_mode(bm_one);
+            draw_surface(sl_layers_surface[i1],0,0);
+            draw_set_blend_mode(bm_normal);
+            if i1+1 = sl_layers_count
+            {
+                draw_set_alpha(sl_sunshadows_light);
+                draw_rectangle_color(0,0,(view_wview[global.sl_viewid]+sl_buffer_xmargin*2)*sl_buffer_texturesize,(view_hview[global.sl_viewid]+sl_buffer_ymargin*2)*sl_buffer_texturesize,c_white,c_white,c_white,c_white,0);
+                draw_set_alpha(1);
+            }
+            surface_reset_target();
+        }
+        
+        
+// Start of light layers              
+
+for (i1=0; i1<sl_layers_count; i1+=1)
+{
+
+}
+for (i2=0; sl_lightlayer_list[i2,1]!=-1; i2+=1)
+{
+    
+}
+
+
+///LIGHTS
+for (i1=0; global.sl_lightlist[i1]!=-1; i1+=1) with global.sl_lightlist[i1]
+{
+    if !surface_exists(global.sl_light_gbuffer) global.sl_light_gbuffer = surface_create(global.sl_light_txsize,global.sl_light_txsize);
+    sl_light_refreshcounter -= 1;
+    sl_sz = global.sl_light_txsize * 0.5;
+    if sl_light_active
+    && sl_light_x < view_xview[global.sl_viewid]+view_wview[global.sl_viewid]+sl_sz*sl_light_xscale && sl_light_x > view_xview[global.sl_viewid]-sl_sz*sl_light_xscale
+    && sl_light_y < view_yview[global.sl_viewid]+view_hview[global.sl_viewid]+sl_sz*sl_light_yscale && sl_light_y > view_yview[global.sl_viewid]-sl_sz*sl_light_yscale
+    { 
+        sl_light_visible = true;
+        if sl_light_refresh && sl_light_refreshcounter<=0 refresh=true else refresh=false;
+        if refresh or !surface_exists(sl_light_surface)
+        {
+            for (i1=0; i1<sl_layers_count; i1+=1)
+            {
+                if !surface_exists(sl_light_surface)
+                {
+                    instance_activate_region(sl_light_x-sl_sz*sl_light_xscale,sl_light_y-sl_sz*sl_light_yscale,global.sl_light_txsize*sl_light_xscale,global.sl_light_txsize*sl_light_yscale,true);
+                    sl_light_surface = surface_create(global.sl_light_txsize,global.sl_light_txsize);
+                }
+                if sl_light_castshadow // Creates the sample
+                {
+                    sl_xs = min(1,other.sl_buffer_width  / (global.sl_light_txsize * sl_light_xscale));
+                    sl_ys = min(1,other.sl_buffer_height / (global.sl_light_txsize * sl_light_yscale));
+                    sl_ss = min(sl_xs,sl_ys);
+                    sl_xs = global.sl_light_txsize / (global.sl_light_txsize * sl_light_xscale * sl_ss);
+                    sl_ys = global.sl_light_txsize / (global.sl_light_txsize * sl_light_yscale * sl_ss);
+                    sl_xx = sl_sz * sl_light_xscale;
+                    sl_yy = sl_sz * sl_light_yscale;
+                    sl_w1 = sl_light_x + sl_xx  sl_w2 = sl_light_x - sl_xx;
+                    sl_h1 = sl_light_y + sl_yy  sl_h2 = sl_light_y - sl_yy;
+                    surface_set_target(other.sl_buffer_surface1);
+                    draw_clear(c_white);
+                    for (i2=0; sl_light_shadowlist[i2,0]!=-1; i2+=1) with sl_light_shadowlist[i2,0] if visible && x<other.sl_w1+sprite_width && x>other.sl_w2-sprite_width && y<other.sl_h1+sprite_height && y>other.sl_h2-sprite_height
+                    {var shspr if other.sl_light_shadowlist[other.i2,1]>-1 shspr=other.sl_light_shadowlist[other.i2,1] else shspr=sprite_index;
+                     draw_sprite_ext(shspr,floor(image_index),(x-other.sl_light_x+other.sl_xx)*other.sl_ss,(y-other.sl_light_y+other.sl_yy)*other.sl_ss,image_xscale*other.sl_ss,image_yscale*other.sl_ss,image_angle,c_black,image_alpha*other.sl_light_shadowsharpness)};
+                    for (i2=0; global.sl_castlist[i2,0]!=-1; i2+=1) if global.sl_castlist[i2,3] = true
+                    draw_sprite_ext(global.sl_castlist[i2,4],global.sl_castlist[i2,5],(global.sl_castlist[i2,6]-sl_light_x+sl_xx)*sl_ss,(global.sl_castlist[i2,7]-sl_light_y+sl_yy)*sl_ss,global.sl_castlist[i2,9]*sl_ss,global.sl_castlist[i2,10]*sl_ss,global.sl_castlist[i2,11],c_black,global.sl_castlist[i2,12]*sl_light_shadowsharpness);
+                    surface_reset_target();
+                    surface_set_target(global.sl_light_gbuffer);
+                    draw_clear(c_white);
+                    draw_set_blend_mode_ext(bm_dest_color,bm_zero);
+                    draw_surface_ext(other.sl_buffer_surface1,0,0,sl_xs,sl_ys,0,c_white,1);
+                    surface_reset_target();
+                }
+                draw_set_blend_mode_ext(bm_dest_color,bm_zero);
+                sl_spi = 1  sl_sps = 0; 
+                for (i2=1; i2<=sl_light_shadowlength; i2+=1) // Projects the shadows
+                {
+                    surface_set_target(sl_light_surface);
+                    draw_clear(c_white);
+                    sl_sps = power(sl_light_shadowfactor,sl_spi);
+                    texture_set_interpolation(0);
+                    draw_surface(global.sl_light_gbuffer,0,0);
+                    texture_set_interpolation(0);
+                    draw_surface_ext(global.sl_light_gbuffer,sl_sz-sl_sz*sl_sps,sl_sz-sl_sz*sl_sps,sl_sps,sl_sps,0,c_white,1);
+                    sl_spi *= 2;
+                    surface_reset_target();
+                    surface_set_target(global.sl_light_gbuffer);
+                    draw_clear(c_white);
+                    sl_sps = power(sl_light_shadowfactor,sl_spi);
+                    texture_set_interpolation(0);
+                    draw_surface(sl_light_surface,0,0);
+                    texture_set_interpolation(0);
+                    draw_surface_ext(sl_light_surface,sl_sz-sl_sz*sl_sps,sl_sz-sl_sz*sl_sps,sl_sps,sl_sps,0,c_white,1);
+                    sl_spi *= 2;
+                    surface_reset_target();
+                }
+                surface_set_target(sl_light_surface); // Final compositing
+                draw_clear(c_black);
+                draw_set_blend_mode(bm_normal);
+                 draw_sprite_ext(sl_light_texture,0,sl_sz,sl_sz,1,1,sl_light_angle,c_white,-sl_light_ambientpower+1);
+                draw_set_blend_mode_ext(bm_dest_color,bm_zero);
+                 if sl_light_castshadow draw_surface(global.sl_light_gbuffer,0,0);
+                draw_set_blend_mode(bm_add);
+                 draw_sprite_ext(sl_light_texture,0,sl_sz,sl_sz,1,1,sl_light_angle,c_white,sl_light_ambientpower);
+                draw_set_blend_mode_ext(bm_src_color,bm_one);
+                draw_set_color(c_black);
+                draw_rectangle(0,0,global.sl_light_txsize,global.sl_light_txsize,0);
+                draw_set_color(c_white);
+                draw_set_blend_mode(bm_normal);
+                surface_reset_target();
+            }
+        }
+    }
+    else
+    {
+        sl_light_visible = false;
+        if surface_exists(sl_light_surface)
+        {
+            surface_free(sl_light_surface);
+            sl_light_surface = -1;
+        }
+    }
+    if sl_light_refreshcounter <= 0 sl_light_refreshcounter = sl_light_refreshrate;
+}

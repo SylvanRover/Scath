@@ -179,68 +179,74 @@ for (i1=0; global.sl_lightlist[i1]!=-1; i1+=1) with global.sl_lightlist[i1]
                 instance_activate_region(sl_light_x-sl_sz*sl_light_xscale,sl_light_y-sl_sz*sl_light_yscale,global.sl_light_txsize*sl_light_xscale,global.sl_light_txsize*sl_light_yscale,true);
                 sl_light_surface = surface_create(global.sl_light_txsize,global.sl_light_txsize);
             }
-            if sl_light_castshadow // Creates the sample
+            for (i0=0; i0<sl_light_layers_count; i0+=1)
             {
-                sl_xs = min(1,other.sl_buffer_width  / (global.sl_light_txsize * sl_light_xscale));
-                sl_ys = min(1,other.sl_buffer_height / (global.sl_light_txsize * sl_light_yscale));
-                sl_ss = min(sl_xs,sl_ys);
-                sl_xs = global.sl_light_txsize / (global.sl_light_txsize * sl_light_xscale * sl_ss);
-                sl_ys = global.sl_light_txsize / (global.sl_light_txsize * sl_light_yscale * sl_ss);
-                sl_xx = sl_sz * sl_light_xscale;
-                sl_yy = sl_sz * sl_light_yscale;
-                sl_w1 = sl_light_x + sl_xx  sl_w2 = sl_light_x - sl_xx;
-                sl_h1 = sl_light_y + sl_yy  sl_h2 = sl_light_y - sl_yy;
-                surface_set_target(other.sl_buffer_surface1);
-                draw_clear(c_white);
-                for (i2=0; sl_light_shadowlist[i2,0]!=-1; i2+=1) with sl_light_shadowlist[i2,0] if visible && x<other.sl_w1+sprite_width && x>other.sl_w2-sprite_width && y<other.sl_h1+sprite_height && y>other.sl_h2-sprite_height
-                {var shspr if other.sl_light_shadowlist[other.i2,1]>-1 shspr=other.sl_light_shadowlist[other.i2,1] else shspr=sprite_index;
-                 draw_sprite_ext(shspr,floor(image_index),(x-other.sl_light_x+other.sl_xx)*other.sl_ss,(y-other.sl_light_y+other.sl_yy)*other.sl_ss,image_xscale*other.sl_ss,image_yscale*other.sl_ss,image_angle,c_black,image_alpha*other.sl_light_shadowsharpness)};
-                for (i2=0; global.sl_castlist[i2,0]!=-1; i2+=1) if global.sl_castlist[i2,3] = true
-                draw_sprite_ext(global.sl_castlist[i2,4],global.sl_castlist[i2,5],(global.sl_castlist[i2,6]-sl_light_x+sl_xx)*sl_ss,(global.sl_castlist[i2,7]-sl_light_y+sl_yy)*sl_ss,global.sl_castlist[i2,9]*sl_ss,global.sl_castlist[i2,10]*sl_ss,global.sl_castlist[i2,11],c_black,global.sl_castlist[i2,12]*sl_light_shadowsharpness);
-                surface_reset_target();
-                surface_set_target(global.sl_light_gbuffer);
-                draw_clear(c_white);
+                if sl_light_castshadow // Creates the sample
+                {
+                    sl_xs = min(1,other.sl_buffer_width  / (global.sl_light_txsize * sl_light_xscale));
+                    sl_ys = min(1,other.sl_buffer_height / (global.sl_light_txsize * sl_light_yscale));
+                    sl_ss = min(sl_xs,sl_ys);
+                    sl_xs = global.sl_light_txsize / (global.sl_light_txsize * sl_light_xscale * sl_ss);
+                    sl_ys = global.sl_light_txsize / (global.sl_light_txsize * sl_light_yscale * sl_ss);
+                    sl_xx = sl_sz * sl_light_xscale;
+                    sl_yy = sl_sz * sl_light_yscale;
+                    sl_w1 = sl_light_x + sl_xx  sl_w2 = sl_light_x - sl_xx;
+                    sl_h1 = sl_light_y + sl_yy  sl_h2 = sl_light_y - sl_yy;
+                    surface_set_target(other.sl_buffer_surface1);
+                    draw_clear(c_white);
+                    for (i2=0; sl_light_shadowlist[i2,0]!=-1; i2+=1) with sl_light_shadowlist[i2,0] if visible && x<other.sl_w1+sprite_width && x>other.sl_w2-sprite_width && y<other.sl_h1+sprite_height && y>other.sl_h2-sprite_height
+                    {var shspr if other.sl_light_shadowlist[other.i2,1]>-1 shspr=other.sl_light_shadowlist[other.i2,1] else shspr=sprite_index;
+                     draw_sprite_ext(shspr,floor(image_index),(x-other.sl_light_x+other.sl_xx)*other.sl_ss,(y-other.sl_light_y+other.sl_yy)*other.sl_ss,image_xscale*other.sl_ss,image_yscale*other.sl_ss,image_angle,c_black,image_alpha*other.sl_light_shadowsharpness)};
+                    for (i2=0; global.sl_castlist[i2,0]!=-1; i2+=1) if global.sl_castlist[i2,3] = true
+                    draw_sprite_ext(global.sl_castlist[i2,4],global.sl_castlist[i2,5],(global.sl_castlist[i2,6]-sl_light_x+sl_xx)*sl_ss,(global.sl_castlist[i2,7]-sl_light_y+sl_yy)*sl_ss,global.sl_castlist[i2,9]*sl_ss,global.sl_castlist[i2,10]*sl_ss,global.sl_castlist[i2,11],c_black,global.sl_castlist[i2,12]*sl_light_shadowsharpness);
+                    surface_reset_target();
+                    surface_set_target(global.sl_light_gbuffer);
+                    draw_clear(c_white);
+                    draw_set_blend_mode_ext(bm_dest_color,bm_zero);
+                    draw_surface_ext(other.sl_buffer_surface1,0,0,sl_xs,sl_ys,0,c_white,1);
+                    surface_reset_target();
+                }
                 draw_set_blend_mode_ext(bm_dest_color,bm_zero);
-                draw_surface_ext(other.sl_buffer_surface1,0,0,sl_xs,sl_ys,0,c_white,1);
+                sl_spi = 1  sl_sps = 0; 
+                if (i0 = 0)
+                {
+                    for (i2=1; i2<=sl_light_shadowlength; i2+=1) // Projects the shadows
+                    {
+                        surface_set_target(sl_light_surface);
+                        draw_clear(c_white);
+                        sl_sps = power(sl_light_shadowfactor,sl_spi);
+                        texture_set_interpolation(0);
+                        draw_surface(global.sl_light_gbuffer,0,0);
+                        texture_set_interpolation(0);
+                        draw_surface_ext(global.sl_light_gbuffer,sl_sz-sl_sz*sl_sps,sl_sz-sl_sz*sl_sps,sl_sps,sl_sps,0,c_white,1);
+                        sl_spi *= 2;
+                        surface_reset_target();
+                        surface_set_target(global.sl_light_gbuffer);
+                        draw_clear(c_white);
+                        sl_sps = power(sl_light_shadowfactor,sl_spi);
+                        texture_set_interpolation(0);
+                        draw_surface(sl_light_surface,0,0);
+                        texture_set_interpolation(0);
+                        draw_surface_ext(sl_light_surface,sl_sz-sl_sz*sl_sps,sl_sz-sl_sz*sl_sps,sl_sps,sl_sps,0,c_white,1);
+                        sl_spi *= 2;
+                        surface_reset_target();
+                    }
+                }
+                surface_set_target(sl_light_surface); // Final compositing
+                draw_clear(c_black);
+                draw_set_blend_mode(bm_normal);
+                 draw_sprite_ext(sl_light_texture,0,sl_sz,sl_sz,1,1,sl_light_angle,c_white,-sl_light_ambientpower+1);
+                draw_set_blend_mode_ext(bm_dest_color,bm_zero);
+                 if sl_light_castshadow draw_surface(global.sl_light_gbuffer,0,0);
+                draw_set_blend_mode(bm_add);
+                 draw_sprite_ext(sl_light_texture,0,sl_sz,sl_sz,1,1,sl_light_angle,c_white,sl_light_ambientpower);
+                draw_set_blend_mode_ext(bm_src_color,bm_one);
+                draw_set_color(c_black);
+                draw_rectangle(0,0,global.sl_light_txsize,global.sl_light_txsize,0);
+                draw_set_color(c_white);
+                draw_set_blend_mode(bm_normal);
                 surface_reset_target();
             }
-            draw_set_blend_mode_ext(bm_dest_color,bm_zero);
-            sl_spi = 1  sl_sps = 0; 
-            for (i2=1; i2<=sl_light_shadowlength; i2+=1) // Projects the shadows
-            {
-                surface_set_target(sl_light_surface);
-                draw_clear(c_white);
-                sl_sps = power(sl_light_shadowfactor,sl_spi);
-                texture_set_interpolation(0);
-                draw_surface(global.sl_light_gbuffer,0,0);
-                texture_set_interpolation(0);
-                draw_surface_ext(global.sl_light_gbuffer,sl_sz-sl_sz*sl_sps,sl_sz-sl_sz*sl_sps,sl_sps,sl_sps,0,c_white,1);
-                sl_spi *= 2;
-                surface_reset_target();
-                surface_set_target(global.sl_light_gbuffer);
-                draw_clear(c_white);
-                sl_sps = power(sl_light_shadowfactor,sl_spi);
-                texture_set_interpolation(0);
-                draw_surface(sl_light_surface,0,0);
-                texture_set_interpolation(0);
-                draw_surface_ext(sl_light_surface,sl_sz-sl_sz*sl_sps,sl_sz-sl_sz*sl_sps,sl_sps,sl_sps,0,c_white,1);
-                sl_spi *= 2;
-                surface_reset_target();
-            }
-            surface_set_target(sl_light_surface); // Final compositing
-            draw_clear(c_black);
-            draw_set_blend_mode(bm_normal);
-             draw_sprite_ext(sl_light_texture,0,sl_sz,sl_sz,1,1,sl_light_angle,c_white,-sl_light_ambientpower+1);
-            draw_set_blend_mode_ext(bm_dest_color,bm_zero);
-             if sl_light_castshadow draw_surface(global.sl_light_gbuffer,0,0);
-            draw_set_blend_mode(bm_add);
-             draw_sprite_ext(sl_light_texture,0,sl_sz,sl_sz,1,1,sl_light_angle,c_white,sl_light_ambientpower);
-            draw_set_blend_mode_ext(bm_src_color,bm_one);
-            draw_set_color(c_black);
-            draw_rectangle(0,0,global.sl_light_txsize,global.sl_light_txsize,0);
-            draw_set_color(c_white);
-            draw_set_blend_mode(bm_normal);
-            surface_reset_target();
         }
     }
     else

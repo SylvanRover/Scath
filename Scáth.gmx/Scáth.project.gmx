@@ -28,6 +28,7 @@
       <sprite>sprites\spr_stone_05</sprite>
       <sprite>sprites\spr_terrainTest</sprite>
       <sprite>sprites\spr_tree_01</sprite>
+      <sprite>sprites\spr_stone_02_shadow</sprite>
     </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_moveToPoint</sprite>
@@ -107,8 +108,6 @@
       <script>scripts\caster_init.gml</script>
       <script>scripts\caster_draw.gml</script>
     </scripts>
-    <script>scripts\scr_depthCorrection.gml</script>
-    <script>scripts\scr_zDepth.gml</script>
     <scripts name="Shadows">
       <script>scripts\scr_shadow_16.gml</script>
       <script>scripts\scr_shadow_32.gml</script>
@@ -152,6 +151,11 @@
       <script>scripts\SL_draw_sprite_shadow_new.gml</script>
       <script>scripts\SL_sprite_set_ambient_new.gml</script>
       <script>scripts\SL_set_time_new.gml</script>
+      <script>scripts\SL_light_layers.gml</script>
+    </scripts>
+    <scripts name="Iso Depth">
+      <script>scripts\scr_zDepth.gml</script>
+      <script>scripts\scr_depthCorrection.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">

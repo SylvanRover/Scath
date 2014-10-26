@@ -16,5 +16,8 @@ sl_light_shadowsharpness = 0.8;     // Sharpness of the shadows, between 0 (smoo
 sl_light_castshadow      = true;    // Whether the light should cast shadows or not
 sl_light_refresh         = true;    // Whether the light should be refreshed or not
 sl_light_refreshrate     = 0;       // Shadows refresh rate, in steps (0 for continuous refreshing)
+
+sl_light_layers_count = 0;
+
 // System variable
 sl_light_shadowlist[0,0] = -1; // List of all occluder objects

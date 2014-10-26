@@ -27,23 +27,23 @@
             <kind>1</kind>
             <string>/// Initialize the light object
 
-SL_light_ini_begin(); // Starts initializing the light object
-sl_light_texture = spr_light01; // Index light texture (required)
+SL_light_ini_begin_new(); // Starts initializing the light object
+sl_light_texture = spr_light_radius; // Index light texture (required)
 
-sl_light_color   = make_color_rgb(255,238,178);     // Light color
-sl_light_power   = 1;            // Light power
+sl_light_color = make_color_rgb(255,238,178);     // Light color
+sl_light_power = .5;            // Light power
 sl_light_shadowsharpness = 1;
 sl_light_ambientpower = .2;
-sl_light_shadowlength    = 4;       // Shadows length (sets the number of iterations, must be an integer greater than 0)
-sl_light_shadowfactor    = 1.03;
+sl_light_shadowlength = 4;       // Shadows length (sets the number of iterations, must be an integer greater than 0)
+sl_light_shadowfactor = 1.03;
 
 // List of objects for which the light should cast shadows
-SL_light_cast_obj(par_shadow,-1);
-SL_light_cast_obj(par_env,spr_null);
-SL_light_cast_obj(par_enemy,spr_null);
-SL_light_cast_obj(par_player,spr_null);
-//SL_light_cast_obj(obj_player_shadow,-1);
-SL_light_ini_end(); // Finalizes the initialization of the light object
+SL_light_cast_obj_new(0,par_shadow,-1);
+SL_light_cast_obj_new(1,par_env,-1);
+SL_light_cast_obj_new(1,par_enemy,-1);
+SL_light_cast_obj_new(1,par_player,-1);
+//SL_light_cast_obj_new(obj_player_shadow,-1);
+SL_light_ini_end_new(); // Finalizes the initialization of the light object
 </string>
           </argument>
         </arguments>
@@ -155,29 +155,6 @@ SL_light_free();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Position
-sl_light_x = obj_player.phy_position_x;
-sl_light_y = obj_player.phy_position_y;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>/// Turn on/off light
 wait = false;
 
@@ -200,6 +177,29 @@ if (!lightOn)
 {
     sl_light_power = 0;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Position
+sl_light_x = obj_player.phy_position_x;
+sl_light_y = obj_player.phy_position_y;
 </string>
           </argument>
         </arguments>

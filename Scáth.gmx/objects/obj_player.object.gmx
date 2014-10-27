@@ -121,10 +121,10 @@ button_target = keyboard_check_pressed(vk_lshift);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Create LoS
+            <string>/// Create Lights
 
 //instance_create(x,y,obj_LoS);
-instance_create(x,y,obj_light);
+instance_create(x,y,obj_player_torch);
 </string>
           </argument>
         </arguments>
@@ -333,7 +333,7 @@ if (obj_player_controller.controls_keyboard)
         {
             instance_create(mouse_x, mouse_y, obj_move_to_cursor);
             dir = point_direction(x, y, obj_move_to_cursor.x, obj_move_to_cursor.y);
-            phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
+            phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir);
             phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
             //direction = dir;
         }
@@ -342,7 +342,7 @@ if (obj_player_controller.controls_keyboard)
         {
             instance_create(mouse_x, mouse_y, obj_move_to_point);
             dir = point_direction(x, y, obj_move_to_point.x, obj_move_to_point.y);
-            phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
+            phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir);
             phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
             //direction = dir;
         }

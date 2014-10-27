@@ -179,8 +179,8 @@ for (i1=0; global.sl_lightlist[i1]!=-1; i1+=1) with global.sl_lightlist[i1]
                 instance_activate_region(sl_light_x-sl_sz*sl_light_xscale,sl_light_y-sl_sz*sl_light_yscale,global.sl_light_txsize*sl_light_xscale,global.sl_light_txsize*sl_light_yscale,true);
                 sl_light_surface = surface_create(global.sl_light_txsize,global.sl_light_txsize);
             }
-            for (i0=0; i0<sl_light_layers_count; i0+=1)
-            {
+            //for (i0=0; i0<sl_light_layer_count; i0+=1)
+            //{
                 if sl_light_castshadow // Creates the sample
                 {
                     sl_xs = min(1,other.sl_buffer_width  / (global.sl_light_txsize * sl_light_xscale));
@@ -208,8 +208,8 @@ for (i1=0; global.sl_lightlist[i1]!=-1; i1+=1) with global.sl_lightlist[i1]
                 }
                 draw_set_blend_mode_ext(bm_dest_color,bm_zero);
                 sl_spi = 1  sl_sps = 0; 
-                if (i0 = 0)
-                {
+                //if (sl_light_layer_shadowlength[i0] != -1)
+                //{
                     for (i2=1; i2<=sl_light_shadowlength; i2+=1) // Projects the shadows
                     {
                         surface_set_target(sl_light_surface);
@@ -231,7 +231,7 @@ for (i1=0; global.sl_lightlist[i1]!=-1; i1+=1) with global.sl_lightlist[i1]
                         sl_spi *= 2;
                         surface_reset_target();
                     }
-                }
+                //}
                 surface_set_target(sl_light_surface); // Final compositing
                 draw_clear(c_black);
                 draw_set_blend_mode(bm_normal);
@@ -246,7 +246,7 @@ for (i1=0; global.sl_lightlist[i1]!=-1; i1+=1) with global.sl_lightlist[i1]
                 draw_set_color(c_white);
                 draw_set_blend_mode(bm_normal);
                 surface_reset_target();
-            }
+           //}
         }
     }
     else

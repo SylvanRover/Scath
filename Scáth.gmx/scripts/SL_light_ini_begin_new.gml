@@ -17,7 +17,8 @@ sl_light_castshadow      = true;    // Whether the light should cast shadows or 
 sl_light_refresh         = true;    // Whether the light should be refreshed or not
 sl_light_refreshrate     = 0;       // Shadows refresh rate, in steps (0 for continuous refreshing)
 
-sl_light_layers_count = 0;
+sl_light_layer_count = 0;
+sl_light_layer_shadowlength[0] = -1;
 
 // System variable
 sl_light_shadowlist[0,0] = -1; // List of all occluder objects

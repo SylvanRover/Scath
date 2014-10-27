@@ -61,10 +61,11 @@ SL_global_cast_obj_new(0, par_enemy,spr_null,1,1);
 //SL_global_cast_obj(1,obj_stone_02,-1,2,1);
 
 // List of light objects
-SL_add_light_new (obj_light);
+//SL_add_light_new (obj_light);
+//SL_add_light_new (obj_light_02);
 
 SL_ToD_default_new(); // Initialization ToD (Time of Day)
-SL_set_time_new(6); // Initialization time
+SL_set_time_new(4); // Initialization time
 
 SL_engine_ini_end_new(); // Terminates system initialization
 </string>

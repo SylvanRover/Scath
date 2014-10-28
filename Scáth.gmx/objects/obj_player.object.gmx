@@ -124,7 +124,7 @@ button_target = keyboard_check_pressed(vk_lshift);
             <string>/// Create Lights
 
 //instance_create(x,y,obj_LoS);
-instance_create(x,y,obj_player_torch);
+instance_create(x,y,obj_player_light);
 </string>
           </argument>
         </arguments>

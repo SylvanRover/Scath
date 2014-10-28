@@ -11,6 +11,32 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Initiates Shadows
+//create directional shadow
+glr_shadowdir_create(sprite_index, spr_tree_shadow_01, 0, x, y, y, image_xscale, 1, image_angle);
+
+//create shadowdepth to cover the lower lights with the foliage of this tree
+glr_shadowdepth_create(sprite_index, image_index , x, y, y, image_xscale,1, image_angle);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>601</id>
         <kind>0</kind>
         <userelative>0</userelative>

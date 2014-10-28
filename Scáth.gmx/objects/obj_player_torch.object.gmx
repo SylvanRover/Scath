@@ -44,7 +44,7 @@ sl_light_layer_shadowlength[2] = 0;
 //SL_light_cast_obj(par_shadow,-1);
 //SL_light_cast_obj(par_env,spr_null);
 //SL_light_cast_obj(par_enemy,-1);
-//SL_light_cast_obj(par_player,-1);
+SL_light_cast_obj(par_player,-1);
 //SL_light_cast_obj_new(obj_player_shadow,-1);
 SL_light_ini_end(); // Finalizes the initialization of the light object
 </string>

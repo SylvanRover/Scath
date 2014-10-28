@@ -11,41 +11,76 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
-        <id>601</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_execute_script</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>9</kind>
-            <script>caster_init</script>
+            <kind>1</kind>
+            <string>///create a dynamic mesh (false)
+mesh_id = glr_mesh_create(x, y, true);
+
+//add vertices to make a box
+glr_mesh_vertex_add(mesh_id, 0, sprite_yoffset);
+glr_mesh_vertex_add(mesh_id, sprite_xoffset, 0);
+glr_mesh_vertex_add(mesh_id, 0, -sprite_yoffset);
+glr_mesh_vertex_add(mesh_id, -sprite_xoffset, 0);
+glr_mesh_vertex_add(mesh_id, 0, sprite_yoffset);
+
+//finalize the mesh to make it renderable
+glr_mesh_update(mesh_id);
+
+//set the mesh shadow strength
+glr_mesh_set_shadow_strength(mesh_id, 0.2);
+
+//set mesh height for directional light (higher mesh casts shadows on lower meshes)
+glr_mesh_set_height(mesh_id, 0);
+
+//set directional mask according to the sprite index to avoid shadow overlap
+glr_mesh_set_directional_mask(mesh_id, sprite_index, image_index);
+
+
+//set the mesh scaling
+glr_mesh_set_scaling(mesh_id, image_xscale, image_yscale);
+
+
+//add ambient occlusion to this instance
+glr_occlusion_add_instance(id);
+</string>
           </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
           <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
+            <kind>1</kind>
+            <string>/// Initiates Shadows
+//create directional shadow
+glr_shadowdir_create(sprite_index, image_index, 0, x, y, y, image_xscale, 1, image_angle);
+
+//create shadowdepth to cover the lower lights with the foliage of this tree
+//glr_shadowdepth_create(sprite_index, image_index , x, y, 60, image_xscale,1, image_angle);
+</string>
           </argument>
         </arguments>
       </action>

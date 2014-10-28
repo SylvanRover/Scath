@@ -213,7 +213,7 @@ for (i1=0; global.sl_lightlist[i1]!=-1; i1+=1) with global.sl_lightlist[i1]
                 sl_sps = power(sl_light_shadowfactor,sl_spi);
                 texture_set_interpolation(0);
                 draw_surface(global.sl_light_gbuffer,0,0);
-                texture_set_interpolation(0);
+                texture_set_interpolation(1);
                 draw_surface_ext(global.sl_light_gbuffer,sl_sz-sl_sz*sl_sps,sl_sz-sl_sz*sl_sps,sl_sps,sl_sps,0,c_white,1);
                 sl_spi *= 2;
                 surface_reset_target();
@@ -222,7 +222,7 @@ for (i1=0; global.sl_lightlist[i1]!=-1; i1+=1) with global.sl_lightlist[i1]
                 sl_sps = power(sl_light_shadowfactor,sl_spi);
                 texture_set_interpolation(0);
                 draw_surface(sl_light_surface,0,0);
-                texture_set_interpolation(0);
+                texture_set_interpolation(1);
                 draw_surface_ext(sl_light_surface,sl_sz-sl_sz*sl_sps,sl_sz-sl_sz*sl_sps,sl_sps,sl_sps,0,c_white,1);
                 sl_spi *= 2;
                 surface_reset_target();

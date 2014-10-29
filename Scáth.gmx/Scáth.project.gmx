@@ -32,6 +32,7 @@
       <sprite>sprites\spr_tree_01</sprite>
       <sprite>sprites\spr_stone_02_shadow</sprite>
       <sprite>sprites\spr_tree_shadow_01</sprite>
+      <sprite>sprites\spr_stone_02_shadow_test</sprite>
     </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_moveToPoint</sprite>

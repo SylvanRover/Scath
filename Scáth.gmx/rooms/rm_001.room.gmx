@@ -53,7 +53,7 @@
   <instances>
     <instance objName="obj_stone_03" x="896" y="320" name="inst_479E48D3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_player_controller" x="0" y="0" name="inst_CC59B374" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_player" x="640" y="320" name="inst_C0D1FB8B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_player" x="604" y="328" name="inst_C0D1FB8B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_stone_02" x="640" y="368" name="inst_4B8F9CA6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_stone_03" x="224" y="272" name="inst_62AE6F62" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_stone_03" x="352" y="160" name="inst_31EE4554" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -74,9 +74,6 @@
     <instance objName="obj_stone_02" x="640" y="288" name="inst_1577C095" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_stone_02" x="672" y="336" name="inst_4F11707B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_tree_01" x="480" y="448" name="inst_F7947C1D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_shadow_16" x="576" y="400" name="inst_58816858" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_shadow_16" x="608" y="416" name="inst_CF2AE7F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_shadow_32" x="584" y="436" name="inst_750D8D60" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="TileTest" x="608" y="0" w="64" h="32" xo="448" yo="0" id="10000001" name="tiled_10000001" depth="10000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

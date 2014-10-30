@@ -79,7 +79,7 @@ enemySpawn = true;
             <kind>1</kind>
             <string>/// Enemy Spawn
 
-if (enemySpawn &amp;&amp; obj_player_controller.enemyCount &lt; 6)
+if (enemySpawn &amp;&amp; obj_player_controller.enemyCount &lt; 12)
 {
     enemySpawn = false
     alarm[0] = spawnRate;

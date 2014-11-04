@@ -47,8 +47,8 @@ for(var i = 0; i < light_list_size ; i++)
     if(!l_active) continue;
     
     //transform
-    l_x =  l_id[| 1];
-    l_y =  l_id[| 2];
+    l_x =  floor(l_id[| 1])-0.5;
+    l_y =  floor(l_id[| 2])-0.5;
     l_rotation = l_id[| 3];
     l_xscale = l_id[| 4];
     l_yscale = l_id[| 5];
@@ -856,8 +856,8 @@ for(var i = 0; i < ds_list_size(global.GLR_LIGHT_LIST); i++)
     
     if(!l_active) continue;
     //transform
-    l_x = l_id[| 1];
-    l_y = l_id[| 2];
+    l_x = floor(l_id[| 1])-0.5;
+    l_y = floor(l_id[| 2])-0.5;
     l_rotation = l_id[| 3];
     l_xscale = l_id[| 4];
     l_yscale = l_id[| 5];
@@ -936,8 +936,8 @@ for(var i = 0; i < ds_list_size(global.GLR_LIGHT_LIST_SIMPLE); i++)
     l_active = l_id[| 0];
     if(!l_active) continue; 
     //transform
-    l_x = l_id[| 1];
-    l_y = l_id[| 2];
+    l_x = floor(l_id[| 1])-0.5;
+    l_y = floor(l_id[| 2])-0.5;
     l_rotation = l_id[| 3];
     l_xscale = l_id[| 4];
     l_yscale = l_id[| 5];

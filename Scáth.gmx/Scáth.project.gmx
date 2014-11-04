@@ -322,6 +322,7 @@
   </shaders>
   <fonts name="fonts">
     <font>fonts\font_main</font>
+    <font>fonts\font_celtic_bit</font>
     <font>fonts\font_small</font>
     <fonts name="Glare">
       <font>fonts\font_glare2</font>
@@ -372,6 +373,8 @@
       <object>objects\obj_enemy_targeting</object>
       <object>objects\obj_player_shadow</object>
       <object>objects\obj_mouse</object>
+      <object>objects\obj_camera</object>
+      <object>objects\obj_camera_controller</object>
     </objects>
     <objects name="UI">
       <object>objects\obj_startScreen</object>
@@ -409,6 +412,7 @@
       <object>objects\obj_light_static</object>
       <object>objects\obj_light_point</object>
       <object>objects\obj_player_light</object>
+      <object>objects\obj_test_light</object>
       <object>objects\obj_glare_controller</object>
       <object>objects\obj_box</object>
       <object>objects\obj_tree</object>

@@ -52,9 +52,9 @@ if(os_type != os_android &amp;&amp; os_type != os_ios ){
     //enable additive light intensity
     glr_enable_intensity(true);
     
-    glr_set_ambient_daytime(13);
+    glr_set_ambient_daytime(24);
     
-    glr_enable_intensity(true);
+    glr_set_ambient_daytime_colors(make_colour_rgb(0,32,256),make_colour_rgb(255,143,143),make_colour_rgb(255,255,223),make_colour_rgb(255,244,183),make_colour_rgb(77,67,194));
     
     
     room_goto_next();   

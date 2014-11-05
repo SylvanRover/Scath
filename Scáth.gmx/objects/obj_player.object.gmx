@@ -522,7 +522,7 @@ if (gamepad_is_supported()
 &amp;&amp; gamepad_is_connected(0)
 &amp;&amp; obj_player_controller.controls_gamePad)
 {
-    if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.5);
+    if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.2);
     button_target = gamepad_button_check_pressed (0, gp_stickr);
     
     if (hp_current &gt; 0)
@@ -531,11 +531,11 @@ if (gamepad_is_supported()
     
         if gamepad_axis_value(0,gp_axislh)&gt;0.2
         {
-            phy_speed_x+=speedX;
+            phy_speed_x=speedX;
         }
         if gamepad_axis_value(0,gp_axislh)&lt;-0.2
         {
-            phy_speed_x-=speedX;
+            phy_speed_x=-speedX;
         }
         if gamepad_axis_value(0,gp_axislh)&lt;0.2 &amp;&amp; gamepad_axis_value(0,gp_axislh)&gt;-0.2
         {
@@ -544,11 +544,11 @@ if (gamepad_is_supported()
         
         if gamepad_axis_value(0,gp_axislv)&gt;0.2
         {
-            phy_speed_y+=speedY;
+            phy_speed_y=speedY;
         }
         if gamepad_axis_value(0,gp_axislv)&lt;-0.2
         {
-            phy_speed_y-=speedY;
+            phy_speed_y=-speedY;
         }
         if gamepad_axis_value(0,gp_axislv)&lt;0.2 &amp;&amp; gamepad_axis_value(0,gp_axislv)&gt;-0.2
         {
@@ -562,14 +562,56 @@ if (gamepad_is_supported()
         if (phy_speed_y &lt; -speedY) phy_speed_y = -speedY;
             
             // Direction
-        if(!enemyTargeting &amp;&amp; gamepad_axis_value(0, gp_axisrv)=0 &amp;&amp; gamepad_axis_value(0, gp_axisrh)=0)
+        /*if(!enemyTargeting &amp;&amp; gamepad_axis_value(0, gp_axisrv)=0 &amp;&amp; gamepad_axis_value(0, gp_axisrh)=0)
             {
                 direction = point_direction(0, 0, gamepad_axis_value(0, gp_axislh), gamepad_axis_value(0, gp_axislv));
             }
         if(!enemyTargeting &amp;&amp; gamepad_axis_value(0, gp_axisrv)!=0 || gamepad_axis_value(0, gp_axisrh)!=0)
             {
                 direction = point_direction(0, 0, gamepad_axis_value(0, gp_axisrh), gamepad_axis_value(0, gp_axisrv));
+            }*/
+            
+        axis_h = gamepad_axis_value(0, gp_axislh)
+        axis_v = gamepad_axis_value(0, gp_axislv)
+        dist = point_distance(0, 0, axis_h, axis_v);
+         
+        if (!enemyTargeting)
+        {
+            if dist &gt; 0.18
+            {
+                x += gamepad_axis_value(0,gp_axislh) * speedX;
+                y += gamepad_axis_value(0,gp_axislv) * speedY;
+             
+                dx= (gamepad_axis_value(0, gp_axislh) &gt; 0) - (gamepad_axis_value(0, gp_axislh) &lt; 0)
+                dy= (gamepad_axis_value(0, gp_axislv) &gt; 0) - (gamepad_axis_value(0, gp_axislv) &lt; 0)
+             
+             
+                if(dx != 0 or dy != 0)
+                    {
+                    dir = point_direction(0,0,dx, dy);
+                    }
+             
+                direction = point_direction(0, 0, gamepad_axis_value(0, gp_axislh), gamepad_axis_value(0, gp_axislv));
+                direction = direction mod 360;
             }
+            if (gamepad_axis_value(0, gp_axisrv)!=0 || gamepad_axis_value(0, gp_axisrh)!=0)
+            {
+                x += gamepad_axis_value(0,gp_axislh) * speedX;
+                y += gamepad_axis_value(0,gp_axislv) * speedY;
+             
+                dx= (gamepad_axis_value(0, gp_axisrh) &gt; 0) - (gamepad_axis_value(0, gp_axisrh) &lt; 0)
+                dy= (gamepad_axis_value(0, gp_axisrv) &gt; 0) - (gamepad_axis_value(0, gp_axisrv) &lt; 0)
+             
+             
+                if(dx != 0 or dy != 0)
+                    {
+                    dir = point_direction(0,0,dx, dy);
+                    }
+             
+                direction = point_direction(0, 0, gamepad_axis_value(0, gp_axisrh), gamepad_axis_value(0, gp_axisrv));
+                direction = direction mod 360;
+            }
+        }
                 
         // Enemy Targeting Movement
         if (enemyTargeting)
@@ -687,7 +729,7 @@ if (gamepad_is_supported()
                 case 3: sprite_index = spr_player_walk_down;  break; 
             }
             
-            if (direction &gt;= 315 &amp;&amp; !attackR) sprite_index = spr_player_walk_right;
+            if (direction &gt;= 315 &amp;&amp; direction &lt; 360 &amp;&amp; !attackR) sprite_index = spr_player_walk_right;
         }
     }
 }

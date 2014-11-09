@@ -80,7 +80,7 @@ glr_light_set_position(light,obj_player.phy_position_x,obj_player.phy_position_y
           <argument>
             <kind>1</kind>
             <string>/// update Light layer
-glr_light_set_layer(light, obj_player.phy_position_y-50);
+glr_light_set_layer(light, obj_player.phy_position_y-100);
 
 //if mouse_check_button_pressed(mb_right) glr_light_set_layer(light, 40);
 </string>

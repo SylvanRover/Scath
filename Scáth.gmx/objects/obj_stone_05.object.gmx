@@ -2,7 +2,7 @@
 <object>
   <spriteName>spr_stone_05</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>par_env</parentName>
@@ -20,9 +20,11 @@
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>0,16</point>
-    <point>16,8</point>
+    <point>0,10</point>
+    <point>16,4</point>
+    <point>48,20</point>
     <point>48,24</point>
     <point>32,32</point>
+    <point>0,16</point>
   </PhysicsShapePoints>
 </object>

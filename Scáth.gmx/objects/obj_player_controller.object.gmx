@@ -31,8 +31,8 @@ speedX = 1.7;
 speedY = 1.3;
 killCount = 0;
 enemyCount = 0;
-controls_keyboard = false;
-controls_gamePad = true;
+controls_keyboard = true;
+controls_gamePad = false;
 controls_touch = false;
 
 tile_x = 0;

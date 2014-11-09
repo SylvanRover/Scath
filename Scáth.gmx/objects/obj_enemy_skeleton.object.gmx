@@ -130,7 +130,7 @@ obj_player_controller.enemyCount += 1;
           <argument>
             <kind>1</kind>
             <string>/// Health Bar Activate
-healthBarActive = true;
+healthBarActive = false;
 </string>
           </argument>
         </arguments>

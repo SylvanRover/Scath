@@ -3,8 +3,8 @@
   <caption></caption>
   <width>1280</width>
   <height>640</height>
-  <vsnap>4</vsnap>
-  <hsnap>4</hsnap>
+  <vsnap>16</vsnap>
+  <hsnap>32</hsnap>
   <isometric>0</isometric>
   <speed>30</speed>
   <persistent>0</persistent>
@@ -73,7 +73,7 @@
     <instance objName="obj_stone_02" x="576" y="368" name="inst_C7CAD27C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_stone_02" x="640" y="288" name="inst_1577C095" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_stone_02" x="672" y="336" name="inst_4F11707B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_tree_01" x="484" y="456" name="inst_F7947C1D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_tree_01" x="468" y="448" name="inst_F7947C1D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_test_light" x="756" y="336" name="inst_1DC15BA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_test_light" x="624" y="532" name="inst_1BDFD74B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_camera_controller" x="608" y="400" name="inst_33BDDB96" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -84,7 +84,29 @@
     <instance objName="obj_test_light" x="856" y="504" name="inst_CBEF59C1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_test_light" x="356" y="244" name="inst_91715FFB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_test_light" x="812" y="148" name="inst_6FC9DCD4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_enemy_skeleton" x="496" y="264" name="inst_05D803AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="480" y="240" name="inst_05D803AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="564" y="488" name="inst_9A055853" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="692" y="116" name="inst_B821F15F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="244" y="324" name="inst_D9B18D10" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="888" y="428" name="inst_6B45F1B4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="960" y="236" name="inst_4F544DF3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="780" y="496" name="inst_B9B5B799" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="1048" y="344" name="inst_29688AB2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="652" y="128" name="inst_BDC90B1E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="352" y="208" name="inst_C776D026" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="256" y="368" name="inst_CA9D77E3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="544" y="532" name="inst_527EDBB3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_spawn" x="864" y="164" name="inst_262501D5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_05" x="32" y="416" name="inst_01AC965E" locked="0" code="" scaleX="10" scaleY="10" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_05" x="352" y="576" name="inst_3D146C29" locked="0" code="" scaleX="10" scaleY="10" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_05" x="1216" y="160" name="inst_1D3B31AE" locked="0" code="" scaleX="10" scaleY="10" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_05" x="896" y="0" name="inst_37F6307A" locked="0" code="" scaleX="10" scaleY="10" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_05" x="896" y="592" name="inst_931AB3E1" locked="0" code="" scaleX="-10" scaleY="10" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_05" x="1216" y="432" name="inst_EE177648" locked="0" code="" scaleX="-10" scaleY="10" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_05" x="64" y="160" name="inst_15027791" locked="0" code="" scaleX="-10" scaleY="10" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_05" x="384" y="0" name="inst_AD747BB6" locked="0" code="" scaleX="-10" scaleY="10" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_05" x="576" y="-144" name="inst_22D6014A" locked="0" code="" scaleX="10" scaleY="10" colour="4294967295" rotation="0"/>
+    <instance objName="obj_stone_05" x="704" y="736" name="inst_BC488DB2" locked="0" code="" scaleX="10" scaleY="10" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="TileTest" x="608" y="0" w="64" h="32" xo="448" yo="0" id="10000001" name="tiled_10000001" depth="10000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

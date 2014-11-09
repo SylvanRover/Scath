@@ -23,7 +23,8 @@ l[| 16] = 0;//height
 
 l[| 17] = -1;//directional mask
 l[| 18] = 0;//directional subimage
-
+l[| 19] = matrix_build(l[| 3], l[| 4], 0, 0, 0, l[| 5], l[| 6], l[| 7], 1);
+l[| 20] = true; //matrix requires update
 if(argument[2] == true){
     ds_list_add(global.GLR_MESH_STC_LIST, l);
 }

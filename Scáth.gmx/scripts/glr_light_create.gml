@@ -18,7 +18,7 @@ l[| 7] = intensity;  //intensity
 l[| 8] = argument0;  //sprite
 l[| 9] = argument1;  //sprite index 
 
-l[| 10] = 1; //quality
+l[| 10] = 1;
 l[| 11] = 0; //layer
 l[| 12] = 1; //update ratio (not implemented, maybe in future)
 l[| 13] = 0; //timer

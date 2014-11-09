@@ -97,6 +97,7 @@ staminaBlock = 20;
 attackRange = 12;
 stun = false;
 stunLength = 32;
+healthBarActive = false;
 
 button_attack = keyboard_check_released (ord('D'));
 button_block = keyboard_check (ord('W'));
@@ -148,6 +149,31 @@ instance_create(x,y,obj_player_light);
             <string>/// Create player shadow
 
 instance_create(x,y,obj_player_shadow);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Health Bar Activated
+
+healthBarActive = false;
 </string>
           </argument>
         </arguments>
@@ -941,13 +967,20 @@ if (!block &amp;&amp; collision_ellipse(x-(attackRange*2), y-((attackRange)+8), 
 {
     hp_current -= obj_enemy_skeleton.damage;
     obj_enemy_attack.attackHit = true;
+    healthBarActive = true;    
+    alarm[3] = 100;
 }
 
 if (!stun &amp;&amp; block &amp;&amp; collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2), y+((attackRange)+8), obj_enemy_attack, false, true))
 {
     stamina_current -= staminaBlock;
     obj_enemy_attack.attackHit = true;
+    healthBarActive = true;
+    alarm[3] = 100;
 }
+
+if (stamina_current &lt; (stamina_max-1)) healthBarActive = true;
+if (stamina_current = (stamina_max-1)) alarm[3] = 100;
 </string>
           </argument>
         </arguments>
@@ -1022,7 +1055,7 @@ if (!stun &amp;&amp; block &amp;&amp; collision_ellipse(x-(attackRange*2), y-((a
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -1041,14 +1074,17 @@ if (!stun &amp;&amp; block &amp;&amp; collision_ellipse(x-(attackRange*2), y-((a
             <kind>1</kind>
             <string>/// Draw Health Bar
 
-if(hp_current &gt; 0)
+if (healthBarActive)
 {
-    draw_healthbar(phy_position_x-8,phy_position_y-33,phy_position_x+8,phy_position_y-35,hp_current,c_black,c_maroon,c_red,0,true,false)
-}
-
-if(hp_current &gt; 0 &amp;&amp; stamina_current &gt;= 0)
-{
-    draw_healthbar(phy_position_x-8,phy_position_y-33,phy_position_x+8,phy_position_y-33,stamina_current,c_black,c_green,c_green,0,true,false)
+    if(hp_current &gt; 0)
+    {
+        draw_healthbar(phy_position_x-8,phy_position_y-33,phy_position_x+8,phy_position_y-35,hp_current,c_black,c_maroon,c_red,0,true,false)
+    }
+    
+    if(hp_current &gt; 0 &amp;&amp; stamina_current &gt;= 0)
+    {
+        draw_healthbar(phy_position_x-8,phy_position_y-33,phy_position_x+8,phy_position_y-33,stamina_current,c_black,make_colour_rgb(130,177,1),make_colour_rgb(130,177,1),0,true,false)
+    }
 }
 </string>
           </argument>
@@ -1094,6 +1130,8 @@ if (hp_current &gt; 0)
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>

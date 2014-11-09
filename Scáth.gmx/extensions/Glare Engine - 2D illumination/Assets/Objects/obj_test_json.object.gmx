@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>//create a dynamic mesh
-mesh_id = glr_mesh_create(x, y, true);
+mesh_id = glr_mesh_create(x, y, false);
 
 //add vertices from json (exported by MeshGen )
 //https://tizzio.github.io/meshgen
@@ -50,6 +50,30 @@ glr_mesh_set_directional_mask(mesh_id, sprite_index, image_index);
 
 //add ambient occlusion
 glr_occlusion_add_instance(id);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>glr_mesh_set_rotation(mesh_id, image_angle);
+image_angle+=4;
 </string>
           </argument>
         </arguments>

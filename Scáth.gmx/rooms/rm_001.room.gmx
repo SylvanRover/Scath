@@ -84,6 +84,7 @@
     <instance objName="obj_test_light" x="856" y="504" name="inst_CBEF59C1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_test_light" x="356" y="244" name="inst_91715FFB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_test_light" x="812" y="148" name="inst_6FC9DCD4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_skeleton" x="496" y="264" name="inst_05D803AC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="TileTest" x="608" y="0" w="64" h="32" xo="448" yo="0" id="10000001" name="tiled_10000001" depth="10000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

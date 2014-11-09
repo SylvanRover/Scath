@@ -30,7 +30,6 @@ mask_index = player_mask;
 
 //create a spotlight
 light = glr_light_create(spr_light_mask_spot,0, x,y,c_white,0);
- 
 //set the light spot shadow strength
 glr_light_set_shadow_strength(light, 0.5);
 

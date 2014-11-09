@@ -114,6 +114,7 @@ glr_clear_all();
             <kind>1</kind>
             <string>//render all shadows on the glare surface
 glr_render() 
+
  
 </string>
           </argument>

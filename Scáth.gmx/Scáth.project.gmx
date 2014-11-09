@@ -220,9 +220,16 @@
           <script>scripts\glr_light_set_sprite.gml</script>
           <script>scripts\glr_light_set_static.gml</script>
           <script>scripts\glr_light_set_tolerance.gml</script>
+          <script>scripts\glr_light_set_intensity.gml</script>
         </scripts>
         <scripts name="Get">
           <script>scripts\glr_light_get_count.gml</script>
+          <script>scripts\glr_light_get_active.gml</script>
+          <script>scripts\glr_light_get_color.gml</script>
+          <script>scripts\glr_light_get_layer.gml</script>
+          <script>scripts\glr_light_get_static.gml</script>
+          <script>scripts\glr_light_get_shadow_strength.gml</script>
+          <script>scripts\glr_light_get_tolerance.gml</script>
         </scripts>
         <scripts name="Simple">
           <script>scripts\glr_lightsimple_create.gml</script>
@@ -330,6 +337,8 @@
     </fonts>
   </fonts>
   <objects name="objects">
+    <object>objects\obj_test_light</object>
+    <object>objects\obj_player_light</object>
     <objects name="Shadows">
       <object>objects\obj_shadow_16</object>
       <object>objects\obj_shadow_32</object>
@@ -410,12 +419,8 @@
     <object>objects\obj_light_test</object>
     <objects name="Glare">
       <object>objects\obj_light_static</object>
-      <object>objects\obj_light_point</object>
-      <object>objects\obj_player_light</object>
-      <object>objects\obj_test_light</object>
       <object>objects\obj_glare_controller</object>
-      <object>objects\obj_box</object>
-      <object>objects\obj_tree</object>
+      <object>objects\obj_light_point</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -424,7 +429,6 @@
     </rooms>
     <room>rooms\rm_001</room>
     <room>rooms\rm_startScreen</room>
-    <room>rooms\rm_lvl1</room>
   </rooms>
   <constants number="2">
     <constant name="GM_build_date">41924.7464728588</constant>

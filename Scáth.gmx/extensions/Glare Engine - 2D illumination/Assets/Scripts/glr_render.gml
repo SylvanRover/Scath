@@ -1,10 +1,12 @@
 ///glr_render()
-     
+
+//TODO  return to old method
 /*************Description***************/
 //updates all the lights and shadows
 //use this function in Draw Begin 
 
 
+                    texture_set_repeat(false); 
 var l_id, l_x, l_y, l_active,l_rotation,l_xscale,l_yscale,l_bcircle, l_tolerance, l_shadow_strength;
 var l_color, l_alpha, l_intensity,l_sprite,l_spr_index,l_surf,l_shadowsprite_surf;
 var l_quality,l_layer, l_ignorelist,l_ratio,l_timer,l_static, l_is_clear;
@@ -13,6 +15,7 @@ var spr, tex, sub;
 var test_x, test_y, render;
 var rendered_mesh;
 var sz;
+
 
 if(view_enabled){
     var v_x0 = view_xview,
@@ -37,6 +40,10 @@ if(!surface_exists(global.GLR_MAIN_SURFACE)){
 
 
 d3d_set_culling(true);
+
+var mat_world_identity =  matrix_get(matrix_world);
+matrix_set(matrix_world, mat_world_identity);
+
 var light_list_size = ds_list_size(global.GLR_LIGHT_LIST);
 for(var i = 0; i < light_list_size ; i++)
 {
@@ -169,7 +176,7 @@ for(var i = 0; i < light_list_size ; i++)
                         d3d_transform_add_translation(px, py, 0);
                   
                         d3d_set_projection_ortho(l_x - l_w/2 , l_y - l_h/2 , l_w, l_h, - l_rotation);
-                        var tra_matrix = matrix_build(l_xo/l_w * 2 - 1, l_yo/l_h * 2 - 1, 0, 0, 0, 0, 1, 1, 1);  
+                        var tra_matrix = matrix_build(l_xo/l_w * 2 - 1, l_yo/l_h * 2 - 1, 0, 0, 0, 0,  1/l_xscale,  1/l_yscale, 1);  
                         matrix_set(matrix_projection, matrix_multiply(proj_matrix, tra_matrix))
                         draw_sprite(tex, sub, 0, 0);  
                         d3d_transform_set_identity();
@@ -179,7 +186,7 @@ for(var i = 0; i < light_list_size ; i++)
                 surface_reset_target();
                 
                 d3d_set_culling(true); 
-                //shadowsprites rendering
+                //shadowsprites rendering static
                 if(!is_clear){
                     if(!surface_exists(l_id[| 19])){
                         l_id[| 19] = surface_create(l_spr_w, l_spr_h);
@@ -189,7 +196,7 @@ for(var i = 0; i < light_list_size ; i++)
                     l_shadowsprite_surf2 = l_id[| 19];
                     
                     var scal = 0.0007; 
-                    var pow = 0.204;
+                    var pow = 0.160;
                     surface_set_target(l_shadowsprite_surf2);
                     draw_clear_alpha(0, 0);
                     shader_set(glr_shader_shadow_sprite);
@@ -256,11 +263,21 @@ for(var i = 0; i < light_list_size ; i++)
                         continue;
                     
                     shadow_strength = mesh[| 15];
+                    /*
                     d3d_transform_set_identity(); 
                     d3d_transform_add_scaling(xscale, yscale, 1);
                     d3d_transform_add_rotation_z(rot);
                     d3d_transform_add_translation(px ,py,0);
-                     
+                    */
+                    
+                    if(mesh[| 20]){ //requires update
+                        mesh[| 19] = matrix_build(px, py, 0, 0, 0, rot, xscale, yscale, 1);
+                        mesh[| 20] = false;
+                    }
+                    
+                    matrix_set(matrix_world, mesh[| 19]); // set the world matrix
+                    
+
                     d3d_set_projection_ortho(l_x -l_w/2, l_y -l_h/2 , l_w, l_h, -l_rotation);
                     shader_set(glr_shader_base);
                     shader_set_uniform_f(global.GLR_LIGHT_OFFSET, l_xo/l_w * 2 -1 , l_yo/l_h * 2 -1 );
@@ -268,10 +285,12 @@ for(var i = 0; i < light_list_size ; i++)
                     vertex_submit(buf, pr_trianglelist,-1);
                     shader_reset();
                     
-                    d3d_transform_set_identity();
+                    //d3d_transform_set_identity();
                 }
             }
-                
+            //reset world matrix
+            matrix_set(matrix_world, mat_world_identity);
+            
             surface_reset_target();
         }
     }
@@ -332,7 +351,7 @@ for(var i = 0; i < light_list_size ; i++)
                         d3d_transform_add_translation(px ,py,0); 
                   
                         d3d_set_projection_ortho(l_x -l_w/2 , l_y -l_h/2 , l_w, l_h, -l_rotation);
-                        var tra_matrix = matrix_build(l_xo/l_w * 2 -1, l_yo/l_h * 2 -1, 0, 0, 0, 0, 1, 1, 1);  
+                        var tra_matrix = matrix_build(l_xo/l_w * 2 -1, l_yo/l_h * 2 -1, 0, 0, 0, 0, 1/l_xscale,  1/l_yscale, 1);  
                         matrix_set(matrix_projection, matrix_multiply(proj_matrix, tra_matrix))
                         draw_sprite(tex, sub, 0, 0 );  
                         d3d_transform_set_identity();
@@ -363,10 +382,10 @@ for(var i = 0; i < light_list_size ; i++)
                     d3d_transform_set_identity(); 
                     d3d_transform_add_scaling(xscale, yscale, 1);
                     d3d_transform_add_rotation_z(rot);
-                    d3d_transform_add_translation(px ,py,0); 
+                    d3d_transform_add_translation(px ,py,0);
               
                     d3d_set_projection_ortho(l_x -l_w/2 , l_y -l_h/2 , l_w, l_h, -l_rotation);
-                    var tra_matrix = matrix_build(l_xo/l_w * 2 -1, l_yo/l_h * 2 -1, 0, 0, 0, 0, 1, 1, 1);  
+                    var tra_matrix = matrix_build(l_xo/l_w * 2 -1, l_yo/l_h * 2 -1, 0, 0, 0, 0,  1/l_xscale,  1/l_yscale, 1);  
                     matrix_set(matrix_projection, matrix_multiply(proj_matrix, tra_matrix))
                     draw_sprite(tex, sub, 0, 0 );  
                     d3d_transform_set_identity();
@@ -390,7 +409,7 @@ for(var i = 0; i < light_list_size ; i++)
                 }
                 l_shadowsprite_surf2 = l_id[| 19];
                 var scal = 0.0007; 
-                var pow = 0.204;
+                var pow = 0.160;
                 surface_set_target(l_shadowsprite_surf2);
                 draw_clear_alpha(0, 0);
                 shader_set(glr_shader_shadow_sprite);
@@ -400,8 +419,7 @@ for(var i = 0; i < light_list_size ; i++)
                 shader_reset();
                 
                  
-                surface_reset_target();
-                 
+                surface_reset_target(); 
                 repeat(2){
                     pow *= 1.358;
                     scal = power(0.0007, pow);
@@ -423,7 +441,7 @@ for(var i = 0; i < light_list_size ; i++)
                     draw_surface_ext(l_shadowsprite_surf,0,0,l_quality,l_quality,0,-1,1);
                     shader_reset();
                     surface_reset_target();
-                    
+                     
                 } 
                 
             }
@@ -496,7 +514,7 @@ for(var i = 0; i < light_list_size ; i++)
           
                 d3d_set_projection_ortho(l_x -l_w/2 , l_y -l_h/2 , l_w, l_h, -l_rotation);
                 
-                var tra_matrix = matrix_build(l_xo/l_w * 2 -1, l_yo/l_h * 2 -1, 0, 0, 0, 0, 1, 1, 1); 
+                var tra_matrix = matrix_build(l_xo/l_w * 2 -1, l_yo/l_h * 2 -1, 0, 0, 0, 0, 1/l_xscale, 1/l_yscale, 1); 
                 matrix_set(matrix_projection, matrix_multiply(proj_matrix, tra_matrix));
                 
                 draw_sprite_ext(tex,sub,0,0,l_quality,l_quality,0,0,1); 
@@ -536,10 +554,17 @@ for(var i = 0; i < light_list_size ; i++)
                 
                 shadow_strength  = mesh[| 15];
                     
+                /*
                 d3d_transform_set_identity(); 
                 d3d_transform_add_scaling(xscale, yscale, 1);
                 d3d_transform_add_rotation_z(rot);
                 d3d_transform_add_translation(px ,py,0);
+                */
+               if(mesh[| 20]){ //requires update
+                    mesh[| 19] = matrix_build(px, py, 0, 0, 0, rot, xscale, yscale, 1);
+                    mesh[| 20] = false;
+                }
+                matrix_set(matrix_world, mesh[| 19]); // set the world matrix
                  
                 d3d_set_projection_ortho(l_x -l_w/2, l_y -l_h/2 , l_w, l_h, -l_rotation);
                 shader_set(glr_shader_base);
@@ -547,8 +572,7 @@ for(var i = 0; i < light_list_size ; i++)
                 shader_set_uniform_f(global.GLR_LIGHT_STRENGTH, max(l_shadow_strength,shadow_strength));
                 vertex_submit(buf, pr_trianglelist,-1);
                 shader_reset();
-                
-                d3d_transform_set_identity();
+                //d3d_transform_set_identity();
             }
         }
         
@@ -576,10 +600,17 @@ for(var i = 0; i < light_list_size ; i++)
                     
                     shadow_strength  = mesh[| 15];
                         
+                    /*
                     d3d_transform_set_identity(); 
                     d3d_transform_add_scaling(xscale, yscale, 1);
                     d3d_transform_add_rotation_z(rot);
                     d3d_transform_add_translation(px ,py,0);
+                    */
+                    if(mesh[| 20]){ //requires update
+                        mesh[| 19] = matrix_build(px, py, 0, 0, 0, rot, xscale, yscale, 1);
+                        mesh[| 20] = false;
+                    }
+                    matrix_set(matrix_world, mesh[| 19]); // set the world matrix
                      
                     d3d_set_projection_ortho(l_x -l_w/2, l_y -l_h/2 , l_w, l_h, -l_rotation);
                       
@@ -589,11 +620,15 @@ for(var i = 0; i < light_list_size ; i++)
                     vertex_submit(buf, pr_trianglelist,-1);
                     shader_reset(); 
                     
-                    d3d_transform_set_identity();
+                    //d3d_transform_set_identity();
                 }
             }
         }
         
+        
+        //reset world matrix
+        matrix_set(matrix_world, mat_world_identity);
+            
         l_id[| 21] = is_clear;
         surface_reset_target();
     }

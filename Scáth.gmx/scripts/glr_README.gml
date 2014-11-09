@@ -12,6 +12,13 @@ Feature suggestions or bugs reports at
 > CHANGELOG
 =========================================
 
+
+v1.3.1
+
+- Improved project comments and function descriptions
+- changed ds_* functions to ds accessors
+- added missing glr_light_set_sprite(light, sprite, subimg)
+
 v1.3.0
 
 - Improved performances of glr_get_illumination(x, y)

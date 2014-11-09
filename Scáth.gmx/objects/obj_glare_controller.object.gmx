@@ -52,9 +52,14 @@ if(os_type != os_android &amp;&amp; os_type != os_ios ){
     //enable additive light intensity
     glr_enable_intensity(true);
     
-    glr_set_ambient_daytime(24);
+    glr_set_ambient_daytime_colors(
+    make_color_rgb(0, 32, 255),
+    make_color_rgb(255, 143, 3),
+    make_color_rgb(255, 255, 223),
+    make_color_rgb(255, 244, 183),
+    make_color_rgb(77, 67, 194));
     
-    glr_set_ambient_daytime_colors(make_colour_rgb(0,32,256),make_colour_rgb(255,143,143),make_colour_rgb(255,255,223),make_colour_rgb(255,244,183),make_colour_rgb(77,67,194));
+    glr_set_ambient_daytime(13.5);
     
     
     room_goto_next();   
@@ -92,7 +97,7 @@ if(os_type != os_android &amp;&amp; os_type != os_ios ){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///clear all light, shadows, etc...
+            <string>//clear all light, shadows, etc...
 glr_clear_all();
 </string>
           </argument>
@@ -116,8 +121,9 @@ glr_clear_all();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///render all shadows on the glare surface
+            <string>//render all shadows on the glare surface
 glr_render() 
+
  
 </string>
           </argument>
@@ -141,7 +147,7 @@ glr_render()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///draw the glare surface on the screen
+            <string>//draw the glare surface on the screen
 glr_draw(view_xview[0],view_yview[0]);
 
 </string>

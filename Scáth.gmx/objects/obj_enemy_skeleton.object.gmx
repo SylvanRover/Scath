@@ -83,6 +83,7 @@ alarm[0] = 1;
 damage = 20;
 attackSpeed = 32;
 d = (direction + 45) div 90;
+healthBarActive = false;
 </string>
           </argument>
         </arguments>
@@ -106,6 +107,30 @@ d = (direction + 45) div 90;
             <string>/// Add To EnemyCount
 
 obj_player_controller.enemyCount += 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Health Bar Activate
+healthBarActive = true;
 </string>
           </argument>
         </arguments>
@@ -466,6 +491,8 @@ if (collision_ellipse(x-(attackRange), y-(attackRange/2), x+(attackRange), y+(at
 if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2), y+((attackRange)+8), obj_player_attack, false, true))
 {
     hp_current -= obj_player.damage;
+    healthBarActive = true;
+    alarm[2] = 100;
 }
 </string>
           </argument>
@@ -568,7 +595,7 @@ if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2),
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -587,12 +614,36 @@ if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2),
             <kind>1</kind>
             <string>/// Draw Health Bar
 
-draw_self();
-draw_healthbar(phy_position_x-8,phy_position_y-33,phy_position_x+8,phy_position_y-35,hp_current,c_black,c_maroon,c_red,0,true,false)
+if(healthBarActive) draw_healthbar(phy_position_x-8,phy_position_y-33,phy_position_x+8,phy_position_y-35,hp_current,c_black,c_maroon,c_red,0,true,false)
 //draw_set_colour(c_red)
 //draw_ellipse(x-(attackRange), y-(attackRange/2), x+(attackRange), y+(attackRange/2)-16, true);
 //draw_set_colour(c_black);
 //draw_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), true);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw Self
+
+draw_self();
 </string>
           </argument>
         </arguments>

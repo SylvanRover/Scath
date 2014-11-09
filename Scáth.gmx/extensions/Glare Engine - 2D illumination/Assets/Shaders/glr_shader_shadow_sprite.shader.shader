@@ -10,7 +10,7 @@ void main()
     v_vTexcoord = in_TextureCoord;
 }
  
-//######################_==_YOYO_SHADER_MARKER_==_######################@~varying vec2 v_vTexcoord;
+//######################_==_YOYO_SHADER_MARKER_==_######################@~varying vec2 v_vTexcoord; 
 
 uniform vec2 LightOffset; 
 uniform float uScale; 
@@ -18,49 +18,17 @@ uniform float uScale;
 
 void main()
 {
-    //pixel distance * scale factor
-  vec2 offset = vec2( v_vTexcoord - LightOffset )*uScale; 
-   
+
+  vec2 offset = vec2( v_vTexcoord - LightOffset )*uScale ; 
   vec2 coord = v_vTexcoord;
-  float alpha = 0.0;
-  /*
-  for(int i=0; i < 8 ; i++){
-     coord -= offset;
-     alpha += texture2D(gm_BaseTexture, coord ).a;
-  } 
-  */
   
-    //manual for
-    coord -= offset;
-    alpha += texture2D(gm_BaseTexture, coord ).a;
-    
-    
-    coord -= offset;
-    alpha += texture2D(gm_BaseTexture, coord ).a;
-    
-    
-    coord -= offset;
-    alpha += texture2D(gm_BaseTexture, coord ).a;
-    
-    //4
-    coord -= offset;
-    alpha += texture2D(gm_BaseTexture, coord ).a;
-    
-    
-    coord -= offset;
-    alpha += texture2D(gm_BaseTexture, coord ).a;
-    
-    
-    coord -= offset;
-    alpha += texture2D(gm_BaseTexture, coord ).a;
-    
-    
-    coord -= offset;
-    alpha += texture2D(gm_BaseTexture, coord ).a;
-     // 8
-    coord -= offset;
-    alpha += texture2D(gm_BaseTexture, coord ).a;
-    
+  float alpha = 0.0; 
+  for(int i=0; i < 4 ; i++)
+  {
+     coord -= offset;
+     vec4 sample = texture2D(gm_BaseTexture, coord ); 
+          alpha += sample.a; 
+  }
     gl_FragColor.a = alpha;
 }
 

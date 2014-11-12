@@ -28,6 +28,7 @@
             <string>/// Set Variables
 
 settingsOpen = false;
+obj_player_controller.settingsTab = true;
 </string>
           </argument>
         </arguments>
@@ -52,7 +53,10 @@ settingsOpen = false;
             <kind>1</kind>
             <string>///Destroy if GamePad controls
 
-if (obj_player_controller.controls_gamePad) instance_destroy();
+if (obj_player_controller.controls_gamePad){
+    obj_player_controller.settingsTab = false;
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>

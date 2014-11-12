@@ -187,7 +187,7 @@ for (tile_y = -54; tile_y &lt; tile_max_y; tile_y += 16)
             <kind>1</kind>
             <string>/// Create Settings Tab
 
-if (!controls_gamePad &amp;&amp; !settingsTab){
+if (controls_keyboard &amp;&amp; !settingsTab){
     instance_create(x, y,obj_gui_settingsTab);
     settingsTab = true;
 }

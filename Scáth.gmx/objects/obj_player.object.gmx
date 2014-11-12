@@ -348,6 +348,13 @@ if (!died &amp;&amp; hp_current &lt;= 0 &amp;&amp; image_alpha != 0)
             <kind>1</kind>
             <string>/// Keyboard Controls
 
+
+if (obj_player_controller.settingsOpen){
+    phy_speed_x = 0;
+    phy_speed_y = 0;
+    exit;
+}
+
 if (obj_player_controller.controls_keyboard)
 {
 
@@ -541,6 +548,7 @@ if (obj_player_controller.controls_keyboard)
           <argument>
             <kind>1</kind>
             <string>/// GamePad Controls
+if (obj_player_controller.settingsOpen) exit;
 
 mbLeftRelease = mouse_check_button_released(mb_left);
 mbLeftCheck = mouse_check_button(mb_left);
@@ -803,6 +811,7 @@ if (gamepad_is_supported()
           <argument>
             <kind>1</kind>
             <string>/// Combat
+if (obj_player_controller.settingsOpen) exit;
 
 if (gamepad_is_supported()
 &amp;&amp; gamepad_is_connected(0)
@@ -986,6 +995,8 @@ if (hp_current &gt; 0)
           <argument>
             <kind>1</kind>
             <string>/// Damage Collision
+if (obj_player_controller.settingsOpen) exit;
+
 if (!block &amp;&amp; collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2), y+((attackRange)+8), obj_enemy_attack, false, true)){
     hp_current -= obj_enemy_skeleton.damage;
     obj_enemy_attack.attackHit = true;

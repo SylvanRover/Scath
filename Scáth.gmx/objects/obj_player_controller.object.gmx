@@ -191,7 +191,6 @@ if (!controls_gamePad &amp;&amp; !settingsTab){
     instance_create(x, y,obj_gui_settingsTab);
     settingsTab = true;
 }
-else settingsTab = false;
 </string>
           </argument>
         </arguments>

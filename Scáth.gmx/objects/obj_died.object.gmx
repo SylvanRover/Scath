@@ -27,9 +27,7 @@
             <kind>1</kind>
             <string>/// Restart the game
 
-x = obj_camera.x;
-y = obj_camera.y;
-
+obj_gui_settings.settingsOpen = false;
 
 if (obj_player_controller.controls_keyboard &amp;&amp; keyboard_check_pressed(vk_escape)) room_restart();
 if (obj_player_controller.controls_gamePad &amp;&amp; gamepad_button_check_pressed(0,gp_start)) room_restart();

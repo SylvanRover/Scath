@@ -323,6 +323,8 @@ if (hp_current &lt;= 0)
             <kind>1</kind>
             <string>/// Movement
 
+if (obj_player_controller.settingsOpen) exit;
+
 //Sprite Directions
     
     if ((phy_speed_x = 0 &amp;&amp; phy_speed_y = 0) &amp;&amp; !attackR)
@@ -371,6 +373,8 @@ if (hp_current &lt;= 0)
           <argument>
             <kind>1</kind>
             <string>/// Combat
+
+if (obj_player_controller.settingsOpen) exit;
 
 if (obj_player.died) exit;
 

@@ -7,8 +7,8 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>45</bbox_left>
-  <bbox_right>980</bbox_right>
+  <bbox_left>216</bbox_left>
+  <bbox_right>1151</bbox_right>
   <bbox_top>40</bbox_top>
   <bbox_bottom>622</bbox_bottom>
   <HTile>0</HTile>
@@ -17,7 +17,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>1024</width>
+  <width>1366</width>
   <height>768</height>
   <frames>
     <frame index="0">images\spr_controls_gamePad_0.png</frame>

@@ -372,6 +372,8 @@ if (hp_current &lt;= 0)
             <kind>1</kind>
             <string>/// Combat
 
+if (obj_player.died) exit;
+
 if (collision_ellipse(x-(los), y-((los/2)+8), x+(los), y+((los/2)+8), obj_player, false, true))
     {
         inRange = true;

@@ -13,6 +13,7 @@
       <sprite>sprites\spr_enemy_attack_down</sprite>
       <sprite>sprites\spr_enemy_attack_right</sprite>
       <sprite>sprites\spr_enemy_attack_left</sprite>
+      <sprite>sprites\spr_enemyTargeting</sprite>
     </sprites>
     <sprites name="Environment">
       <sprites name="Shadows">
@@ -57,7 +58,6 @@
       <sprite>sprites\spr_player_health</sprite>
       <sprite>sprites\apr_player_shadow</sprite>
     </sprites>
-    <sprite>sprites\spr_startScreen</sprite>
     <sprites name="SmartLight">
       <sprite>sprites\spr_tods</sprite>
       <sprite>sprites\spr_bush01</sprite>
@@ -102,6 +102,9 @@
     </sprites>
     <sprite>sprites\spr_arrow</sprite>
     <sprite>sprites\spr_cursor</sprite>
+    <sprite>sprites\spr_gui_settingsTab</sprite>
+    <sprite>sprites\spr_controls_keyboard</sprite>
+    <sprite>sprites\spr_controls_gamePad</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_01</background>
@@ -337,8 +340,6 @@
     </fonts>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_test_light</object>
-    <object>objects\obj_player_light</object>
     <objects name="Shadows">
       <object>objects\obj_shadow_16</object>
       <object>objects\obj_shadow_32</object>
@@ -364,26 +365,16 @@
       <object>objects\obj_tree_01</object>
     </objects>
     <objects name="Lighting">
-      <object>objects\obj_shadowcaster</object>
-      <object>objects\obj_lightmap</object>
-      <object>objects\obj_LoS</object>
-      <object>objects\obj_light_control</object>
-      <object>objects\obj_fog</object>
-      <object>objects\obj_light_old</object>
+      <object>objects\obj_player_light</object>
+      <object>objects\obj_test_light</object>
     </objects>
     <objects name="Player">
       <object>objects\par_player</object>
-      <object>objects\obj_player_controller</object>
       <object>objects\obj_move_to_point</object>
-      <object>objects\obj_move_to_cursor</object>
       <object>objects\obj_player</object>
-      <object>objects\obj_death</object>
       <object>objects\obj_player_attack</object>
-      <object>objects\obj_enemy_targeting</object>
       <object>objects\obj_player_shadow</object>
-      <object>objects\obj_mouse</object>
-      <object>objects\obj_camera</object>
-      <object>objects\obj_camera_controller</object>
+      <object>objects\obj_light_test</object>
     </objects>
     <objects name="UI">
       <object>objects\obj_startScreen</object>
@@ -416,7 +407,6 @@
       <object>objects\obj_engine_dynamiclights</object>
       <object>objects\par_light</object>
     </objects>
-    <object>objects\obj_light_test</object>
     <objects name="Glare">
       <object>objects\obj_light_static</object>
       <object>objects\obj_glare_controller</object>
@@ -425,7 +415,20 @@
     <objects name="Weapons">
       <object>objects\obj_arrow</object>
     </objects>
-    <object>objects\obj_cursor</object>
+    <objects name="Controllers">
+      <object>objects\obj_player_controller</object>
+      <object>objects\obj_camera_controller</object>
+    </objects>
+    <objects name="Interface">
+      <object>objects\obj_camera</object>
+      <object>objects\obj_mouse</object>
+      <object>objects\obj_move_to_cursor</object>
+      <object>objects\obj_enemy_targeting</object>
+      <object>objects\obj_cursor</object>
+      <object>objects\obj_died</object>
+      <object>objects\obj_gui_settingsTab</object>
+      <object>objects\obj_gui_settings</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <rooms name="Glare">

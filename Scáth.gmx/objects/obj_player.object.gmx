@@ -98,6 +98,7 @@ attackRange = 12;
 stun = false;
 stunLength = 32;
 healthBarActive = false;
+died = false;
 
 button_attack = keyboard_check_released (ord('D'));
 button_block = keyboard_check (ord('W'));
@@ -317,12 +318,13 @@ alarmFinished = true;
           <argument>
             <kind>1</kind>
             <string>/// Death
-if (hp_current &lt;= 0 &amp;&amp; image_alpha != 0)
+if (!died &amp;&amp; hp_current &lt;= 0 &amp;&amp; image_alpha != 0)
 {
-    image_alpha = 0;
-    instance_create(x,y,obj_death);
+    sprite_index = spr_death;
+    instance_create(x,y,obj_died);
     phy_speed_x = 0;
     phy_speed_y = 0;
+    died = true;
 }
 </string>
           </argument>
@@ -363,7 +365,7 @@ if (obj_player_controller.controls_keyboard)
         if (mbLeftCheck &amp;&amp; !enemyTargeting) 
         {
             instance_create(mouse_x, mouse_y, obj_move_to_cursor);
-            dir = point_direction(x, y, obj_move_to_cursor.x, obj_move_to_cursor.y);
+            dir = point_direction(x, y, mouse_x, mouse_y);
             phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir);
             phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
             //direction = dir;
@@ -384,7 +386,7 @@ if (obj_player_controller.controls_keyboard)
             if (switchTarget)
             {
                 instance_create(target.x,target.y,obj_enemy_targeting);
-                //direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+                direction = point_direction(x, y, enemyTargetX, enemyTargetY);
                 switchTarget = false;
                 targetInRange = true;
                 
@@ -394,7 +396,7 @@ if (obj_player_controller.controls_keyboard)
             if (mbLeftCheck) 
             {
                 instance_create(mouse_x, mouse_y, obj_move_to_cursor);
-                dir = point_direction(x, y, obj_move_to_cursor.x, obj_move_to_cursor.y);
+                dir = point_direction(x, y, mouse_x, mouse_y);
                 phy_speed_x = lengthdir_x(obj_player_controller.speedX, dir); //SPEED is the speed you want to move at.
                 phy_speed_y = lengthdir_y(obj_player_controller.speedY, dir);
                 direction = point_direction(x, y, enemyTargetX, enemyTargetY);
@@ -478,7 +480,7 @@ if (obj_player_controller.controls_keyboard)
             phy_speed_x = 0;
             phy_speed_y = 0;
         }
-        if (collision_circle(x, y, 8, obj_move_to_cursor,true,true))
+        if (collision_circle(x, y, 10, obj_move_to_cursor,true,true))
         {
             phy_speed_x = 0;
             phy_speed_y = 0;

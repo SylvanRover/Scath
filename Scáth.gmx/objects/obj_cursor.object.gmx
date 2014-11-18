@@ -3,7 +3,7 @@
   <spriteName>spr_cursor</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10100</depth>
+  <depth>-10001</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>

@@ -416,6 +416,7 @@
     </objects>
     <objects name="Weapons">
       <object>objects\obj_arrow</object>
+      <object>objects\obj_arrow_object</object>
     </objects>
     <objects name="Controllers">
       <object>objects\obj_player_controller</object>
@@ -430,6 +431,7 @@
       <object>objects\obj_died</object>
       <object>objects\obj_gui_settingsTab</object>
       <object>objects\obj_gui_settings</object>
+      <object>objects\obj_inventory</object>
     </objects>
   </objects>
   <rooms name="rooms">

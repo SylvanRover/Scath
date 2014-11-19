@@ -53,7 +53,7 @@ obj_player_controller.settingsTab = true;
             <kind>1</kind>
             <string>///Destroy if GamePad controls
 
-if (obj_player_controller.controls_gamePad){
+if (obj_player_controller.controls_gamePad || obj_player.hp_current &lt;= 0){
     obj_player_controller.settingsTab = false;
     instance_destroy();
 }

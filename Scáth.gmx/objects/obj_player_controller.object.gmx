@@ -245,6 +245,62 @@ draw_set_color(c_black);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Item Slots
+
+if (obj_player.weapon_sword) draw_sprite(spr_weapon_sword, 0, 32, 32);
+if (obj_player.weapon_bow) draw_sprite(spr_weapon_bow, 0,  32, 32);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw Stat Bars
+//draw_set_colour(c_white);
+
+// Health Bar
+//draw_rectangle(48, 48, (obj_player.hp_max * 2) + 2, 57, false);
+draw_healthbar(68, 36, obj_player.hp_max * 2, 40, obj_player.hp_current,c_black,c_maroon,c_red,0,true,false);
+
+
+// Stamina Bar
+//draw_rectangle(48, 63, (obj_player.stamina_max * 2) + 2, 72, false);
+draw_healthbar(68, 44, obj_player.stamina_max * 2 , 48, obj_player.stamina_current,c_black,make_colour_rgb(130,177,1),make_colour_rgb(130,177,1),0,true,false);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
   </events>
   <PhysicsObject>0</PhysicsObject>

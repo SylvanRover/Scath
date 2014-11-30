@@ -496,36 +496,9 @@ if (collision_ellipse(x-(attackRange), y-(attackRange/2), x+(attackRange), y+(at
             <string>/// Damage Collision
 if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2), y+((attackRange)+8), obj_player_attack, false, true))
 {
-    hp_current -= obj_player.damage;
+    hp_current -= obj_player.damage_melee;
     healthBarActive = true;
     alarm[2] = 100;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>other</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Destroy Enemy Attack
-
-if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2), y+((attackRange)+8), obj_player_attack, false, true))
-{
-    hp_current -= obj_player.damage;
-    obj_player_attack.attackHit = true;
 }
 </string>
           </argument>
@@ -551,7 +524,7 @@ if (collision_ellipse(x-(attackRange*2), y-((attackRange)+8), x+(attackRange*2),
             <kind>1</kind>
             <string>/// Arrow Damage
 
-hp_current -= 5;
+hp_current -= obj_player.damage_ranged;
 healthBarActive = true;
 alarm[2] = 100;
 </string>

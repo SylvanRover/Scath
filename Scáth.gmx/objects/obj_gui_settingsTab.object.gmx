@@ -79,8 +79,8 @@ if (obj_player_controller.controls_gamePad || obj_player.hp_current &lt;= 0){
             <kind>1</kind>
             <string>/// Position
 
-x = view_xview[0]+5;
-y = view_yview[0]+5;
+x = view_xview[0] + (view_wview[0]-12);
+y = view_yview[0] + 12;
 </string>
           </argument>
         </arguments>
@@ -142,7 +142,7 @@ if (!wait &amp;&amp; obj_player_controller.settingsOpen){
             <string>/// Draw Settings
 
 draw_set_colour(c_white);
-draw_sprite(spr_gui_settingsTab,0,view_xport[0]+20,view_yport[0]+20);
+draw_sprite(spr_gui_settingsTab, 0, view_wport[0] - 32, + 32);
 </string>
           </argument>
         </arguments>

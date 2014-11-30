@@ -91,7 +91,8 @@ stamina_current = 100;
 stamina_max = 100;
 mana_current = 100;
 mana_max = 100;
-damage = 20;
+damage_melee = 20;
+damage_ranged = 20;
 staminaAttackR = 20;
 staminaBlock = 20;
 attackRange = 12;
@@ -112,6 +113,8 @@ button_target = keyboard_check_pressed(vk_lshift);
 //Inventory Light
 weapon_sword = false;
 weapon_bow = true;
+itemEquip = 0;
+itemEquip_max = 1;
 
 // Movement
 xAxis = 0;
@@ -716,6 +719,21 @@ if (gamepad_is_supported()
             case 3: nth_target = 3; break
         }
         
+    }
+    
+    // Switch Usable Items
+    if (gamepad_button_check_pressed(0, gp_padl)) itemEquip -= 1;
+    if (gamepad_button_check_pressed(0, gp_padr)) itemEquip += 1;
+    if (itemEquip &lt; 0) itemEquip = itemEquip_max;
+    if (itemEquip &gt; itemEquip_max) itemEquip = 0;
+    
+    if (itemEquip = 0){
+        weapon_sword = true;
+        weapon_bow = false;
+    }
+    if (itemEquip = 1){
+        weapon_sword = false;
+        weapon_bow = true;
     }
     
     // Cycle Targets

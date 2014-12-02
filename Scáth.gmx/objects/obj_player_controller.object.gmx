@@ -289,14 +289,16 @@ if (obj_player.weapon_bow) draw_sprite(spr_weapon_bow, 0,  32, 32);
 //draw_set_colour(c_white);
 
 // Health Bar
-//draw_rectangle(48, 48, (obj_player.hp_max * 2) + 2, 57, false);
+draw_set_colour(c_red);
+draw_rectangle(66, 34, (obj_player.hp_max * 2) + 2, 42, false);
 draw_healthbar(68, 36, obj_player.hp_max * 2, 40, obj_player.hp_current,c_black,c_maroon,c_red,0,true,false);
 
 
 // Stamina Bar
-//draw_rectangle(48, 63, (obj_player.stamina_max * 2) + 2, 72, false);
-draw_healthbar(68, 44, obj_player.stamina_max * 2 , 48, obj_player.stamina_current,c_black,make_colour_rgb(130,177,1),make_colour_rgb(130,177,1),0,true,false);
-
+draw_set_colour(make_colour_rgb(130,177,1));
+draw_rectangle(66, 46, (obj_player.stamina_max * 2) + 2, 54, false);
+draw_healthbar(68, 48, obj_player.stamina_max * 2 , 52, obj_player.stamina_current,c_black,make_colour_rgb(130,177,1),make_colour_rgb(130,177,1),0,true,false);
+draw_set_colour(c_white);
 </string>
           </argument>
         </arguments>

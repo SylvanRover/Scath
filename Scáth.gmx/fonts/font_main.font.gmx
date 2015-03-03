@@ -23,9 +23,9 @@
     <glyph character="61" x="112" y="78" w="6" h="10" shift="8" offset="1"/>
     <glyph character="77" x="112" y="2" w="10" h="12" shift="12" offset="1"/>
     <glyph character="122" x="52" y="64" w="8" h="12" shift="10" offset="1"/>
+    <glyph character="35" x="38" y="20" w="10" h="12" shift="12" offset="1"/>
     <glyph character="115" x="22" y="64" w="8" h="12" shift="10" offset="1"/>
     <glyph character="56" x="112" y="50" w="8" h="12" shift="10" offset="1"/>
-    <glyph character="35" x="38" y="20" w="10" h="12" shift="12" offset="1"/>
     <glyph character="105" x="106" y="96" w="2" h="12" shift="4" offset="1"/>
     <glyph character="47" x="64" y="2" w="10" h="12" shift="12" offset="1"/>
     <glyph character="80" x="32" y="64" w="8" h="12" shift="10" offset="1"/>
@@ -34,12 +34,12 @@
     <glyph character="48" x="52" y="50" w="8" h="12" shift="10" offset="1"/>
     <glyph character="32" x="12" y="2" w="8" h="16" shift="8" offset="0"/>
     <glyph character="91" x="38" y="96" w="4" h="12" shift="6" offset="1"/>
-    <glyph character="79" x="62" y="50" w="8" h="12" shift="10" offset="1"/>
-    <glyph character="97" x="92" y="50" w="8" h="12" shift="10" offset="1"/>
-    <glyph character="114" x="58" y="78" w="6" h="12" shift="8" offset="1"/>
     <glyph character="57" x="32" y="50" w="8" h="12" shift="10" offset="1"/>
-    <glyph character="107" x="72" y="50" w="8" h="12" shift="10" offset="1"/>
+    <glyph character="79" x="62" y="50" w="8" h="12" shift="10" offset="1"/>
     <glyph character="98" x="82" y="50" w="8" h="12" shift="10" offset="1"/>
+    <glyph character="97" x="92" y="50" w="8" h="12" shift="10" offset="1"/>
+    <glyph character="107" x="72" y="50" w="8" h="12" shift="10" offset="1"/>
+    <glyph character="114" x="58" y="78" w="6" h="12" shift="8" offset="1"/>
     <glyph character="46" x="118" y="96" w="2" h="12" shift="4" offset="1"/>
     <glyph character="38" x="88" y="2" w="10" h="12" shift="12" offset="1"/>
     <glyph character="100" x="82" y="64" w="8" h="12" shift="10" offset="1"/>

@@ -398,8 +398,10 @@ if (obj_player_controller.controls_keyboard)
     mbLeftCheck = mouse_check_button(mb_left);
     vkLShiftCheck = keyboard_check_pressed(vk_lshift);
     target = instance_nth_nearest(x,y,par_enemy,nth_target);
-    enemyTargetX = instance_nearest(x, y-12, obj_enemy_targeting).x;
-    enemyTargetY = instance_nearest(x, y-12, obj_enemy_targeting).y;
+    if instance_exists(obj_enemy_targeting) {
+        enemyTargetX = instance_nearest(x, y-12, obj_enemy_targeting).x;
+        enemyTargetY = instance_nearest(x, y-12, obj_enemy_targeting).y;
+    }
 
     direction = point_direction(x, y, mouse_x, mouse_y);
     // Basic Movement
@@ -586,8 +588,10 @@ if (obj_player_controller.settingsOpen) || (hp_current &lt;= 0) exit;
 mbLeftRelease = mouse_check_button_released(mb_left);
 mbLeftCheck = mouse_check_button(mb_left);
 target = instance_nth_nearest(x,y,par_enemy,nth_target);
-enemyTargetX = instance_nearest(x, y-12, obj_enemy_targeting).x;
-enemyTargetY = instance_nearest(x, y-12, obj_enemy_targeting).y;
+if instance_exists(obj_enemy_targeting) {
+    enemyTargetX = instance_nearest(x, y-12, obj_enemy_targeting).x;
+    enemyTargetY = instance_nearest(x, y-12, obj_enemy_targeting).y;
+}
 speedX = obj_player_controller.speedX;
 speedY = obj_player_controller.speedY;
 
@@ -671,7 +675,11 @@ if (gamepad_is_supported()
     if (enemyTargeting){
         if (switchTarget){
             instance_create(target.x,target.y,obj_enemy_targeting);
-            direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+            if instance_exists(obj_enemy_targeting) {
+                enemyTargetX = instance_nearest(x, y-12, obj_enemy_targeting).x;
+                enemyTargetY = instance_nearest(x, y-12, obj_enemy_targeting).y;
+                direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+            }
             switchTarget = false;
             targetInRange = true;
             

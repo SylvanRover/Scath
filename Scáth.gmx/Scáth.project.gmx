@@ -94,14 +94,6 @@
     </sprites>
     <sprite>sprites\spr_light_radius</sprite>
     <sprite>sprites\spr_null</sprite>
-    <sprites name="Glare">
-      <sprite>sprites\spr_light_mask_point</sprite>
-      <sprite>sprites\spr_light_mask_spot</sprite>
-      <sprite>sprites\spr_light_bulb</sprite>
-      <sprite>sprites\spr_tree_shadow</sprite>
-      <sprite>sprites\spr_tree</sprite>
-      <sprite>sprites\spr_box</sprite>
-    </sprites>
     <sprite>sprites\spr_arrow</sprite>
     <sprite>sprites\spr_arrow_shadow</sprite>
     <sprite>sprites\spr_cursor</sprite>

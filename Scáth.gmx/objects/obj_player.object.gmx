@@ -111,8 +111,8 @@ button_block = keyboard_check (ord('W'));
 button_target = keyboard_check_pressed(vk_lshift);
 
 //Inventory Light
-weapon_sword = false;
-weapon_bow = true;
+weapon_sword = true;
+weapon_bow = false;
 itemEquip = 0;
 itemEquip_max = 1;
 
@@ -429,7 +429,13 @@ if (obj_player_controller.controls_keyboard)
         if (switchTarget)
         {
             instance_create(target.x,target.y,obj_enemy_targeting);
-            direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+            if instance_exists(obj_enemy_targeting) {
+                if instance_exists(obj_enemy_targeting) {
+                    enemyTargetX = instance_nearest(x, y-12, obj_enemy_targeting).x;
+                    enemyTargetY = instance_nearest(x, y-12, obj_enemy_targeting).y;
+                }
+                direction = point_direction(x, y, enemyTargetX, enemyTargetY);
+            }
             switchTarget = false;
             targetInRange = true;
             

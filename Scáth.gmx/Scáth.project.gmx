@@ -35,6 +35,7 @@
       <sprite>sprites\spr_stone_02_shadow</sprite>
       <sprite>sprites\spr_tree_shadow_01</sprite>
       <sprite>sprites\spr_stone_02_shadow_test</sprite>
+      <sprite>sprites\spr_testTree00</sprite>
     </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_moveToPoint</sprite>
@@ -364,6 +365,7 @@
       <object>objects\obj_stone_04</object>
       <object>objects\obj_stone_05</object>
       <object>objects\obj_tree_01</object>
+      <object>objects\obj_treeTest00</object>
     </objects>
     <objects name="Lighting">
       <object>objects\obj_player_light</object>

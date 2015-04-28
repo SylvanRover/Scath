@@ -107,6 +107,7 @@
       <sprite>sprites\spr_weapon_sword</sprite>
       <sprite>sprites\spr_weapon_bow</sprite>
     </sprites>
+    <sprite>sprites\sprite87</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_01</background>
@@ -439,6 +440,7 @@
     <rooms name="Glare">
       <room>rooms\room_glare_init</room>
     </rooms>
+    <room>rooms\rm_000</room>
     <room>rooms\rm_001</room>
     <room>rooms\rm_startScreen</room>
   </rooms>

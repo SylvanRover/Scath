@@ -26,51 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>/// Initiates Shadows
+/*glr_shadowdir_create(sprite_index, image_index, sprite_index, image_index, x, y, depth, image_xscale, image_yscale, image_angle);
 
 //create shadowdepth to cover the lower lights with the foliage of this tree
-shadowdepth_id = glr_shadowdepth_create(sprite_index, image_index , x, y,  phy_position_y, image_xscale, image_yscale, image_angle);
-//glr_shadowdepth_create(sprite, subimage, x, y, z, xscale, yscale, rot)
+shadowdepth_id = glr_shadowdepth_create(sprite_index, image_index , x, y,  phy_position_y, image_xscale, image_yscale, image_angle);*/
+
+//create directional shadow
+glr_shadowdir_create(sprite_index, image_index, sprite_index, image_index, x, y, 120, image_xscale, image_yscale, image_angle);
+
+//create shadowdepth to cover the lower lights with the foliage of this tree
+shadowdepth_id = glr_shadowdepth_create(sprite_index, image_index , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
+
 </string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>601</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_execute_script</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>9</kind>
-            <script>scr_shadow_16</script>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
           </argument>
         </arguments>
       </action>
@@ -90,24 +57,23 @@ shadowdepth_id = glr_shadowdepth_create(sprite_index, image_index , x, y,  phy_p
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Initiate Light
-/*color = obj_player_light.color;
-intensity = 0 //choose(0, 0, random(1.5));
-sprite = spr_stone_02;
-scal = 1;
-light_alpha = 0;
-collision_object = obj_player;
-dx = 100;
-dy = 50;
-i = 0.5;
-x_distance = abs(phy_position_x - collision_object.phy_position_x)
-y_distance = abs(phy_position_y - collision_object.phy_position_y)
-light_id = glr_lightsimple_create(sprite, 0, x, y, color, light_alpha, intensity );
+            <string>/// Create Mesh
 
-//glr_light_set_scaling(light, scal,scal);
-//glr_light_set_layer(light, -1000);
-//glr_light_set_shadow_strength(light, 1);
-glr_lightsimple_set_active(light_id, false);*/
+//add vertices to make a box
+
+zdepth = y;
+mesh = glr_mesh_create(x, y, true);
+
+glr_mesh_submesh_add_path(mesh, path_shadow, 0, 0);
+
+glr_mesh_update(mesh);
+
+glr_mesh_set_depth_mask(mesh, sprite_index, image_index); 
+
+glr_shadowdepth_create(sprite_index, image_index, x, y, zdepth, 1, 1, 0); 
+glr_mesh_set_depth(mesh, zdepth);
+
+depth = -y;
 </string>
           </argument>
         </arguments>
@@ -170,53 +136,6 @@ glr_lightsimple_set_active(light_id, false);*/
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Make Light
-//collision_ellipse( x1, y1, x2, y2, obj, prec, notme );
-
-/*if (collision_ellipse( x-100, y-50, x+100, y+50,collision_object,true,true) &amp;&amp;
-phy_position_y &lt; collision_object.phy_position_y)
-{
-    glr_lightsimple_set_active(light_id, true);
-    if (x_distance &lt; 100 &amp;&amp; x_distance &gt; 90) || (y_distance &lt; 100 &amp;&amp; y_distance &gt; 90) light_alpha = 0.1;
-    if (x_distance &lt; 90 &amp;&amp; x_distance &gt; 80) || (y_distance &lt; 90 &amp;&amp; y_distance &gt; 80) light_alpha = 0.2;
-    if (x_distance &lt; 80 &amp;&amp; x_distance &gt; 70) || (y_distance &lt; 80 &amp;&amp; y_distance &gt; 70) light_alpha = 0.3;
-    if (x_distance &lt; 70 &amp;&amp; x_distance &gt; 60) || (y_distance &lt; 70 &amp;&amp; y_distance &gt; 60) light_alpha = 0.4;
-    if (x_distance &lt; 60 &amp;&amp; x_distance &gt; 50) || (y_distance &lt; 60 &amp;&amp; y_distance &gt; 50) light_alpha = 0.5;
-    if (x_distance &lt; 50 &amp;&amp; x_distance &gt; 40) || (y_distance &lt; 50 &amp;&amp; y_distance &gt; 40) light_alpha = 0.6;
-    if (x_distance &lt; 40 &amp;&amp; x_distance &gt; 30) || (y_distance &lt; 40 &amp;&amp; y_distance &gt; 30) light_alpha = 0.7;
-    if (x_distance &lt; 30 &amp;&amp; x_distance &gt; 20) || (y_distance &lt; 30 &amp;&amp; y_distance &gt; 20) light_alpha = 0.8;
-    if (x_distance &lt; 20 &amp;&amp; x_distance &gt; 10) || (y_distance &lt; 20 &amp;&amp; y_distance &gt; 10) light_alpha = 0.9;
-    if (x_distance &lt; 10 &amp;&amp; x_distance &gt; 0) || (y_distance &lt; 10 &amp;&amp; y_distance &gt; 0) light_alpha = 1;
-    
-    glr_lightsimple_set_alpha(light_id, light_alpha)
-}
-else
-{
-    glr_lightsimple_set_active(light_id, false);
-    light_alpha = 0;
-}*/
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>/// Change shadow sprite
 x_distance = abs(phy_position_x - obj_player.phy_position_x);
 y_distance = abs(phy_position_y - obj_player.phy_position_y);
@@ -227,7 +146,8 @@ if (phy_position_x &lt; obj_player.phy_position_x)
     if ((x_distance) &gt; (y_distance))
     {
         glr_shadowdepth_destroy(shadowdepth_id);
-        shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 0, x, y,  phy_position_y, image_xscale, image_yscale, image_angle);
+        //shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 0, x, y,  phy_position_y, image_xscale, image_yscale, image_angle);
+        shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 0 , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
     }
 }
 if (phy_position_x &gt; obj_player.phy_position_x)
@@ -235,14 +155,16 @@ if (phy_position_x &gt; obj_player.phy_position_x)
     if ((x_distance) &gt; (y_distance))
     {
         glr_shadowdepth_destroy(shadowdepth_id);
-        shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 1, x, y,  phy_position_y, image_xscale, image_yscale, image_angle);
+        //shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 1, x, y,  phy_position_y, image_xscale, image_yscale, image_angle);
+        shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 1 , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
     }
 }
 
 if (phy_position_y &gt; obj_player.phy_position_y)
 {
     glr_shadowdepth_destroy(shadowdepth_id);
-    shadowdepth_id = glr_shadowdepth_create(sprite_index, image_index , x, y,  phy_position_y, image_xscale, image_yscale, image_angle);
+    //shadowdepth_id = glr_shadowdepth_create(sprite_index, image_index , x, y,  phy_position_y, image_xscale, image_yscale, image_angle);
+    shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, image_index , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
 }
 </string>
           </argument>

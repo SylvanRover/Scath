@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// Initiates Shadows
 //create directional shadow
-glr_shadowdir_create(sprite_index, spr_tree_shadow_01, 0, x, y, y, image_xscale, 1, image_angle);
+glr_shadowdir_create(sprite_index, spr_tree_shadow_01, 0, x, y, y, depth, image_xscale, 1, image_angle);
 
 //create shadowdepth to cover the lower lights with the foliage of this tree
 glr_shadowdepth_create(sprite_index, image_index , x, y, y, image_xscale,1, image_angle);

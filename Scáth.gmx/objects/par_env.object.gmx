@@ -93,7 +93,7 @@ xscale = 1;
 yscale = 1;
 z = 0;
 rot = 0;
-shadowdir_id = glr_shadowdir_create(sprite_index, sprite_index, 0, x, y, z, xscale, yscale, rot)
+shadowdir_id = glr_shadowdir_create(sprite_index, sprite_index, 0, x, y, z, depth, xscale, yscale, rot)
 </string>
           </argument>
         </arguments>

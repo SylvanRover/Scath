@@ -28,7 +28,7 @@
             <string>/// Initiate Light
 color = make_color_rgb(135,211,189);
 intensity = 0.5//choose(0, 0, random(1.5));
-sprite = spr_light01;
+sprite = spr_light_mask_point;
 light = glr_light_create(sprite, 0, x, y, color, intensity );
 rot = 0;
 scal = 1;

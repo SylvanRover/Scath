@@ -4,7 +4,7 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions>
-    <extension index="0">extensions\Extension2</extension>
+    <extension index="0">extensions\Glare Engine - 2D illumination</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -61,38 +61,6 @@
       <sprite>sprites\spr_player_health</sprite>
       <sprite>sprites\apr_player_shadow</sprite>
     </sprites>
-    <sprites name="SmartLight">
-      <sprite>sprites\spr_tods</sprite>
-      <sprite>sprites\spr_bush01</sprite>
-      <sprite>sprites\spr_bush01_shadow</sprite>
-      <sprite>sprites\spr_cloud</sprite>
-      <sprite>sprites\spr_crate03</sprite>
-      <sprite>sprites\spr_crate03b</sprite>
-      <sprite>sprites\spr_fire</sprite>
-      <sprite>sprites\spr_ico_light</sprite>
-      <sprite>sprites\spr_ico_light2</sprite>
-      <sprite>sprites\spr_light01</sprite>
-      <sprite>sprites\spr_light02</sprite>
-      <sprite>sprites\spr_light03</sprite>
-      <sprite>sprites\spr_light04</sprite>
-      <sprite>sprites\spr_light05</sprite>
-      <sprite>sprites\spr_minimap</sprite>
-      <sprite>sprites\spr_plant01</sprite>
-      <sprite>sprites\spr_plant01_shadow</sprite>
-      <sprite>sprites\spr_shadow_mask</sprite>
-      <sprite>sprites\spr_shape01</sprite>
-      <sprite>sprites\spr_shape02</sprite>
-      <sprite>sprites\spr_shape03</sprite>
-      <sprite>sprites\spr_shape04</sprite>
-      <sprite>sprites\spr_block</sprite>
-      <sprite>sprites\spr_character</sprite>
-      <sprite>sprites\spr_character_m</sprite>
-      <sprite>sprites\spr_character_smask</sprite>
-      <sprite>sprites\spr_character2</sprite>
-      <sprite>sprites\spr_crate01</sprite>
-      <sprite>sprites\spr_crate02</sprite>
-      <sprite>sprites\spr_vehicle</sprite>
-    </sprites>
     <sprite>sprites\spr_light_radius</sprite>
     <sprite>sprites\spr_null</sprite>
     <sprite>sprites\spr_arrow</sprite>
@@ -107,14 +75,40 @@
       <sprite>sprites\spr_weapon_sword</sprite>
       <sprite>sprites\spr_weapon_bow</sprite>
     </sprites>
-    <sprite>sprites\sprite87</sprite>
+    <sprites name="Glare">
+      <sprites name="Icons">
+        <sprite>sprites\glr_icon_group</sprite>
+        <sprite>sprites\glr_icon_light</sprite>
+        <sprite>sprites\glr_icon_controller</sprite>
+        <sprite>sprites\spr_icon_glare</sprite>
+        <sprite>sprites\spr_icon_camera</sprite>
+        <sprite>sprites\glr_icon_parent</sprite>
+      </sprites>
+      <sprites name="Lights">
+        <sprite>sprites\spr_light_mask_0</sprite>
+        <sprite>sprites\spr_light_mask_1</sprite>
+        <sprite>sprites\spr_light_mask_2</sprite>
+        <sprite>sprites\spr_light_mask_3</sprite>
+        <sprite>sprites\spr_light_mask_4</sprite>
+        <sprite>sprites\spr_light_mask_5</sprite>
+        <sprite>sprites\spr_light_mask_6</sprite>
+        <sprite>sprites\spr_light_mask_7</sprite>
+        <sprite>sprites\spr_light_mask_point</sprite>
+        <sprite>sprites\spr_light_mask_point_hd</sprite>
+        <sprite>sprites\spr_light_mask_spot</sprite>
+      </sprites>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_01</background>
     <background>background\TileTest</background>
+    <backgrounds name="Glare">
+      <background>background\glr_back_platform</background>
+    </backgrounds>
   </backgrounds>
   <paths name="paths">
     <path>paths\path0</path>
+    <path>paths\path_shadow</path>
   </paths>
   <scripts name="scripts">
     <script>scripts\instance_nth_nearest.gml</script>
@@ -122,92 +116,46 @@
       <script>scripts\scr_zDepth.gml</script>
       <script>scripts\scr_depthCorrection.gml</script>
     </scripts>
-    <scripts name="Lighting">
-      <script>scripts\lightmap_update.gml</script>
-      <script>scripts\lightmap_init.gml</script>
-      <script>scripts\lightmap_draw.gml</script>
-      <script>scripts\light_update.gml</script>
-      <script>scripts\light_init.gml</script>
-      <script>scripts\light_draw.gml</script>
-      <script>scripts\caster_init.gml</script>
-      <script>scripts\caster_draw.gml</script>
-    </scripts>
     <scripts name="Shadows">
       <script>scripts\scr_shadow_16.gml</script>
       <script>scripts\scr_shadow_32.gml</script>
       <script>scripts\scr_shadow_64.gml</script>
     </scripts>
-    <scripts name="SmartLight">
-      <script>scripts\SL_ToD_default.gml</script>
-      <script>scripts\SL_engine_ini_begin.gml</script>
-      <script>scripts\SL_engine_ini_end.gml</script>
-      <script>scripts\SL_engine_render.gml</script>
-      <script>scripts\SL_engine_draw.gml</script>
-      <script>scripts\SL_engine_free.gml</script>
-      <script>scripts\SL_light_ini_begin.gml</script>
-      <script>scripts\SL_light_ini_end.gml</script>
-      <script>scripts\SL_light_free.gml</script>
-      <script>scripts\SL_light_cast_obj.gml</script>
-      <script>scripts\SL_global_cast_obj.gml</script>
-      <script>scripts\SL_cast_sprite.gml</script>
-      <script>scripts\SL_add_light.gml</script>
-      <script>scripts\SL_draw_sprite_light.gml</script>
-      <script>scripts\SL_draw_sprite_shadow.gml</script>
-      <script>scripts\SL_sprite_set_ambient.gml</script>
-      <script>scripts\SL_set_time.gml</script>
-      <script>scripts\SL_ToD_02.gml</script>
-    </scripts>
-    <scripts name="SmartLight New">
-      <script>scripts\SL_ToD_default_new.gml</script>
-      <script>scripts\SL_engine_ini_begin_new.gml</script>
-      <script>scripts\SL_engine_ini_end_new.gml</script>
-      <script>scripts\SL_engine_render_new.gml</script>
-      <script>scripts\SL_engine_draw_new.gml</script>
-      <script>scripts\SL_engine_free_new.gml</script>
-      <script>scripts\SL_light_ini_begin_new.gml</script>
-      <script>scripts\SL_light_ini_end_new.gml</script>
-      <script>scripts\SL_light_free_new.gml</script>
-      <script>scripts\SL_light_cast_obj_new.gml</script>
-      <script>scripts\SL_global_cast_obj_new.gml</script>
-      <script>scripts\SL_cast_sprite_new.gml</script>
-      <script>scripts\SL_add_light_new.gml</script>
-      <script>scripts\SL_draw_sprite_light_new.gml</script>
-      <script>scripts\SL_draw_sprite_shadow_new.gml</script>
-      <script>scripts\SL_sprite_set_ambient_new.gml</script>
-      <script>scripts\SL_set_time_new.gml</script>
-    </scripts>
     <script>scripts\scr_Image_Scale.gml</script>
     <scripts name="Glare">
-      <script>scripts\glr_README.gml</script>
+      <script>scripts\glr_Documentation.gml</script>
       <scripts name="Engine">
         <script>scripts\glr_init.gml</script>
-        <script>scripts\glr_draw.gml</script>
-        <script>scripts\glr_draw_rot.gml</script>
-        <script>scripts\glr_clear_all.gml</script>
-        <script>scripts\glr_free.gml</script>
         <script>scripts\glr_render.gml</script>
-        <script>scripts\glr_resize_event.gml</script>
+        <script>scripts\glr_draw.gml</script>
+        <script>scripts\glr_draw_gamma.gml</script>
+        <script>scripts\glr_clear_all.gml</script>
+        <script>scripts\glr_refresh_fullscreen.gml</script>
+        <script>scripts\glr_free.gml</script>
         <scripts name="Get">
           <script>scripts\glr_get_surface.gml</script>
           <script>scripts\glr_get_vertex_count.gml</script>
           <script>scripts\glr_get_quality.gml</script>
           <script>scripts\glr_get_illumination.gml</script>
           <script>scripts\glr_get_illumination_update.gml</script>
+          <script>scripts\glr_get_enabled_blur.gml</script>
+          <script>scripts\glr_get_enabled_directional.gml</script>
+          <script>scripts\glr_get_enabled_fxaa.gml</script>
+          <script>scripts\glr_get_enabled_occlusion.gml</script>
         </scripts>
         <scripts name="Set">
+          <script>scripts\glr_enable_blur.gml</script>
           <script>scripts\glr_enable_directional.gml</script>
           <script>scripts\glr_enable_fxaa.gml</script>
-          <script>scripts\glr_enable_intensity.gml</script>
           <script>scripts\glr_enable_occlusion.gml</script>
           <script>scripts\glr_set_ambient_color.gml</script>
           <script>scripts\glr_set_ambient_daytime.gml</script>
           <script>scripts\glr_set_ambient_daytime_colors.gml</script>
           <script>scripts\glr_set_directional_quality.gml</script>
-          <script>scripts\glr_set_intensity_quality.gml</script>
-          <script>scripts\glr_set_occlusion_quality.gml</script>
+          <script>scripts\glr_set_occlusion_intensity.gml</script>
           <script>scripts\glr_set_quality.gml</script>
-          <script>scripts\glr_set_view.gml</script>
           <script>scripts\glr_set_size.gml</script>
+          <script>scripts\glr_set_view.gml</script>
         </scripts>
       </scripts>
       <scripts name="Lights">
@@ -218,36 +166,47 @@
         <script>scripts\glr_light_toggle.gml</script>
         <scripts name="Set">
           <script>scripts\glr_light_set_active.gml</script>
+          <script>scripts\glr_light_set_color.gml</script>
+          <script>scripts\glr_light_set_depth.gml</script>
+          <script>scripts\glr_light_set_intensity.gml</script>
           <script>scripts\glr_light_set_layer.gml</script>
           <script>scripts\glr_light_set_position.gml</script>
           <script>scripts\glr_light_set_rotation.gml</script>
           <script>scripts\glr_light_set_scaling.gml</script>
+          <script>scripts\glr_light_set_transform.gml</script>
           <script>scripts\glr_light_set_shadow_strength.gml</script>
           <script>scripts\glr_light_set_sprite.gml</script>
           <script>scripts\glr_light_set_static.gml</script>
           <script>scripts\glr_light_set_tolerance.gml</script>
-          <script>scripts\glr_light_set_intensity.gml</script>
         </scripts>
         <scripts name="Get">
-          <script>scripts\glr_light_get_count.gml</script>
           <script>scripts\glr_light_get_active.gml</script>
           <script>scripts\glr_light_get_color.gml</script>
+          <script>scripts\glr_light_get_count.gml</script>
+          <script>scripts\glr_light_get_depth.gml</script>
+          <script>scripts\glr_light_get_intensity.gml</script>
           <script>scripts\glr_light_get_layer.gml</script>
-          <script>scripts\glr_light_get_static.gml</script>
           <script>scripts\glr_light_get_shadow_strength.gml</script>
+          <script>scripts\glr_light_get_sprite.gml</script>
+          <script>scripts\glr_light_get_static.gml</script>
+          <script>scripts\glr_light_get_subimage.gml</script>
           <script>scripts\glr_light_get_tolerance.gml</script>
         </scripts>
         <scripts name="Simple">
           <script>scripts\glr_lightsimple_create.gml</script>
           <script>scripts\glr_lightsimple_destroy.gml</script>
+          <script>scripts\glr_lightsimple_destroy_all.gml</script>
           <scripts name="Get">
             <script>scripts\glr_lightsimple_get_count.gml</script>
+            <script>scripts\glr_lightsimple_get_alpha.gml</script>
+            <script>scripts\glr_lightsimple_get_color.gml</script>
+            <script>scripts\glr_lightsimple_get_active.gml</script>
           </scripts>
           <scripts name="Set">
             <script>scripts\glr_lightsimple_set_active.gml</script>
             <script>scripts\glr_lightsimple_set_alpha.gml</script>
-            <script>scripts\glr_lightsimple_set_intensity.gml</script>
             <script>scripts\glr_lightsimple_set_color.gml</script>
+            <script>scripts\glr_lightsimple_set_intensity.gml</script>
             <script>scripts\glr_lightsimple_set_position.gml</script>
             <script>scripts\glr_lightsimple_set_rotation.gml</script>
             <script>scripts\glr_lightsimple_set_scaling.gml</script>
@@ -257,65 +216,110 @@
       </scripts>
       <scripts name="Mesh">
         <script>scripts\glr_mesh_create.gml</script>
-        <script>scripts\glr_mesh_update.gml</script>
-        <script>scripts\glr_mesh_draw.gml</script>
         <script>scripts\glr_mesh_destroy.gml</script>
         <script>scripts\glr_mesh_destroy_all.gml</script>
-        <scripts name="Set">
-          <script>scripts\glr_mesh_set_layer.gml</script>
-          <script>scripts\glr_mesh_set_shadow_strength.gml</script>
-          <script>scripts\glr_mesh_set_position.gml</script>
-          <script>scripts\glr_mesh_set_directional_mask.gml</script>
-          <script>scripts\glr_mesh_set_rotation.gml</script>
-          <script>scripts\glr_mesh_set_scaling.gml</script>
-          <script>scripts\glr_mesh_set_height.gml</script>
-        </scripts>
+        <script>scripts\glr_mesh_draw.gml</script>
+        <script>scripts\glr_mesh_update.gml</script>
         <scripts name="Get">
           <script>scripts\glr_mesh_get_transform.gml</script>
           <script>scripts\glr_mesh_get_rotation.gml</script>
           <script>scripts\glr_mesh_get_scaling.gml</script>
           <script>scripts\glr_mesh_get_position.gml</script>
           <script>scripts\glr_mesh_get_bcircle.gml</script>
-          <script>scripts\glr_mesh_get_bbox.gml</script>
+          <script>scripts\glr_mesh_get_vertex_count.gml</script>
         </scripts>
-        <scripts name="Vertices">
-          <script>scripts\glr_mesh_vertex_add.gml</script>
-          <script>scripts\glr_mesh_vertex_add_from_path.gml</script>
-          <script>scripts\glr_mesh_vertex_add_json.gml</script>
-          <script>scripts\glr_mesh_vertex_set.gml</script>
-          <script>scripts\glr_mesh_vertex_get_count.gml</script>
-          <script>scripts\glr_mesh_vertex_delete.gml</script>
+        <scripts name="Set">
+          <script>scripts\glr_mesh_set_active.gml</script>
+          <script>scripts\glr_mesh_set_depth.gml</script>
+          <script>scripts\glr_mesh_set_depth_mask.gml</script>
+          <script>scripts\glr_mesh_set_directional_shadow_length.gml</script>
+          <script>scripts\glr_mesh_set_height.gml</script>
+          <script>scripts\glr_mesh_set_layer.gml</script>
+          <script>scripts\glr_mesh_set_position.gml</script>
+          <script>scripts\glr_mesh_set_rotation.gml</script>
+          <script>scripts\glr_mesh_set_scaling.gml</script>
+          <script>scripts\glr_mesh_set_shadow_strength.gml</script>
+          <script>scripts\glr_mesh_set_transform.gml</script>
         </scripts>
+        <scripts name="SubMesh">
+          <script>scripts\glr_mesh_submesh_add_box.gml</script>
+          <script>scripts\glr_mesh_submesh_add_from_tiles.gml</script>
+          <script>scripts\glr_mesh_submesh_add_box_from_sprite.gml</script>
+          <script>scripts\glr_mesh_submesh_add_list.gml</script>
+          <script>scripts\glr_mesh_submesh_add_circle.gml</script>
+          <script>scripts\glr_mesh_submesh_add_json.gml</script>
+          <script>scripts\glr_mesh_submesh_add_path.gml</script>
+        </scripts>
+      </scripts>
+      <scripts name="Occlusion">
+        <script>scripts\glr_occlusion_create.gml</script>
+        <script>scripts\glr_occlusion_add_instance.gml</script>
+        <script>scripts\glr_occlusion_destroy.gml</script>
+        <script>scripts\glr_occlusion_destroy_all.gml</script>
+        <script>scripts\glr_occlusion_destroy_instance.gml</script>
+        <scripts name="Set">
+          <script>scripts\glr_occlusion_set_transform.gml</script>
+          <script>scripts\glr_occlusion_set_sprite.gml</script>
+          <script>scripts\glr_occlusion_set_active.gml</script>
+        </scripts>
+        <scripts name="Get">
+          <script>scripts\glr_occlusion_get_active.gml</script>
+          <script>scripts\glr_occlusion_get_sprite.gml</script>
+          <script>scripts\glr_occlusion_get_subimage.gml</script>
+        </scripts>
+      </scripts>
+      <scripts name="ShadowArea">
+        <script>scripts\glr_shadowarea_create.gml</script>
+        <script>scripts\glr_shadowarea_destroy.gml</script>
+        <script>scripts\glr_shadowarea_destroy_all.gml</script>
+        <script>scripts\glr_shadowarea_get_active.gml</script>
+        <script>scripts\glr_shadowarea_set_active.gml</script>
+        <script>scripts\glr_shadowarea_set_illumination.gml</script>
+        <script>scripts\glr_shadowarea_update.gml</script>
       </scripts>
       <scripts name="ShadowDepth">
         <script>scripts\glr_shadowdepth_create.gml</script>
         <script>scripts\glr_shadowdepth_destroy.gml</script>
         <script>scripts\glr_shadowdepth_destroy_all.gml</script>
-        <script>scripts\glr_shadowdepth_update.gml</script>
+        <scripts name="Set">
+          <script>scripts\glr_shadowdepth_set_active.gml</script>
+          <script>scripts\glr_shadowdepth_set_depth.gml</script>
+          <script>scripts\glr_shadowdepth_set_sprite.gml</script>
+          <script>scripts\glr_shadowdepth_set_transform.gml</script>
+        </scripts>
+        <scripts name="Get">
+          <script>scripts\glr_shadowdepth_get_active.gml</script>
+          <script>scripts\glr_shadowdepth_get_depth.gml</script>
+          <script>scripts\glr_shadowdepth_get_sprite.gml</script>
+          <script>scripts\glr_shadowdepth_get_subimage.gml</script>
+        </scripts>
       </scripts>
       <scripts name="ShadowDirectional">
         <script>scripts\glr_shadowdir_create.gml</script>
         <script>scripts\glr_shadowdir_destroy.gml</script>
         <script>scripts\glr_shadowdir_destroy_all.gml</script>
-        <script>scripts\glr_shadowdir_update.gml</script>
-      </scripts>
-      <scripts name="ShadowOcclusion">
-        <script>scripts\glr_occlusion_add.gml</script>
-        <script>scripts\glr_occlusion_add_instance.gml</script>
-        <script>scripts\glr_occlusion_destroy.gml</script>
-        <script>scripts\glr_occlusion_destroy_instance.gml</script>
-        <script>scripts\glr_occlusion_destroy_all.gml</script>
-        <script>scripts\glr_occlusion_update.gml</script>
+        <script>scripts\glr_shadowdir_get_active.gml</script>
+        <script>scripts\glr_shadowdir_set_active.gml</script>
+        <script>scripts\glr_shadowdir_set_shadow.gml</script>
+        <script>scripts\glr_shadowdir_set_sprite.gml</script>
+        <script>scripts\glr_shadowdir_set_transform.gml</script>
       </scripts>
       <scripts name="ShadowSprite">
         <script>scripts\glr_shadowsprite_create.gml</script>
         <script>scripts\glr_shadowsprite_create_from_instance.gml</script>
+        <script>scripts\glr_shadowsprite_update_instance.gml</script>
         <script>scripts\glr_shadowsprite_destroy.gml</script>
         <script>scripts\glr_shadowsprite_destroy_all.gml</script>
-        <script>scripts\glr_shadowsprite_set_layer.gml</script>
-        <script>scripts\glr_shadowsprite_set_static.gml</script>
-        <script>scripts\glr_shadowsprite_update.gml</script>
-        <script>scripts\glr_shadowsprite_update_instance.gml</script>
+        <scripts name="Set">
+          <script>scripts\glr_shadowsprite_set_active.gml</script>
+          <script>scripts\glr_shadowsprite_set_layer.gml</script>
+          <script>scripts\glr_shadowsprite_set_static.gml</script>
+          <script>scripts\glr_shadowsprite_set_transform.gml</script>
+        </scripts>
+        <scripts name="Get">
+          <script>scripts\glr_shadowsprite_get_active.gml</script>
+          <script>scripts\glr_shadowsprite_get_layer.gml</script>
+        </scripts>
       </scripts>
     </scripts>
   </scripts>
@@ -323,14 +327,25 @@
     <shaders name="Glare">
       <shader type="GLSLES">shaders\glr_shader_ambient.shader</shader>
       <shader type="GLSLES">shaders\glr_shader_ambient_occlusion.shader</shader>
-      <shader type="GLSLES">shaders\glr_shader_base.shader</shader>
       <shader type="GLSLES">shaders\glr_shader_blur_hor.shader</shader>
       <shader type="GLSLES">shaders\glr_shader_blur_ver.shader</shader>
       <shader type="GLSLES">shaders\glr_shader_depth.shader</shader>
       <shader type="GLSLES">shaders\glr_shader_directional.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_directional_gamma.shader</shader>
       <shader type="GLSLES">shaders\glr_shader_fxaa.shader</shader>
-      <shader type="GLSLES">shaders\glr_shader_intensity.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_gamma.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_gamma_blur.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_gamma_blur_mobile.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_gamma_fxaa.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_gamma_fxaa_mobile.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_gamma_mobile.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_light.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_mesh.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_mesh_color.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_mesh_mask.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_mesh_mobile.shader</shader>
       <shader type="GLSLES">shaders\glr_shader_shadow_sprite.shader</shader>
+      <shader type="GLSLES">shaders\glr_shader_sprite_color.shader</shader>
     </shaders>
   </shaders>
   <fonts name="fonts">
@@ -338,7 +353,6 @@
     <font>fonts\font_celtic_bit</font>
     <font>fonts\font_small</font>
     <fonts name="Glare">
-      <font>fonts\font_glare2</font>
       <font>fonts\font_glare</font>
     </fonts>
   </fonts>
@@ -383,39 +397,6 @@
     <objects name="UI">
       <object>objects\obj_startScreen</object>
     </objects>
-    <objects name="SmartLight">
-      <object>objects\obj_character</object>
-      <object>objects\obj_control</object>
-      <object>objects\obj_engine</object>
-      <object>objects\obj_light_torch</object>
-      <object>objects\obj_light01</object>
-      <object>objects\obj_light02</object>
-      <object>objects\obj_npc</object>
-      <object>objects\obj_ball</object>
-      <object>objects\obj_block</object>
-      <object>objects\obj_bush01</object>
-      <object>objects\obj_cloud</object>
-      <object>objects\obj_crate01</object>
-      <object>objects\obj_crate02</object>
-      <object>objects\obj_crate03</object>
-      <object>objects\obj_fire</object>
-      <object>objects\obj_plant01</object>
-      <object>objects\obj_shadow_mask</object>
-      <object>objects\obj_shape01</object>
-      <object>objects\obj_shape03</object>
-      <object>objects\obj_shape04</object>
-      <object>objects\obj_vehicle</object>
-      <object>objects\obj_engine_orignal</object>
-      <object>objects\obj_player_torch</object>
-      <object>objects\obj_light_02</object>
-      <object>objects\obj_engine_dynamiclights</object>
-      <object>objects\par_light</object>
-    </objects>
-    <objects name="Glare">
-      <object>objects\obj_light_static</object>
-      <object>objects\obj_glare_controller</object>
-      <object>objects\obj_light_point</object>
-    </objects>
     <objects name="Weapons">
       <object>objects\obj_arrow</object>
       <object>objects\obj_arrow_object</object>
@@ -434,6 +415,35 @@
       <object>objects\obj_gui_settingsTab</object>
       <object>objects\obj_gui_settings</object>
       <object>objects\obj_inventory</object>
+    </objects>
+    <object>objects\obj_glare_controller</object>
+    <object>objects\obj_test_doc</object>
+    <objects name="Glare demo">
+      <objects name="Isometric">
+        <object>objects\obj_depth_test</object>
+      </objects>
+      <objects name="Top Down">
+        <objects name="Furnitures">
+          <object>objects\obj_tree</object>
+        </objects>
+        <objects name="ShadowSprites">
+          <object>objects\obj_test_shadowsprite</object>
+        </objects>
+        <objects name="Roof">
+          <object>objects\obj_roof</object>
+          <object>objects\obj_roof_shadow</object>
+          <object>objects\obj_roof_activator</object>
+        </objects>
+      </objects>
+      <objects name="Lights">
+        <object>objects\obj_light_mouse</object>
+        <object>objects\obj_light_path</object>
+        <object>objects\obj_light_point</object>
+        <object>objects\obj_light_point_static</object>
+        <object>objects\obj_light_random_static</object>
+        <object>objects\obj_light_spot</object>
+        <object>objects\obj_lightsimple</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">

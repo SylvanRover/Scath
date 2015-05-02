@@ -29,11 +29,12 @@
 mesh_id = glr_mesh_create(x, y, true);
 
 //add vertices to make a box
-glr_mesh_vertex_add(mesh_id, 0, sprite_yoffset);
-glr_mesh_vertex_add(mesh_id, sprite_xoffset, 0);
-glr_mesh_vertex_add(mesh_id, 0, -sprite_yoffset);
-glr_mesh_vertex_add(mesh_id, -sprite_xoffset, 0);
-glr_mesh_vertex_add(mesh_id, 0, sprite_yoffset);
+glr_mesh_submesh_add_path(mesh_id, path_shadow, 0, sprite_yoffset);
+/*glr_mesh_submesh_add_box_from_sprite(mesh_id, sprite_index, 0, sprite_yoffset);
+glr_mesh_submesh_add_box_from_sprite(mesh_id, sprite_index, sprite_xoffset, 0);
+glr_mesh_submesh_add_box_from_sprite(mesh_id, sprite_index, 0, -sprite_yoffset);
+glr_mesh_submesh_add_box_from_sprite(mesh_id, sprite_index, -sprite_xoffset, 0);
+glr_mesh_submesh_add_box_from_sprite(mesh_id, sprite_index, 0, sprite_yoffset);*/
 
 //finalize the mesh to make it renderable
 glr_mesh_update(mesh_id);
@@ -45,7 +46,7 @@ glr_mesh_set_shadow_strength(mesh_id, 0.2);
 glr_mesh_set_height(mesh_id, -1000);
 
 //set directional mask according to the sprite index to avoid shadow overlap
-glr_mesh_set_directional_mask(mesh_id, sprite_index, image_index);
+//glr_mesh_set_directional_mask(mesh_id, sprite_index, image_index);
 
 
 //set the mesh scaling

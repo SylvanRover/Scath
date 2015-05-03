@@ -32,7 +32,12 @@ if(view_enabled){
     v_y1 = room_height;
 } 
 
-
+if(!surface_exists(global.GLR_MAIN_SURFACE)){
+    global.GLR_MAIN_SURFACE = surface_create(global.GLR_MAIN_SURFACE_WIDTH, global.GLR_MAIN_SURFACE_HEIGHT);
+    if(!surface_exists(global.GLR_MAIN_SURFACE)){
+        return 0;
+    }
+} 
 var sur_w = surface_get_width(argument0);
 var sur_h = surface_get_height(argument0);
  
@@ -215,34 +220,28 @@ if(global.GLR_BLUR_ENABLED)
 
 }
 else{
- 
+   
+    surface_set_target(argument0);
+    if(global.GLR_FXAA_ENABLED)
+    {
+        shader_set(global.GLR_OS_GAMMA_SHADER_FXAA);
+        shader_set_uniform_f(global.GLR_UNIF_GAMMA_FXAA_SIZE, global.GLR_WIDTH /global.GLR_ZOOM, global.GLR_HEIGHT /global.GLR_ZOOM);
     
-     
-    if(surface_exists(global.GLR_MAIN_SURFACE))
-    { 
-        surface_set_target(argument0);
-        
-        if(global.GLR_FXAA_ENABLED)
-        {
-            shader_set(global.GLR_OS_GAMMA_SHADER_FXAA);
-            shader_set_uniform_f(global.GLR_UNIF_GAMMA_FXAA_SIZE, global.GLR_WIDTH /global.GLR_ZOOM, global.GLR_HEIGHT /global.GLR_ZOOM);
-        
-            texture_set_interpolation_ext(global.GLR_SAMPLER_APP_FXAA, false);
-            texture_set_stage(global.GLR_SAMPLER_APP_FXAA, surface_get_texture(argument0));
-        }
-        else
-        {
-            shader_set(global.GLR_OS_GAMMA_SHADER);
-            texture_set_interpolation_ext(global.GLR_SAMPLER_APP, false);
-            texture_set_stage(global.GLR_SAMPLER_APP, surface_get_texture(argument0));
-        }
-        
-        draw_surface_stretched(global.GLR_MAIN_SURFACE, -0.01, -0.01, sur_w, sur_h);
-        
-        surface_reset_target(); 
-        shader_reset();
+        texture_set_interpolation_ext(global.GLR_SAMPLER_APP_FXAA, false);
+        texture_set_stage(global.GLR_SAMPLER_APP_FXAA, surface_get_texture(argument0));
+    }
+    else
+    {
+        shader_set(global.GLR_OS_GAMMA_SHADER);
+        texture_set_interpolation_ext(global.GLR_SAMPLER_APP, false);
+        texture_set_stage(global.GLR_SAMPLER_APP, surface_get_texture(argument0));
     }
     
+    draw_surface_stretched(global.GLR_MAIN_SURFACE, -0.01, -0.01, sur_w, sur_h);
+    
+    shader_reset();
+    surface_reset_target(); 
+  
       
 }
 
@@ -257,7 +256,7 @@ if(global.GLR_OCCLUSION_ENABLED)
             return 0;
         }
     }
-    
+     
     //depthmap sampler creation
     var size = ds_list_size(global.GLR_OCCLUSION_LIST);
     var size2 = ds_list_size(global.GLR_OCCLUSION_LIST_INST);
@@ -301,8 +300,7 @@ if(global.GLR_OCCLUSION_ENABLED)
         shader_reset(); 
         surface_reset_target();
     }
-    
-
+     
     //occlusion rendering
     surface_set_target(argument0);
     texture_set_repeat(false);
@@ -314,6 +312,12 @@ if(global.GLR_OCCLUSION_ENABLED)
     } 
     texture_set_repeat(true);
     surface_reset_target();
-} 
- 
+  
+}
+else
+{
+    surface_set_target(argument0);
+    surface_reset_target();
+}
+
  

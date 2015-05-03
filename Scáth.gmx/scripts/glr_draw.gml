@@ -38,7 +38,12 @@ if(view_enabled){
 //===============================================
 //  Drawing main surface
 //===============================================
-
+if(!surface_exists(global.GLR_MAIN_SURFACE)){
+    global.GLR_MAIN_SURFACE = surface_create(global.GLR_MAIN_SURFACE_WIDTH, global.GLR_MAIN_SURFACE_HEIGHT);
+    if(!surface_exists(global.GLR_MAIN_SURFACE)){
+        return 0;
+    }
+} 
 surface_set_target(global.GLR_MAIN_SURFACE);
 draw_clear(global.GLR_AMBIENT_COLOR);
 if(global.GLR_DIRECTIONAL_ENABLED  && global.GLR_DIRECTIONAL_STRENGTH > 0 ){
@@ -272,8 +277,4 @@ if(global.GLR_OCCLUSION_ENABLED && surface_exists(global.GLR_DEPTH_SURFACE))
     shader_reset();  
     texture_set_repeat(true);
 } 
-  
-
-
- 
- 
+   

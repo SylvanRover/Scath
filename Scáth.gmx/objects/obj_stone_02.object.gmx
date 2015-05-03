@@ -26,16 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>/// Initiates Shadows
-/*glr_shadowdir_create(sprite_index, image_index, sprite_index, image_index, x, y, depth, image_xscale, image_yscale, image_angle);
-
-//create shadowdepth to cover the lower lights with the foliage of this tree
-shadowdepth_id = glr_shadowdepth_create(sprite_index, image_index , x, y,  phy_position_y, image_xscale, image_yscale, image_angle);*/
 
 //create directional shadow
-glr_shadowdir_create(sprite_index, image_index, sprite_index, image_index, x, y, 120, image_xscale, image_yscale, image_angle);
+//glr_shadowdir_create(sprite_index, image_index, sprite_index, image_index, x, y, 120, image_xscale, image_yscale, image_angle);
 
 //create shadowdepth to cover the lower lights with the foliage of this tree
-shadowdepth_id = glr_shadowdepth_create(sprite_index, image_index , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
+//zdepth = y;
+//shadowdepth_id = glr_shadowdepth_create(spr_null, 0 , x, y, zdepth+1, image_xscale, image_yscale, image_angle);
 
 </string>
           </argument>
@@ -69,11 +66,13 @@ glr_mesh_submesh_add_path(mesh, path_shadow, 0, 0);
 glr_mesh_update(mesh);
 
 glr_mesh_set_depth_mask(mesh, sprite_index, image_index); 
-
-glr_shadowdepth_create(sprite_index, image_index, x, y, zdepth, 1, 1, 0); 
+shadowmask = glr_shadowdepth_create(sprite_index, image_index, x+0.5, y+0.5, zdepth, image_xscale, image_yscale, image_angle); 
 glr_mesh_set_depth(mesh, zdepth);
 
-depth = -y;
+shadowdepth_id = glr_shadowdepth_create(spr_null, 0 , x+0.5, y+0.5, zdepth+50, image_xscale, image_yscale, image_angle);
+
+// add directional shadows
+glr_shadowdir_create(sprite_index, image_index, spr_stone_02_shadow, 0, x, y, zdepth, image_xscale, image_yscale, image_angle);
 </string>
           </argument>
         </arguments>
@@ -140,32 +139,44 @@ depth = -y;
 x_distance = abs(phy_position_x - obj_player.phy_position_x);
 y_distance = abs(phy_position_y - obj_player.phy_position_y);
 angle = 45;
+buffer = 50;
 
 if (phy_position_x &lt; obj_player.phy_position_x)
 {
     if ((x_distance) &gt; (y_distance))
     {
-        glr_shadowdepth_destroy(shadowdepth_id);
+        //glr_shadowdepth_destroy(shadowdepth_id);
         //shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 0, x, y,  phy_position_y, image_xscale, image_yscale, image_angle);
-        shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 0 , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
+        //shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 0 , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
+        glr_shadowdepth_set_sprite(shadowdepth_id, spr_stone_02_shadow_test, 0);
     }
 }
 if (phy_position_x &gt; obj_player.phy_position_x)
 {
     if ((x_distance) &gt; (y_distance))
     {
-        glr_shadowdepth_destroy(shadowdepth_id);
+        //glr_shadowdepth_destroy(shadowdepth_id);
         //shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 1, x, y,  phy_position_y, image_xscale, image_yscale, image_angle);
-        shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 1 , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
+        //shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, 1 , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
+        glr_shadowdepth_set_sprite(shadowdepth_id, spr_stone_02_shadow_test, 1) 
     }
 }
 
 if (phy_position_y &gt; obj_player.phy_position_y)
 {
-    glr_shadowdepth_destroy(shadowdepth_id);
+    //glr_shadowdepth_destroy(shadowdepth_id);
     //shadowdepth_id = glr_shadowdepth_create(sprite_index, image_index , x, y,  phy_position_y, image_xscale, image_yscale, image_angle);
-    shadowdepth_id = glr_shadowdepth_create(spr_stone_02_shadow_test, image_index , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
+    //shadowdepth_id = glr_shadowdepth_create(sprite_index, image_index , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
+    glr_shadowdepth_set_sprite(shadowdepth_id, sprite_index, 0)
 }
+
+/*if (phy_position_y + buffer &lt; obj_player.phy_position_y)
+{
+    //glr_shadowdepth_destroy(shadowdepth_id);
+    //shadowdepth_id = glr_shadowdepth_create(sprite_index, image_index , x, y,  phy_position_y, image_xscale, image_yscale, image_angle);
+    //shadowdepth_id = glr_shadowdepth_create(spr_null, 0 , x, y, global.GLR_MAX_DEPTH, image_xscale, image_yscale, image_angle);
+    glr_shadowdepth_set_sprite(shadowdepth_id, spr_null, 0)
+}*/
 </string>
           </argument>
         </arguments>

@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>par_player</parentName>
+  <parentName>self</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -46,6 +46,28 @@
           <argument>
             <kind>0</kind>
             <string></string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Create player shadow
+instance_create(x,y,obj_player_shadow);
+</string>
           </argument>
         </arguments>
       </action>
@@ -164,9 +186,24 @@ instance_create(x,y,obj_player_light);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Create player shadow
+            <string>/// Create Mesh
 
-instance_create(x,y,obj_player_shadow);
+//add vertices to make a box
+
+zdepth = y;
+/*mesh = glr_mesh_create(x, y, true);
+
+//glr_mesh_submesh_add_path(mesh, path_shadow_circle, 0, 0);
+//glr_mesh_submesh_add_box_from_sprite(mesh, spr_null,0,0);
+glr_mesh_submesh_add_circle(mesh, 0.1, 4, 0, 0);
+
+glr_mesh_update(mesh);
+
+glr_mesh_set_depth_mask(mesh, sprite_index, image_index);
+
+glr_mesh_set_depth(mesh, zdepth);*/
+
+shadowmask = glr_shadowdepth_create(sprite_index, image_index, x, y, zdepth, 1, 1, 0); 
 </string>
           </argument>
         </arguments>
@@ -1024,6 +1061,38 @@ if (stamina_current != stamina_max){
     healthBarActive = true;
     alarm[3] = 100;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Update shadow mask
+zdepth = y;
+
+glr_shadowdepth_set_sprite(shadowmask, sprite_index, image_index);
+glr_shadowdepth_set_depth(shadowmask, zdepth-100);
+glr_shadowdepth_set_transform(shadowmask, phy_position_x, phy_position_y, image_xscale, image_yscale, image_angle);
+
+//glr_mesh_set_position(mesh, phy_position_x, phy_position_y);
+
+/*glr_shadowdepth_set_sprite(shadowdepth_id, spr_null, 0);
+glr_shadowdepth_set_depth(shadowdepth_id, global.GLR_MAX_DEPTH);
+glr_shadowdepth_set_transform(shadowdepth_id, phy_position_x, phy_position_y, image_xscale, image_yscale, image_angle);*/
 </string>
           </argument>
         </arguments>

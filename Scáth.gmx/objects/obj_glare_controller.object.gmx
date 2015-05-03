@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>new_rendering_mode = false;
+            <string>new_rendering_mode = true;
 
 
 //if desktop
@@ -38,6 +38,8 @@ if(os_type != os_android &amp;&amp; os_type != os_ios ){
     //set directional surface resolution (1 = 100% of the engine quality)
     glr_set_directional_quality(1);
     
+    glr_set_quality(1);
+    
     //enable directional shadows
     glr_enable_directional(true);
      
@@ -45,10 +47,13 @@ if(os_type != os_android &amp;&amp; os_type != os_ios ){
     //enable ambient occlusion
     glr_enable_occlusion(false);
     
+    
+    texture_set_interpolation(false); 
+    
     //glr_set_occlusion_intensity(1.5);//darker A.O.
     
     //set daytime
-    glr_set_ambient_daytime(4);
+    glr_set_ambient_color(make_color_rgb(37,84,139));
     
       
     room_goto_next();   

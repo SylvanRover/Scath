@@ -109,6 +109,7 @@
   <paths name="paths">
     <path>paths\path0</path>
     <path>paths\path_shadow</path>
+    <path>paths\path_shadow_circle</path>
   </paths>
   <scripts name="scripts">
     <script>scripts\instance_nth_nearest.gml</script>
@@ -428,11 +429,15 @@
         </objects>
         <objects name="ShadowSprites">
           <object>objects\obj_test_shadowsprite</object>
+          <object>objects\obj_bug</object>
         </objects>
         <objects name="Roof">
           <object>objects\obj_roof</object>
           <object>objects\obj_roof_shadow</object>
           <object>objects\obj_roof_activator</object>
+        </objects>
+        <objects name="Main Objects">
+          <object>objects\obj_test_zoom</object>
         </objects>
       </objects>
       <objects name="Lights">
